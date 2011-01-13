@@ -1,45 +1,153 @@
-/* CSS Document */
 
-img{border:0px;}
-body{ margin-top:0px; background-color:#000000; margin-left:0px; margin-right:0px;}
-
-.head {margin-left:350px; margin-top:40px;}
-
-.content {width:910px; height:339px; border:0px; background-image:url(../img/txt_pic.jpg); background-repeat:no-repeat;}
-.left {background-image:url(../img/template-cybersant-javascript_02.jpg); background-position:right; background-repeat:no-repeat;}
-
-.right {background-image: url(../img/right_04.jpg); background-position:left; background-repeat:no-repeat;}
-
-.zag1 {font-family:Arial; font-size:48px; color:#FBC00E;/*color:#FFFF00; /*color:#fad464;*/ font-weight:bold; text-align:center;
- line-height:0.9; letter-spacing:-2pt;}
- 
- .pod_zag {font-family:Arial; font-size:30px; color:#FBC00E;/*color:#FFFF00; /*color:#fad464;*/ font-weight:bold; text-align:left;
- line-height:0.9; letter-spacing:0pt;}
- 
-.chasti {font-family:Georgia;/*Times New Roman;*/ font-size:25px; color:white; font-weight:normal; text-align:left; margin-left:20px;}
-.lesson {font-family:Georgia;/*Times New Roman;*/ font-size:21px; color:#b4b4b4; font-weight:normal; text-align:left; margin-left:40px;line-height:1.5;}
-
- .futer {font-family:Tahoma; font-size:11px; color: #FFFFFF; font-weight:normal;letter-spacing:0pt;line-height:1.9;}
- 
- .main_txt{font-family:Georgia;/*Times New Roman;*/ font-size:21px; color: #FFFFFF; font-weight:normal; text-align:left;
- line-height:1.5;}
- 
-.cian {font-family:Georgia;/*Times New Roman;*/ font-size:21px; color: #00d8ff;/*color: #FFFFFF;*/ font-weight:normal; text-decoration:underline;}
-.cian:hover {font-family:Georgia;/*Times New Roman;*/ font-size:21px; color: #00d8ff;/*color: #FFFFFF;*/ font-weight:normal; text-decoration:none;}
-
-a {font-family:Tahoma; font-size:11px; color: #FFFFFF; font-weight:normal;letter-spacing:0pt;line-height:1.9; text-decoration:underline;}
-a:hover {font-family:Tahoma; font-size:11px; color: #FFFFFF; font-weight:normal;letter-spacing:0pt;line-height:1.9; text-decoration:none;}
-
-.name
-{
-border:0px silver solid;
-font-family:Arial;
-font-size:25px; color:#FFFFFF; font-weight:bold;
-background-image:url(../form/template-cybersant-javascript-copy_05.jpg);
-height:32px;
+#bc-wrapper{
+    margin: 0px auto;
+    width: 700px;
+    color: #333;
+    font-size: 16px;
+    
 }
 
-#box{
-display:none;
+/* SEARCH ------------------------------------------------------------ SEARCH */
+#bc-wrapper div.search{
+    clear: both;
+    margin-left: 200px;
+    margin-top: 20px;
 }
-#q1 {text-decoration:none;}
+
+#bc-wrapper div.search *{
+    vertical-align: middle;
+}
+
+#bc-wrapper div.search input{
+    width: 290px;
+    height: 20px;
+    border: 1px solid #333;
+}
+
+#bc-wrapper div.search img{
+    cursor: pointer;
+}
+/* SEARCH --------------------------------------------------------------- END */
+
+/* CITY-NAV -------------------------------------------------------- CITY-NAV */
+#bc-wrapper div.city-nav{
+    clear: both;
+    margin: 20px 0px 20px 200px;
+
+}
+
+#bc-wrapper div.city-nav div.curr-city{
+    font-weight: bold;
+    float: left;
+    margin-bottom: 3px;
+}
+
+#bc-wrapper div.city-nav div.city-list-trigger{
+    border-bottom: 1px #0066CC dashed;
+    float: left;
+    margin-left: 20px;
+    color: #0066CC;
+    cursor: pointer;
+}
+/* CITY-NAV ------------------------------------------------------------- END */
+
+/* CITY-LIST ------------------------------------------------------ CITY-LIST */
+#bc-wrapper div.city-list{
+    /*display: none;*/
+    clear: both;
+    /*margin: 20px 0px 20px 0px;*/
+    width:100%;
+
+    border: 1px solid #0077EE;
+    background-color: rgb(241,250,255);
+}
+/* CITY-LIST ------------------------------------------------------------ END */
+
+/* BANK-LIST ------------------------------------------------------ BANK-LIST */
+
+#bc-wrapper div.bank-list{
+    margin-top: 20px;
+}
+
+#bc-wrapper div.bank-list table {
+    border-collapse: collapse;
+}
+
+#bc-wrapper div.bank-list table td.logo-col{
+    text-align: right;
+    width: 170px;
+    padding-right: 15px;
+}
+
+#bc-wrapper div.bank-list table td.title-col{
+    width: 370px;
+    padding-left: 15px
+}
+
+#bc-wrapper div.bank-list table td.link-col{
+    width: 160px;
+}
+
+#bc-wrapper div.bank-list table td.link-col a{
+    text-decoration: none;
+    color: #0066CC;
+}
+
+#bc-wrapper div.bank-list table td.link-col a:visited{
+    color: #333;
+}
+
+#bc-wrapper div.bank-list table td.link-col a:hover{
+    color: #333;
+}
+
+#bc-wrapper div.bank-list table tbody tr{
+    border-top: 1px solid #DDD;
+    height: 37px;
+    padding: 3px;
+}
+
+#bc-wrapper div.bank-list table tbody tr:hover{
+    border-top: 1px solid #0077EE;
+    border-bottom: 1px solid #0077EE;
+    background-color: rgb(241,250,255);
+}
+
+#bc-wrapper div.bank-list table td{
+    padding: 3px;
+}
+
+#bc-wrapper div.bank-list table td *{
+    vertical-align: middle;
+}
+/* BANK-LIST ------------------------------------------------------------ END */
+
+/* ALPHA-NAV ------------------------------------------------------ ALPHA-NAV */
+#bc-wrapper div.alpha-nav{
+    clear: both;
+    cursor: default;
+    width: 700px;
+}
+
+#bc-wrapper div.alpha-nav ul{
+    text-align: center;
+    width: 100%;
+}
+
+#bc-wrapper div.alpha-nav li{
+
+    display: inline-block;
+    width: 20px;
+    color: #DDD;
+}
+
+#bc-wrapper div.alpha-nav li.first{
+    width: 45px;
+}
+
+#bc-wrapper div.alpha-nav li.variant{
+
+    color: #0066CC;
+    cursor: pointer;
+}
+/* ALPHA-NAV ------------------------------------------------------------ END */
