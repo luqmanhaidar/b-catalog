@@ -1,6 +1,6 @@
 <?php
 
-class DriveTestException extends Exception {
+class BankCatalogException extends Exception {
 
     public static function printErrorReport(){
         printf("<h1>Error:</h1>%s<br/>in: %s at: %d line<br/>", $this->getMessage(), $this->getFile(), $this->getLine());
@@ -11,7 +11,7 @@ class DriveTestException extends Exception {
 
     public static function logErrorReport(){
 
-        $log = fopen(LOG_PATH."/db-err.log", "a");
+        $log = fopen(LOG_PATH."/err.log", "a");
         $report = "-----\n".
                   "ERROR:\n".
                   $this->getMessage()."\n".
