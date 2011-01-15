@@ -36,13 +36,13 @@
 
 }
 
-#bc-wrapper div.city-nav div.curr-city{
+#bc-wrapper div.city-nav span.curr-city{
     font-weight: bold;
     float: left;
     margin-bottom: 3px;
 }
 
-#bc-wrapper div.city-nav div.city-list-trigger{
+#bc-wrapper div.city-nav span.city-list-trigger{
     border-bottom: 1px #0066CC dashed;
     float: left;
     margin-left: 20px;
@@ -55,11 +55,139 @@
 #bc-wrapper div.city-list{
     /*display: none;*/
     clear: both;
-    /*margin: 20px 0px 20px 0px;*/
+    margin: 0px 0px 20px 0px;
     width:100%;
 
+    
+    /*background-color: rgb(241,250,255);*/
+}
+
+#bc-wrapper div.city-list div.head{
+    padding-left: 270px;
+    height: 15px;
+}
+
+#bc-wrapper div.city-list div.head span.close{
+    margin-right: 20px;
+    float: right;
+    color: #0066CC;
+    height: 15px;
+    line-height: 15px;
+    /*font-size: 70%;*/
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#bc-wrapper div.city-list div.head span.close:hover{
+    text-decoration: underline;
+}
+
+#bc-wrapper div.city-list div.content{
     border: 1px solid #0077EE;
-    background-color: rgb(241,250,255);
+    
+}
+
+#bc-wrapper div.city-list div.content li{
+    cursor: pointer;
+}
+
+#bc-wrapper div.city-list div.content table{
+    padding: 10px;
+    margin: 20px 0px 20px 10px;
+}
+
+#bc-wrapper div.city-list div.content tr.head{
+    margin: 20px 20px 0px 20px;
+}
+#bc-wrapper div.city-list div.content tr.head td{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+#bc-wrapper div.city-list div.content td{
+    width: 200px;
+    vertical-align: top;
+    padding: 10px 15px 20px 15px;
+
+}
+
+#bc-wrapper div.city-list div.content td li{
+    width: 200px;
+    min-height: 25px;
+    line-height: 25px;
+
+}
+
+#bc-wrapper div.city-list div.content td li:hover{
+    color: #0066CC;
+}
+
+#bc-wrapper div.city-list div.content td.select-base ul{
+    display: none;
+}
+
+#bc-wrapper div.city-list div.content td.select-base ul.current{
+    display: block;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.areas{
+    border-left: 1px #0077EE dashed;
+    border-right: 1px #0077EE dashed;
+    font-size: 18px;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.areas div.area-center{
+    font-size: 19px;
+    font-weight: bold;
+    width: 200px;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.areas li.selected{
+    background-image: url(../img/layout/area-selected.png);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    font-weight: bold;
+    /*color: #0066CC;*/
+}
+
+#bc-wrapper div.city-list div.content td.select-base.cities{
+    font-size: 16px;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.cities span.show-all{
+    font-size: 13px;
+    color: #0066CC;
+    height: 13px;
+    line-height: 13px;
+    cursor: pointer;
+    float: right;
+    margin: 5px 7px 0px 0px ;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.cities span.show-all:hover{
+    text-decoration: underline;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.cities li.selected{
+    color: #0066CC;
+    font-weight: bold;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.regions{
+}
+
+#bc-wrapper div.city-list div.content td.select-base.regions li{
+    font-size: 20px;
+}
+
+#bc-wrapper div.city-list div.content td.select-base.regions li.selected{
+    background-image: url(../img/layout/region-selected.png);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    font-weight: bold;
+    /*color: #0066CC;*/
 }
 /* CITY-LIST ------------------------------------------------------------ END */
 
@@ -142,12 +270,17 @@
 }
 
 #bc-wrapper div.alpha-nav li.first{
-    width: 45px;
+    width: 33px;
 }
 
 #bc-wrapper div.alpha-nav li.variant{
 
     color: #0066CC;
     cursor: pointer;
+}
+
+#bc-wrapper div.alpha-nav li.selected{
+    font-weight: bold;
+    text-decoration: underline;
 }
 /* ALPHA-NAV ------------------------------------------------------------ END */
