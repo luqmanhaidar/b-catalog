@@ -4,6 +4,7 @@
     width: 700px;
     color: #333;
     font-size: 16px;
+    font-family: Helvetica, Arial, sans-serif;
     
 }
 
@@ -21,7 +22,7 @@
 #bc-wrapper div.search input{
     width: 290px;
     height: 20px;
-    border: 1px solid #333;
+    border: 1px solid #BBB;/*#333;*/
 }
 
 #bc-wrapper div.search img{
@@ -53,7 +54,7 @@
 
 /* CITY-LIST ------------------------------------------------------ CITY-LIST */
 #bc-wrapper div.city-list{
-    /*display: none;*/
+    display: none;
     clear: both;
     margin: 0px 0px 20px 0px;
     width:100%;
@@ -111,6 +112,20 @@
     vertical-align: top;
     padding: 10px 15px 20px 15px;
 
+}
+
+#bc-wrapper div.city-list tr.city-search td{
+    padding: 0px 0px 20px 10px;
+}
+
+#bc-wrapper div.city-list tr.city-search td *{
+    vertical-align: middle;
+}
+
+#bc-wrapper div.city-list tr.city-search input{
+    width: 290px;
+    height: 20px;
+    border: 1px solid #AAA;
 }
 
 #bc-wrapper div.city-list div.content td li{
