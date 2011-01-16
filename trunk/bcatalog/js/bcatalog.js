@@ -98,7 +98,7 @@ BCatalog.prototype.alphaFilter = function(evtObj){
     if(!clickedItem.hasClass('variant'))
         return false;
 
-    var letter = clickedItem.hasClass('first') ? null : clickedItem.text();
+    var letter = clickedItem.hasClass('first') ? '.' : clickedItem.text();
     var bankColumns = evtObj.data.ui.bankListCnt.find("tbody td.title-col");
     bankColumns.closest('tr').show();
     
