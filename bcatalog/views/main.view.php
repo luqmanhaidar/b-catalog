@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/reset.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/jquery-ui-aco.css" />
 	<title><?php echo $title?> | SELECT.BY</title>
 	</head>
 
@@ -14,7 +15,8 @@
 	<body>
 		<div id="bc-wrapper">
             <div class="search">
-                <input type="text" length="150"> <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
+                <input type="text" length="150" value="введите название банка">
+                <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
             </div>
             <div class="city-nav">
                 <span class="curr-city">Минск</span>&nbsp;
@@ -24,6 +26,12 @@
                 <div class="head"><img src="<?php echo BASE_URL."img/layout/arr.png"; ?>"/><span class="close">скрыть</span></div>
                 <div class="content">
                     <table>
+                        <tr class="city-search">
+                            <td colspan="3">
+                                <input type="text" length="150" value="введите название города">
+                                <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
+                            </td>
+                        </tr>
                         <tr class="head">
                             <td class="select-base regions">&nbsp;</td>
                             <td class="select-base areas"><div class="area-center">Минск</div></td>
@@ -222,8 +230,13 @@
             </div>
             <div class="page-nav"></div>
         </div>
+
 		<script type="text/javascript" src="<?php echo BASE_URL; ?>js/jq.js"></script>
-        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/event-handlers.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.position.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.autocomplete.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/bcatalog.js"></script>
         <script type="text/javascript" >
             $(function(){
 
@@ -234,9 +247,9 @@
                 var alphaNavBlock = $('div.alpha-nav', container);
                 var bankListBlock = $('div.bank-list', container);
 
-                var ui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null);
+                var BCui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null);
 
-                ui.init();
+                BCui.init();
             });
         </script>
 	</body>

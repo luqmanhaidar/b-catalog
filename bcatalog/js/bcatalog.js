@@ -33,7 +33,43 @@ BCatalog.prototype.init = function(settings){
     this.cityListCnt.find('td.regions li').bind('click', {ui:BCatalogUI}, this.selectRegion);
     this.cityListCnt.find('td.areas li').bind('click', {ui:BCatalogUI}, this.selectArea);
     this.cityListCnt.find('td.cities li').bind('click', {ui:BCatalogUI}, this.selectCity);
-    this.cityListCnt.find('span.show-all').bind('click', {ui:BCatalogUI}, this.showRegionCities)
+    this.cityListCnt.find('span.show-all').bind('click', {ui:BCatalogUI}, this.showRegionCities);
+
+    // инициализируем autocomplete поиска банка
+    var bankInput = this.searchCnt.find('input');
+    bankInput.focus(function(evtObj){
+        var input = $(evtObj.target);
+        if(input.val().indexOf('введите название банка') == 0)
+            input.val('');
+    });
+    bankInput.blur(function(evtObj){
+        var input = $(evtObj.target);
+        if(input.val().indexOf('') == 0)
+            input.val('введите название банка');
+    });
+    bankInput.autocomplete({
+        source : this.getInnerHTMLToArr(this.bankListCnt.find('tbody td.title-col')),
+        minLength : 1,
+        delay : 0
+    });
+
+    // инициализируем autocomplete поиска города
+    var cityInput = this.cityListCnt.find('input');
+    cityInput.focus(function(evtObj){
+        var input = $(evtObj.target);
+        if(input.val().indexOf('введите название города') == 0)
+            input.val('');
+    });
+    cityInput.blur(function(evtObj){
+        var input = $(evtObj.target);
+        if(input.val().indexOf('') == 0)
+            input.val('введите название города');
+    });
+    cityInput.autocomplete({
+        source : this.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li')),
+        minLength : 1,
+        delay : 0
+    });
 }
 
 
@@ -97,7 +133,6 @@ BCatalog.prototype.selectRegion = function(evtObj){
 }
 
 
-
 BCatalog.prototype.selectArea = function(evtObj){
 
     var clickedArea = $(evtObj.target);
@@ -124,4 +159,24 @@ BCatalog.prototype.selectCity = function(evtObj){
 BCatalog.prototype.showRegionCities = function(evtObj){
 
     evtObj.data.ui.cityListCnt.find('td.cities ul.current li').show();
+}
+
+
+/**
+ * возвращает HTML содержимое каждого из элементов полученного набора в виде массива
+ * использовано для получения списков jq autocomplete widjet
+ * @param {jQuery} donorElts коллекция элементов, содержимое котрых необходимо получить
+ */
+BCatalog.prototype.getInnerHTMLToArr = function(donorElts){
+
+    if(typeof donorElts == 'undefined')
+        return false;
+
+    var innerHTMLArr = new Array();
+
+    donorElts.each(function(index, elt){
+        innerHTMLArr.push(elt.innerHTML);
+    });
+
+    return innerHTMLArr;
 }

@@ -1,0 +1,86 @@
+<div id="bc-wrapper">
+    <div class="search">
+        <input type="text" length="150" value="введите название банка">
+        <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
+    </div>
+    <div class="city-nav">
+        <span class="curr-city">Минск</span>&nbsp;
+        <span class="city-list-trigger">выбрать другой город</span>
+    </div>
+    <div class="city-list">
+        <div class="head">
+            <img src="<?php echo BASE_URL."img/layout/arr.png"; ?>"/>
+            <span class="close">скрыть</span></div>
+        <div class="content">
+            <table>
+                <tr class="city-search">
+                    <td colspan="3">
+                        <input type="text" value="введите название города">
+                        <img src="img/layout/search-icon.png"; ?>" />
+                    </td>
+                </tr>
+                <tr class="head">
+                    <td class="select-base regions">&nbsp;</td>
+                    <td class="select-base areas">
+                        <div class="area-center">Минск</div>
+                    </td>
+                    <td class="select-base cities">
+                       <span class="show-all">показать все города области</span>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="select-base regions">
+                    <ul class="current">
+                     <li region_id="1" reg_center="Брест">Брестская область</li>
+                        ...
+                     <li region_id="3" reg_center="Минск" class="selected"></li>
+                    </ul>
+                  </td>
+                  <td class="select-base areas">
+                    <ul region_id="3" class="current">
+                      <li area_id="1">Красных фонарей</li>
+                        ...
+                      <li area_id="3" class="selected">Минский район</li>
+                    </ul>
+                  </td>
+                  <td class="select-base cities">
+                    <ul region_id="N" class="current">
+                      <li area_id="1">Ечка</li>
+                        ...
+                      <li area_id="3" class="selected">Минск</li>
+                    </ul>
+                  </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div class="alpha-nav">
+        <ul>
+            <li class="variant first selected">Все</li>
+            <li> | </li>
+            <li class="variant">А</li>
+            ...
+            <li>Я</li>
+        </ul>
+    </div>
+    <div class="bank-list">
+        <table>
+            <thead>
+                <tr>
+                    <td class="logo-col">&nbsp;</td>
+                    <td class="title-col">Название</td>
+                    <td class="link-col">Сайт</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="logo-col"></td>
+                    <td class="title-col"></td>
+                    <td class="link-col"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-nav"></div>
+</div>
