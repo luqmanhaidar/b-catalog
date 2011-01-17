@@ -4,7 +4,7 @@ class DB_connect {
 
     protected $db;
 
-    protected function  __construct($dbo = NULL, $config = NULL) {
+    public function  __construct($dbo = NULL, $config = NULL) {
 
         if(is_object($dbo))
             $this->db = $dbo;
@@ -22,25 +22,8 @@ class DB_connect {
         }
     }
 
-    public static function printErrorReport(Exception $exp){
-        printf("<h1>Error:</h1>%s<br/>in: %s at: %d line<br/>", $exp->getMessage(), $exp->getFile(), $exp->getLine());
-        print("<pre>");
-        print_r($exp->getTrace());
-        print("</pre>");
-    }
-
-    public static function logErrorReport(Exception $exp){
-
-        $log = fopen(LOG_PATH."/db-err.log", "a");
-        $report = "-----\n".
-                  "ERROR:\n".
-                  $exp->getMessage()."\n".
-                  "in: ".$exp->getFile()." at: ".$exp->getLine()."\n".
-                  "trace: ".$exp->getTraceAsString()."\n".
-                  "-----\n\n";
-
-        fwrite($log, $report);
-        fclose($log);
+    public function getDBH(){
+        return $this->db;
     }
 }
 

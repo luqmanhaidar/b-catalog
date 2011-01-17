@@ -8,8 +8,10 @@
  * @param {jQuery} alphaNavCnt contains aphabeth navigation elts
  * @param {jQuery} bankListCnt contains bank list
  * @param {jQuery} pageNavCnt contains pagination
+ * @param {String} currCity name of the current city
+ * @param {Integer} currBank id of the current bank
  */
-function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt){
+function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt, currCity, currBank){
 
     this.container = container;
     this.searchCnt = searchCnt;
@@ -18,6 +20,9 @@ function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, ba
     this.alphaNavCnt = alphaNavCnt;
     this.bankListCnt = bankListCnt;
     this.pageNavCnt = pageNavCnt;
+
+    this.currCity = (typeof currCity == 'undefined' || !currCity) ? "Минск" : currCity;
+    this.currBank = currBank;
 
 }
 
