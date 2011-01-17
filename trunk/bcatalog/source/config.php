@@ -10,7 +10,7 @@ defined("IMG_PATH")
     or define("IMG_PATH", realpath(dirname(__FILE__) . '/../img'));
 
 defined("BASE_URL")  
-    or define("BASE_URL", 'http://bcatalog.dev:8888/');
+    or define("BASE_URL", 'http://bcatalog.dev:8888/');//'http://bcatalog.dev:8888/' | 'http://ctrigger.ru/bcatalog/'
 
 
 $config = array(

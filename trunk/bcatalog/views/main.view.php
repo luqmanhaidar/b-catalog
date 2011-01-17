@@ -123,31 +123,30 @@
 
             </div>
             <div class="alpha-nav">
-                <!-- generateAlphaNav($city = null) -->
                 <ul>
                     <li class="variant first selected">Все</li>
                     <li> | </li>
-                    <li class="variant">А</li>
-                    <li class="variant">Б</li>
+                    <li>А</li>
+                    <li>Б</li>
                     <li>В</li>
-                    <li class="variant">Г</li>
+                    <li>Г</li>
                     <li>Д</li>
                     <li>Е</li>
-                    <li class="variant">Ж</li>
-                    <li class="variant">З</li>
-                    <li class="variant">И</li>
+                    <li>Ж</li>
+                    <li>З</li>
+                    <li>И</li>
                     <li>К</li>
-                    <li class="variant">Л</li>
-                    <li class="variant">М</li>
-                    <li class="variant">Н</li>
+                    <li>Л</li>
+                    <li>М</li>
+                    <li>Н</li>
                     <li>О</li>
                     <li>П</li>
                     <li>Р</li>
                     <li>С</li>
                     <li>Т</li>
-                    <li class="variant">У</li>
-                    <li class="variant">Ф</li>
-                    <li class="variant">Х</li>
+                    <li>У</li>
+                    <li>Ф</li>
+                    <li>Х</li>
                     <li>Ц</li>
                     <li>Ш</li>
                     <li>Э</li>
@@ -165,66 +164,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/alpha_logo.gif";?>"/></td>
-                            <td class="title-col">Альфа-БАНК</td>
-                            <td class="link-col"><a target="_blank" href="http://alpha.ru">www.alpha.ru</a></td>
+                        <?php foreach ($banks as $bank): ?>
+                        <tr bank_id="<?php echo $bank->Kod_B; ?>">
+                            <td class="logo-col"><img src="<?php echo $bank->Logo_min; ?>"/></td>
+                            <td class="title-col"><?php echo $bank->Name_short; ?></td>
+                            <td class="link-col"><a target="_blank" href="<?php echo $bank->Http; ?>"><?php echo $bank->Http; ?></a></td>
                         </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/vtb24_logo.png";?>"/></td>
-                            <td class="title-col">ВТБ</td>
-                            <td class="link-col"><a target="_blank" href="http://vtb24.ru">www.vtb24.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/bsb_logo.png";?>"/></td>
-                            <td class="title-col">BelSwissBank</td>
-                            <td class="link-col"><a target="_blank" href="http://alpha.ru">www.bsb.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/credex_logo.png";?>"/></td>
-                            <td class="title-col">CREDEX</td>
-                            <td class="link-col"><a target="_blank" href="http://vtb24.ru">www.credex.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/mm_logo.png";?>"/></td>
-                            <td class="title-col">Москва-Минск</td>
-                            <td class="link-col"><a target="_blank" href="http://alpha.ru">www.mm.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/belarus-bank.by.png";?>"/></td>
-                            <td class="title-col">Беларусбанк</td>
-                            <td class="link-col"><a target="_blank" href="http://vtb24.ru">www.belarusbank.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/alpha_logo.gif";?>"/></td>
-                            <td class="title-col">Альфа-БАНК</td>
-                            <td class="link-col"><a target="_blank" href="http://alpha.ru">www.alpha.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/vtb24_logo.png";?>"/></td>
-                            <td class="title-col">ВТБ</td>
-                            <td class="link-col"><a target="_blank" href="http://vtb24.ru">www.vtb24.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/bsb_logo.png";?>"/></td>
-                            <td class="title-col">BelSwissBank</td>
-                            <td class="link-col"><a target="_blank" href="http://alpha.ru">www.bsb.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/credex_logo.png";?>"/></td>
-                            <td class="title-col">CREDEX</td>
-                            <td class="link-col"><a target="_blank" href="http://vtb24.ru">www.credex.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/mm_logo.png";?>"/></td>
-                            <td class="title-col">Москва-Минск</td>
-                            <td class="link-col"><a target="_blank" href="http://alpha.ru">www.mm.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="logo-col"><img src="<?php echo BASE_URL."/img/content/belarus-bank.by.png";?>"/></td>
-                            <td class="title-col">Беларусбанк</td>
-                            <td class="link-col"><a target="_blank" href="http://vtb24.ru">www.belarusbank.ru</a></td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
