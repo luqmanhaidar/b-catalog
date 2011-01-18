@@ -98,14 +98,38 @@ class Bank extends DB_connect {
 
         $banks = array();
         $query = "SELECT Kod_B,Name_short,Http,Logo_min FROM banks";
-        $STH = $dbh->query($query);
-        $STH->setFetchMode(PDO::FETCH_CLASS, "Bank", array("db"=>$dbh, "config"=>NULL));
+        $STH = $dbh->query($query, PDO::FETCH_CLASS, "Bank", array("db"=>$dbh, "config"=>NULL));
 
         while($bank = $STH->fetch()){
             $bank->Name_short = str_replace("</b>", "", str_replace("<b>", "", $bank->Name_short));
             $banks[] = $bank;
         }
         return $banks;
+    }
+
+
+    /*
+     * получает id банков, хотя бы одно отделение которых находиться в заданном городе
+     * @param {PDO} $dbh дескриптор БД
+     * @param {String} $city название города
+     */
+    public static function getCitySortBanks(PDO $dbh, $city){
+
+        if(empty($city))
+            return false;
+
+        $query = "SELECT Kod_B FROM otd WHERE city='$city'";
+        $STH = $dbh->query($query, PDO::FETCH_ASSOC);
+
+        $idArr = array();
+        while ($resultRow = $STH->fetch())
+            $idArr[] = $resultRow["Kod_B"];
+            
+        $result = array();
+        foreach (array_unique($idArr) as $key => $value)
+            $result[] = $value;
+
+        return $result;
     }
 }
 
