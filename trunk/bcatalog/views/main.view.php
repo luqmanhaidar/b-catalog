@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/reset.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/jquery-ui-aco.css" />
-	<title><?php echo $title?> | SELECT.BY</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/jquery-ui.css" />
+	<title><?php echo $title?> | BCATALOG</title>
 	</head>
 
 	<!--[if gt IE 6]>
