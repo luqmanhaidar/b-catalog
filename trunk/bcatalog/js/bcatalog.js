@@ -11,7 +11,7 @@
  * @param {String} currCity name of the current city
  * @param {Integer} currBank id of the current bank
  */
-function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt, currCity, currBank){
+function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt, currCity, currBank, handler){
 
     this.container = container;
     this.searchCnt = searchCnt;
@@ -24,6 +24,7 @@ function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, ba
     this.currCity = (typeof currCity == 'undefined' || !currCity) ? "Минск" : currCity;
     this.currBank = currBank;
 
+    this.handlerUrl = (typeof handler == 'undefined' || !handler) ? "request_handler.php" : handler;
 }
 
 BCatalog.prototype.init = function(settings){
@@ -40,6 +41,9 @@ BCatalog.prototype.init = function(settings){
     this.cityListCnt.find('td.cities li').bind('click', {ui:BCatalogUI}, this.selectCity);
     this.cityListCnt.find('span.show-all').bind('click', {ui:BCatalogUI}, this.showRegionCities);
 
+    // добавляем индикаторы на буквы, по которым возможна фильтрация
+    this.initAlphaNav();
+
     // инициализируем autocomplete поиска банка
     var bankInput = this.searchCnt.find('input');
     bankInput.focus(function(evtObj){
@@ -55,7 +59,8 @@ BCatalog.prototype.init = function(settings){
     bankInput.autocomplete({
         source : this.getInnerHTMLToArr(this.bankListCnt.find('tbody td.title-col')),
         minLength : 1,
-        delay : 0
+        delay : 0,
+        appendTo : '#complete-cnt'
     });
 
     // инициализируем autocomplete поиска города
@@ -73,7 +78,8 @@ BCatalog.prototype.init = function(settings){
     cityInput.autocomplete({
         source : this.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li')),
         minLength : 1,
-        delay : 0
+        delay : 0,
+        appendTo : '#complete-cnt'
     });
 }
 
@@ -105,7 +111,11 @@ BCatalog.prototype.alphaFilter = function(evtObj){
 
     var letter = clickedItem.hasClass('first') ? '.' : clickedItem.text();
     var bankColumns = evtObj.data.ui.bankListCnt.find("tbody td.title-col");
-    bankColumns.closest('tr').show();
+    bankColumns.closest('tr').each(function(){
+        var row = $(this);
+        if(!row.hasClass('not-in-city'))
+            row.show();
+    });
     
     if(!letter)
         return false;
@@ -159,6 +169,8 @@ BCatalog.prototype.selectCity = function(evtObj){
     cities.find('li').removeClass('selected');
     clickedCity.addClass('selected');
     evtObj.data.ui.cityNavCnt.find('span.curr-city').html(clickedCity.text());
+    evtObj.data.ui.cityFilter(clickedCity.text());
+    evtObj.data.ui.cityNavCnt.find('span.city-list-trigger').trigger("click");
 }
 
 BCatalog.prototype.showRegionCities = function(evtObj){
@@ -184,4 +196,67 @@ BCatalog.prototype.getInnerHTMLToArr = function(donorElts){
     });
 
     return innerHTMLArr;
+}
+
+
+BCatalog.prototype.initAlphaNav = function(citySorted){
+
+    var alphabet = this.alphaNavCnt.find('li:nth-child(n+3)');
+    //console.log(this.bankListCnt.find('tbody tr:not(.not-in-city) td.title-col'));
+    var bankNames = this.getInnerHTMLToArr(this.bankListCnt.find('tbody tr:not(.not-in-city) td.title-col'));
+
+    if(citySorted){
+        alphabet.removeClass('variant');
+        //console.log(bankNames);
+    }
+
+    for(var q=0;q<alphabet.length;q++)
+        for(var w=0;w<bankNames.length;w++)
+            if(bankNames[w].search(new RegExp("^"+alphabet.eq(q).text()+".+$","i")) == 0){
+                alphabet.eq(q).addClass('variant');
+                break;
+            }
+
+}
+
+
+BCatalog.prototype.cityFilter = function(targetCity){
+
+    var bcui = this;
+
+    $.ajax({
+        type : "GET",
+        url : this.handlerUrl,
+        data : {"cmd":"get-city-banks", "city":targetCity},
+        dataType : "json",
+        success : function(response, status, xhr){
+            if(response.success === "1") {
+                var cityRows = bcui.bankListCnt.find('tbody tr');
+                cityRows.removeClass('not-in-city');
+
+                for(var q=0;q<cityRows.length;q++){
+                    if(Helper.in_array(cityRows.eq(q).attr("bank_id"), response.data))
+                        cityRows.eq(q).removeClass("not-in-city");
+                    else{
+                        cityRows.eq(q).addClass("not-in-city");
+                        //console.log(cityRows.eq(q));
+                    }
+                }
+
+                bcui.initAlphaNav(true);
+            }
+            else if(response.error === "1") {
+                alert("Произошла ошибка:\n"+response.notification);
+            }
+        },
+        error : function(xhr, status, errorObj){
+            console.log("---");
+            console.log(xhr);
+            console.log(status);
+            console.log(errorObj);
+            console.log("---");
+            //alert("Произошла ошибка при обращении к серверу.");
+        }
+
+    });
 }

@@ -182,6 +182,7 @@
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.widget.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.position.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.autocomplete.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/helper.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/bcatalog.js"></script>
         <script type="text/javascript" >
             $(function(){
@@ -193,10 +194,11 @@
                 var alphaNavBlock = $('div.alpha-nav', container);
                 var bankListBlock = $('div.bank-list', container);
 
-                var BCui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null);
+                var BCui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null, "http://bcatalog.dev:8888/request_handler.php");
 
                 BCui.init();
             });
         </script>
+        <div id="complete-cnt"></div>
 	</body>
 </html>
