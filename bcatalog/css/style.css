@@ -250,6 +250,10 @@
     padding: 3px;
 }
 
+#bc-wrapper div.bank-list table tbody tr.not-in-city{
+    display: none;
+}
+
 #bc-wrapper div.bank-list table tbody tr:hover{
     border-top: 1px solid #0077EE;
     border-bottom: 1px solid #0077EE;
