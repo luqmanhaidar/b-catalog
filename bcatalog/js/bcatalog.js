@@ -11,7 +11,7 @@
  * @param {String} currCity name of the current city
  * @param {Integer} currBank id of the current bank
  */
-function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt, currCity, currBank, handler){
+function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt, currCity, currBank, handler, bankUrl){
 
     this.container = container;
     this.searchCnt = searchCnt;
@@ -25,16 +25,23 @@ function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, ba
     this.currBank = currBank;
 
     this.handlerUrl = (typeof handler == 'undefined' || !handler) ? "request_handler.php" : handler;
+    this.bankUrl = (typeof bankUrl == 'undefined' || !bankUrl) ? "bank.php" : bankUrl;
 }
 
 BCatalog.prototype.init = function(settings){
-    // add here all event handlers
+    // объявляем фиктивную переменную вместо this,
+    // чтобы его можно было использовать в методах, выполняющихся в другом контексте
     var BCatalogUI = this;
 
     this.cityNavCnt.find('span.city-list-trigger').bind('click', {ui:BCatalogUI}, this.toggleCityList);
     this.cityListCnt.find('span.close').bind('click', {ui:BCatalogUI}, this.toggleCityList);
 
     this.alphaNavCnt.find('li').bind('click', {ui:BCatalogUI}, this.alphaFilter);
+
+    this.bankListCnt.find('tbody tr').bind('click', {ui:BCatalogUI}, function(evtObj){
+        var targetUrl = evtObj.data.ui.bankUrl+"?bank_id="+evtObj.currentTarget.getAttribute("bank_id")+"&city="+evtObj.data.ui.cityNavCnt.find('span.curr-city').text();
+        document.location = targetUrl;
+    })
 
     this.cityListCnt.find('td.regions li').bind('click', {ui:BCatalogUI}, this.selectRegion);
     this.cityListCnt.find('td.areas li').bind('click', {ui:BCatalogUI}, this.selectArea);
