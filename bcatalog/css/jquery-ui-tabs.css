@@ -50,7 +50,7 @@
  *
  * http://docs.jquery.com/UI/Theming/API
  *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Helvetica,%20Arial,%20sans-serif&fwDefault=bold&fsDefault=16px&cornerRadius=0px&bgColorHeader=dddddd&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=50&borderColorHeader=dddddd&fcHeader=444444&iconColorHeader=0073ea&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=bbbbbb&fcContent=444444&iconColorContent=0066cc&bgColorDefault=dddddd&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=100&borderColorDefault=bbbbbb&fcDefault=0066cc&iconColorDefault=666666&bgColorHover=ffffff&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=25&borderColorHover=ffffff&fcHover=0066CC&iconColorHover=ffffff&bgColorActive=ffffff&bgTextureActive=02_glass.png&bgImgOpacityActive=65&borderColorActive=bbbbbb&fcActive=0066cc&iconColorActive=454545&bgColorHighlight=ffffff&bgTextureHighlight=01_flat.png&bgImgOpacityHighlight=55&borderColorHighlight=cccccc&fcHighlight=444444&iconColorHighlight=0073ea&bgColorError=ffffff&bgTextureError=01_flat.png&bgImgOpacityError=55&borderColorError=0066cc&fcError=222222&iconColorError=0066cc&bgColorOverlay=eeeeee&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=0px
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Helvetica,%20Arial,%20sans-serif&fwDefault=bold&fsDefault=16px&cornerRadius=0px&bgColorHeader=ffffff&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=0&borderColorHeader=0066cc&fcHeader=444444&iconColorHeader=0073ea&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=bbbbbb&fcContent=444444&iconColorContent=0066cc&bgColorDefault=ffffff&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=0&borderColorDefault=444444&fcDefault=444444&iconColorDefault=666666&bgColorHover=ffffff&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=0&borderColorHover=0066cc&fcHover=0066cc&iconColorHover=ffffff&bgColorActive=0066CC&bgTextureActive=02_glass.png&bgImgOpacityActive=0&borderColorActive=0066cc&fcActive=ffffff&iconColorActive=454545&bgColorHighlight=ffffff&bgTextureHighlight=01_flat.png&bgImgOpacityHighlight=55&borderColorHighlight=cccccc&fcHighlight=444444&iconColorHighlight=0073ea&bgColorError=ffffff&bgTextureError=01_flat.png&bgImgOpacityError=55&borderColorError=0066cc&fcError=222222&iconColorError=0066cc&bgColorOverlay=eeeeee&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=0px
  */
 
 
@@ -61,22 +61,17 @@
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Helvetica, Arial, sans-serif; font-size: 1em; }
 .ui-widget-content { border: 1px solid #bbbbbb; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #444444; }
 .ui-widget-content a { color: #444444; }
-.ui-widget-header { border: 1px solid #dddddd; background: #dddddd url(images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x; color: #444444; font-weight: bold; }
+.ui-widget-header { border: 1px solid #0066cc; background: #ffffff url(images/ui-bg_highlight-soft_0_ffffff_1x100.png) 50% 50% repeat-x; color: #444444; font-weight: bold; }
 .ui-widget-header a { color: #444444; }
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #bbbbbb; background: #dddddd url(images/ui-bg_highlight-soft_100_dddddd_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #0066cc; }
-.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #0066cc; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #ffffff; background: #ffffff;/* url(images/ui-bg_highlight-soft_25_ffffff_1x100.png) 50% 50% repeat-x;*/ font-weight: bold; color: #0066cc; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #444444; background: #ffffff url(images/ui-bg_highlight-soft_0_ffffff_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #444444; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #444444; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #0066cc; background: #ffffff url(images/ui-bg_highlight-soft_0_ffffff_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #0066cc; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #0066cc; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #bbbbbb; background: #ffffff; /*url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;*/ font-weight: bold; color: #0066cc; }
-/* here am I */
-.ui-widget-content .ui-state-hover{
-    background-color: rgb(241,250,255);
-}
-/* here am I -- end */
-.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #0066cc; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #0066cc; background: #0066cc url(images/ui-bg_glass_0_0066cc_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
 .ui-widget :active { outline: none; }
 
 /* Interaction Cues
@@ -94,7 +89,7 @@
 ----------------------------------*/
 
 /* states and images */
-/*.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_0066cc_256x240.png); }
+.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_0066cc_256x240.png); }
 .ui-widget-content .ui-icon {background-image: url(images/ui-icons_0066cc_256x240.png); }
 .ui-widget-header .ui-icon {background-image: url(images/ui-icons_0073ea_256x240.png); }
 .ui-state-default .ui-icon { background-image: url(images/ui-icons_666666_256x240.png); }
@@ -104,7 +99,7 @@
 .ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(images/ui-icons_0066cc_256x240.png); }
 
 /* positioning */
-/*.ui-icon-carat-1-n { background-position: 0 0; }
+.ui-icon-carat-1-n { background-position: 0 0; }
 .ui-icon-carat-1-ne { background-position: -16px 0; }
 .ui-icon-carat-1-e { background-position: -32px 0; }
 .ui-icon-carat-1-se { background-position: -48px 0; }
@@ -241,7 +236,7 @@
 .ui-icon-seek-end { background-position: -64px -160px; }
 .ui-icon-seek-start { background-position: -80px -160px; }
 /* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
-/*.ui-icon-seek-first { background-position: -80px -160px; }
+.ui-icon-seek-first { background-position: -80px -160px; }
 .ui-icon-stop { background-position: -96px -160px; }
 .ui-icon-eject { background-position: -112px -160px; }
 .ui-icon-volume-off { background-position: -128px -160px; }
@@ -285,7 +280,7 @@
 ----------------------------------*/
 
 /* Corner radius */
-/*.ui-corner-tl { -moz-border-radius-topleft: 0px; -webkit-border-top-left-radius: 0px; border-top-left-radius: 0px; }
+.ui-corner-tl { -moz-border-radius-topleft: 0px; -webkit-border-top-left-radius: 0px; border-top-left-radius: 0px; }
 .ui-corner-tr { -moz-border-radius-topright: 0px; -webkit-border-top-right-radius: 0px; border-top-right-radius: 0px; }
 .ui-corner-bl { -moz-border-radius-bottomleft: 0px; -webkit-border-bottom-left-radius: 0px; border-bottom-left-radius: 0px; }
 .ui-corner-br { -moz-border-radius-bottomright: 0px; -webkit-border-bottom-right-radius: 0px; border-bottom-right-radius: 0px; }
@@ -298,55 +293,20 @@
 /* Overlays */
 .ui-widget-overlay { background: #eeeeee url(images/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x; opacity: .80;filter:Alpha(Opacity=80); }
 .ui-widget-shadow { margin: -4px 0 0 -4px; padding: 4px; background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .60;filter:Alpha(Opacity=60); -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; }/*
- * jQuery UI Autocomplete 1.8.8
+ * jQuery UI Tabs 1.8.8
  *
  * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
- * http://docs.jquery.com/UI/Autocomplete#theming
+ * http://docs.jquery.com/UI/Tabs#theming
  */
-.ui-autocomplete { position: absolute; cursor: default; }	
-
-/* workarounds */
-* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
-
-/*
- * jQuery UI Menu 1.8.8
- *
- * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Menu#theming
- */
-.ui-menu {
-	list-style:none;
-	padding: 2px;
-	margin: 0;
-	display:block;
-	float: left;
-}
-.ui-menu .ui-menu {
-	margin-top: -3px;
-}
-.ui-menu .ui-menu-item {
-	margin:0;
-	padding: 0;
-	zoom: 1;
-	float: left;
-	clear: left;
-	width: 100%;
-}
-.ui-menu .ui-menu-item a {
-	text-decoration:none;
-	display:block;
-	padding:.2em .4em;
-	line-height:1.5;
-	zoom:1;
-}
-.ui-menu .ui-menu-item a.ui-state-hover,
-.ui-menu .ui-menu-item a.ui-state-active {
-	font-weight: normal;
-	margin: -1px;
-}
+.ui-tabs { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
+.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
+.ui-tabs .ui-tabs-hide { display: none !important; }
