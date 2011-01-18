@@ -156,6 +156,7 @@
 #bc-wrapper div.city-list div.content td.select-base.areas div.area-center{
     font-size: 19px;
     font-weight: bold;
+    cursor: pointer;
     width: 200px;
 }
 

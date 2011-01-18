@@ -41,6 +41,11 @@ BCatalog.prototype.init = function(settings){
     this.cityListCnt.find('td.cities li').bind('click', {ui:BCatalogUI}, this.selectCity);
     this.cityListCnt.find('span.show-all').bind('click', {ui:BCatalogUI}, this.showRegionCities);
 
+    // делаем клик по областному центру аналогом клика по аналогичному элементу в списке городов
+    this.cityListCnt.find('div.area-center').bind('click', {ui: BCatalogUI}, function(evtObj){
+        $('td.cities li:contains("'+evtObj.target.innerHTML+'")', evtObj.data.ui.cityListCnt).trigger('click');
+    });
+
     // добавляем индикаторы на буквы, по которым возможна фильтрация
     this.initAlphaNav();
 
