@@ -4,7 +4,7 @@ try{
     require_once(realpath(dirname(__FILE__))."/source/db_connect.class.php");
     require_once(realpath(dirname(__FILE__))."/source/helper.php");
     require_once(realpath(dirname(__FILE__))."/models/bank.model.php");
-
+    //print_r($config["db"]);
     $db = new DB_connect(null, $config);
 
     $data["title"] = "Каталог банков";
@@ -19,12 +19,12 @@ catch(Exception $exp){
               "ERROR:\n".
               $exp->getMessage()."\n".
               "in: ".$exp->getFile()." at: ".$exp->getLine()."\n".
-              "trace: ".$exp->getTraceAsString()."\n".
+              "trace: \n".$exp->getTraceAsString()."\n".
               "-----\n\n";
 
     fwrite($log, $report);
     fclose($log);
 
-    renderView("error.view.php", array("title"=>"Ошибка сервера", "msg"=>"Приносим свои извинения.<br/>Попробуйте перезагрузить страницу."));
+    //renderView("error.view.php", array("title"=>"Ошибка сервера", "msg"=>"Приносим свои извинения.<br/>Попробуйте перезагрузить страницу."));
 }
 ?>

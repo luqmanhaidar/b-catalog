@@ -21,6 +21,12 @@ $config = array(
         "password" => "root",
         "dbname"   => "bank_catalog"
     ),
+//    "db" => array(
+//        "hostname" => "localhost",
+//        "username" => "ctrigge8_hQjY",
+//        "password" => "kRIo",
+//        "dbname"   => "ctrigge8_bankcatalog"
+//    ),
     "errors" => array(
         "data" => array(
             "no-ness" => '{"success":"0", "error":"1", "notification":"в обработчик не были переданы все необходимые данные"}',
