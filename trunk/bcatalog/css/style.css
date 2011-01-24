@@ -1,6 +1,6 @@
 
 #bc-wrapper{
-    margin: 0px auto;
+    margin: 30px auto;
     width: 700px;
     color: #333;
     font-size: 16px;
@@ -255,7 +255,7 @@
     display: none;
 }
 
-#bc-wrapper div.bank-list table tbody tr:hover{
+#bc-wrapper div.bank-list table tbody tr:hover, #bc-wrapper div.department-list tbody tr:hover, #bc-wrapper div.atm-list tbody tr:hover, #bc-wrapper div.exchange-list tbody tr:hover{
     border-top: 1px solid #0077EE;
     border-bottom: 1px solid #0077EE;
     background-color: rgb(241,250,255);
@@ -304,3 +304,115 @@
     text-decoration: underline;
 }
 /* ALPHA-NAV ------------------------------------------------------------ END */
+
+
+/* BHEADER ---------------------------------------------------------- BHEADER */
+
+#bc-wrapper div.bheader{ clear: both; min-height: 100px; margin: 10px 0px;}
+#bc-wrapper div.bheader div.logo,
+#bc-wrapper div.bheader div.descr{ float: left; }
+#bc-wrapper div.bheader div.logo{ vertical-align: middle; }
+#bc-wrapper div.bheader div.logo{ padding: 10px; border-right: 1px solid #BBB; }
+#bc-wrapper div.bheader div.descr{ padding: 30px 0px 10px 10px; }
+#bc-wrapper div.bheader div.title{ font-size: 150%; }
+#bc-wrapper div.bheader div.full-name{ font-size: 80%; font-style: italic; }
+
+/* BHEADER -------------------------------------------------------------- END */
+
+
+/* FULL-DATA ------------------------------------------------------ FULL-DATA */
+
+#bc-wrapper div.full-data{
+    margin: 40px 0px;
+}
+
+#bc-wrapper div.full-data table{ width: 100%; }
+#bc-wrapper div.full-data table tr{
+    border-bottom: 1px dashed #BBB;
+}
+
+#bc-wrapper div.full-data>div table tr.last{
+    border-bottom: 0px;
+}
+
+#bc-wrapper div.full-data table tr td { padding: 10px; vertical-align: top;}
+#bc-wrapper div.full-data table tr td.title-col{ width: 20%; }
+#bc-wrapper div.full-data table tr td.info-col{ width: 80%; }
+
+/* FULL-DATA ------------------------------------------------------------ END */
+
+
+/* DEPARTMENTS -------------------------------------------------- DEPARTMENTS */
+
+#bc-wrapper #departments div.city-nav{ margin-left: 20px; }
+#bc-wrapper #departments div.search{ margin-left: 20px; }
+
+#bc-wrapper #departments td.title-col{ width: 170px; }
+#bc-wrapper #departments td.title-col div.work-time{ margin-top: 10px; padding: 10px; border-top: 1px solid #BBB; }
+#bc-wrapper #departments td.title-col div.work-time div{ clear: both; }
+#bc-wrapper #departments td.title-col div.work-time div.days{ font-size: 70%; font-weight: bold; }
+#bc-wrapper #departments td.title-col div.work-time div.hours{ font-size: 90%; }
+
+#bc-wrapper #departments td.addr-col{ width: 270px; }
+
+#bc-wrapper #departments td.map-col img{ cursor: pointer; }
+#bc-wrapper #departments td.map-col{ width: 60px; text-align: center; }
+
+#bc-wrapper #departments td.phone-col{ width: 150px; }
+#bc-wrapper #departments td.phone-col div{ padding-left: 20px; }
+#bc-wrapper #departments td.phone-col div.fax{ background: url(../img/layout/phone-fax.png) 0px 0px no-repeat; }
+#bc-wrapper #departments td.phone-col div.phone{ background: url(../img/layout/phone.png) 0px 0px no-repeat; }
+#bc-wrapper #departments td.phone-col div.mobile{ background: url(../img/layout/phone-mobile.png) 0px 0px no-repeat; }
+
+#bc-wrapper div.department-list tbody tr{ border: 0px; border-top: 1px solid #BBB; }
+
+/*#bc-wrapper div.department-list tbody tr*/
+
+/* background: #eeeeee url(images/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x */
+
+
+/* DEPARTMENTS ---------------------------------------------------------- END */
+
+/* ATM | EXCHANGE -------------------------------------------- ATM | EXCHANGE */
+
+#bc-wrapper #atm div.city-nav,
+#bc-wrapper #exchange div.city-nav{ margin-left: 20px; }
+#bc-wrapper #atm div.search,
+#bc-wrapper #exchange div.search{ margin-left: 20px; }
+
+#bc-wrapper #atm td.title-col,
+#bc-wrapper #exchange td.title-col{ width: 170px; }
+#bc-wrapper #atm td.title-col div,
+#bc-wrapper #exchange td.title-col  div{ clear: both; }
+#bc-wrapper #atm td.title-col div.days,
+#bc-wrapper #exchange td.title-col div.days{ font-size: 70%; font-weight: bold; }
+#bc-wrapper #atm td.title-col div.hours,
+#bc-wrapper #exchange td.title-col div.hours{ font-size: 90%; }
+
+#bc-wrapper #atm td.addr-col,
+#bc-wrapper #exchange td.addr-col{ width: 270px; }
+
+#bc-wrapper #atm td.addr-col div.note,
+#bc-wrapper #exchange td.addr-col div.note{ font-size: 90%; color: #999; margin-top: 10px; }
+
+#bc-wrapper #atm td.map-col img,
+#bc-wrapper #exchange td.map-col img{ cursor: pointer; }
+#bc-wrapper #atm td.map-col,
+#bc-wrapper #exchange td.map-col{ width: 60px; text-align: center; }
+
+#bc-wrapper #atm td.phone-col,
+#bc-wrapper #exchange td.phone-col{ width: 150px; }
+#bc-wrapper #atm td.phone-col div,
+#bc-wrapper #exchange td.phone-col div{ padding-left: 20px; }
+#bc-wrapper #atm td.phone-col div.fax,
+#bc-wrapper #exchange td.phone-col div.fax{ background: url(../img/layout/phone-fax.png) 0px 0px no-repeat; }
+#bc-wrapper #atm td.phone-col div.phone,
+#bc-wrapper #exchange td.phone-col div.phone{ background: url(../img/layout/phone.png) 0px 0px no-repeat; }
+#bc-wrapper #atm td.phone-col div.mobile,
+#bc-wrapper #exchange td.phone-col div.mobile{ background: url(../img/layout/phone-mobile.png) 0px 0px no-repeat; }
+
+#bc-wrapper div.atm-list tbody tr,
+#bc-wrapper div.exchange-list tbody tr{ border: 0px; border-top: 1px solid #BBB; }
+
+
+/* ATM | EXCHANGE ------------------------------------------------------- END */
