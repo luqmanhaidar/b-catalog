@@ -20,7 +20,7 @@ class Bank extends DB_connect {
     public $Note;
     public $City;
 
-    public function  __construct($bdo = NULL, $config = NULL, $Kod_B = 0, $Name_short = NULL, $Name_full = NULL, $Name_eng = NULL, $Www = NULL, $Http = NULL, $Logo_min = NULL, $Logo = NULL, $Our_http = NULL, $Adress = NULL, $Licence = NULL, $Owners = NULL, $Note = NULL, $City = NULL) {
+    public function  __construct($dbo = NULL, $config = NULL, $Kod_B = 0, $Name_short = NULL, $Name_full = NULL, $Name_eng = NULL, $Www = NULL, $Http = NULL, $Logo_min = NULL, $Logo = NULL, $Our_http = NULL, $Adress = NULL, $Licence = NULL, $Owners = NULL, $Note = NULL, $City = NULL) {
 
         parent::__construct($dbo, $config);
 
@@ -98,9 +98,11 @@ class Bank extends DB_connect {
 
         $banks = array();
         $query = "SELECT Kod_B,Name_short,Http,Logo_min FROM banks";
-        $STH = $dbh->query($query, PDO::FETCH_CLASS, "Bank", array("db"=>$dbh, "config"=>NULL));
+        $STH = $dbh->query($query);
+        $STH->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Bank", array("db"=>$dbh, "config"=>NULL));
 
         while($bank = $STH->fetch()){
+            //print_r($bank);
             $bank->Name_short = str_replace("</b>", "", str_replace("<b>", "", $bank->Name_short));
             $banks[] = $bank;
         }
