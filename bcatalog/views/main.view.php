@@ -166,7 +166,7 @@
                     <tbody>
                         <?php foreach ($banks as $bank): ?>
                         <tr bank_id="<?php echo $bank->Kod_B; ?>">
-                            <td class="logo-col"><img src="<?php echo $bank->Logo_min; ?>"/></td>
+                            <td class="logo-col"><img src="<?php echo str_replace("http://bcatalog.dev:8888/", BASE_URL, $bank->Logo_min); ?>"/></td>
                             <td class="title-col"><?php echo $bank->Name_short; ?></td>
                             <td class="link-col"><a target="_blank" href="<?php echo $bank->Http; ?>"><?php echo $bank->Http; ?></a></td>
                         </tr>
