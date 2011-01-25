@@ -17,6 +17,9 @@ class Region extends DB_connect{
         $this->name = empty($name) ? NULL : $name;
 
         $this->areas = is_array($areas) ? $areas : array();
+        if($this->region_id)
+            $this->getRegionAreas();
+
     }
 
     public function add(){
@@ -56,9 +59,25 @@ class Region extends DB_connect{
         $sth->setFetchMode(PDO::FETCH_ASSOC);
 
         while($row = $sth->fetch())
-            $this->aeras[] = new Area($dbh, NULL, $row["area_id"], $this->region_id, $row["name"], NULL);
+            $this->aeras[] = new Area($this->db, NULL, $row["area_id"], $this->region_id, $row["name"], NULL);
 
         return true;
+    }
+
+    public static function getAllRegions(PDO $dbh){
+
+        if(!is_object($dbh))
+            return false;
+
+        $query = "SELECT * FROM regions";
+        $sth = $dbh->query($query);
+        $sth->setFetchMode(PDO::FETCH_ASSOC);
+
+        $regions = array();
+        while($row = $sth->fetch())
+            $regions[] = new Region ($dbh, NULL, $row["region_id"], $row["name"], NULL);
+
+        return $regions;
     }
 }
 
