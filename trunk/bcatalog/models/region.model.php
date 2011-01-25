@@ -54,12 +54,12 @@ class Region extends DB_connect{
 
     public function getRegionAreas(){
 
-        $query = "SELECT aera_id, name FROM areas WHERE region_id=$this->region_id";
+        $query = "SELECT area_id, name FROM areas WHERE region_id=$this->region_id";
         $sth = $this->db->query($query);
         $sth->setFetchMode(PDO::FETCH_ASSOC);
 
         while($row = $sth->fetch())
-            $this->aeras[] = new Area($this->db, NULL, $row["area_id"], $this->region_id, $row["name"], NULL);
+            $this->areas[] = new Area($this->db, NULL, $row["area_id"], $this->region_id, $row["name"], NULL);
 
         return true;
     }
