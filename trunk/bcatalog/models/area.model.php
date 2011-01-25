@@ -20,6 +20,8 @@ class Area extends DB_connect{
         $this->name = empty ($name) ? NULL : $name;
 
         $this->cities = is_array($cities) ? $cities : array();
+        if($this->area_id)
+            $this->getAreaCities();
     }
 
     public function add(){
@@ -59,7 +61,7 @@ class Area extends DB_connect{
         $sth->setFetchMode(PDO::FETCH_ASSOC);
 
         while($row = $sth->fetch())
-            $this->cities[] = new City($dbh, NULL, $row["city_id"], $this->area_id, $row["name"]);
+            $this->cities[] = new City($this->db, NULL, $row["city_id"], $this->area_id, $row["name"]);
 
         return true;
     }
