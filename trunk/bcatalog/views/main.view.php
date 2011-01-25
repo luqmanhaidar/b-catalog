@@ -40,82 +40,30 @@
                         <tr>
                             <td class="select-base regions">
                                 <ul class="current">
-                                    <li region_id="1" reg_center="Брест">Брестская область</li>
-                                    <li region_id="2" reg_center="Витебск">Витебская область</li>
-                                    <li region_id="3" reg_center="Минск" class="selected">Минская область</li>
-                                    <li region_id="4" reg_center="Могилев">Могилевская область</li>
-                                    <li region_id="5" reg_center="Гомель">Гомельская область</li>
-                                    <li region_id="6" reg_center="Гродно">Гродненская область</li>
+                                    <?php foreach($regions as $region): ?>
+                                    <li region_id="<?php echo $region->region_id; ?>" reg_center="<?php echo $region->center_id; ?>"><?php echo $region->name; ?></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </td>
                             <td class="select-base areas">
-                                <ul region_id="3" class="current">
-                                    <li area_id="1">Красных фонарей</li>
-                                    <li area_id="2">Еще один район</li>
-                                    <li area_id="3" class="selected">Минский район</li>
-                                    <li area_id="4">Воложинский район</li>
-                                    <li area_id="5">Чирик район</li>
+                                <?php foreach($regions as $region): ?>
+                                <ul region_id="<?php echo $region->region_id; ?>">
+                                    <?php foreach($region->areas as $area): ?>
+                                    <li area_id="<?php echo $area->area_id; ?>"><?php echo $area->name; ?></li>
+                                    <?php endforeach; ?>
                                 </ul>
-                                <ul region_id="2">
-                                    <li area_id="1">Бешенковичский</li>
-                                    <li area_id="2">Браславский</li>
-                                    <li area_id="3">Верхнедвинский</li>
-                                    <li area_id="4">Витебский</li>
-                                    <li area_id="5">Глубокский</li>
-                                    <li area_id="6">Городокский</li>
-                                </ul>
-                                <ul region_id="1">
-                                    <li area_id="1">Брестский</li>
-                                    <li area_id="2">Барановичский</li>
-                                    <li area_id="3">Берёзовский</li>
-                                    <li area_id="4">Ганцевичский</li>
-                                    <li area_id="5">Дрогичинский</li>
-                                    <li area_id="6">Жабинковский</li>
-                                </ul>
+                                <?php endforeach; ?>
                             </td>
                             <td class="select-base cities">
-                                <ul region_id="3" class="current">
-                                    <li area_id="1">Ечка</li>
-                                    <li area_id="1">Асуньен</li>
-                                    <li area_id="2">Большой Куяш</li>
-                                    <li area_id="2">Раздериха</li>
-                                    <li area_id="3" class="selected">Минск</li>
-                                    <li area_id="3">Кокаиновые горы</li>
-                                    <li area_id="4">Ечка</li>
-                                    <li area_id="4">Асуньен</li>
-                                    <li area_id="5">Большой Куяш</li>
-                                    <li area_id="5">Раздериха</li>
-                                    <li area_id="1">Кокаиновые горы</li>
+                                <?php foreach($regions as $region): ?>
+                                <ul region_id="<?php echo $region->region_id; ?>">
+                                    <?php foreach($region->areas as $area): ?>
+                                        <?php foreach($area->cities as $city): ?>
+                                        <li area_id="<?php echo $city->area_id; ?>" city_id="<?php echo $city->city_id; ?>" ><?php echo $city->name; ?></li>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </ul>
-                                <ul region_id="1">
-                                    <li area_id="1">Брест</li>
-                                    <li area_id="1">Иваново</li>
-                                    <li area_id="2">Барановичи</li>
-                                    <li area_id="2">Дрогичин</li>
-                                    <li area_id="6">Пинск</li>
-                                    <li area_id="3">Ганцевичи</li>
-                                    <li area_id="4">Кобрин</li>
-                                    <li area_id="4">Жабинка</li>
-                                    <li area_id="5">Берёза</li>
-                                    <li area_id="5">Белоозёрск</li>
-                                    <li area_id="6">Ивацевичи</li>
-                                    <li area_id="6">Столин</li>
-                                </ul>
-                                <ul region_id="2">
-                                    <li area_id="1">Витебск</li>
-                                    <li area_id="1">Барань</li>
-                                    <li area_id="2">Браслав</li>
-                                    <li area_id="2">Верхнедвинск</li>
-                                    <li area_id="3">Глубокое</li>
-                                    <li area_id="3">Городок</li>
-                                    <li area_id="4">Дисна</li>
-                                    <li area_id="4">Докшицы</li>
-                                    <li area_id="5">Дубровно</li>
-                                    <li area_id="5">Лепель</li>
-                                    <li area_id="6">Лиозно</li>
-                                    <li area_id="6">Миоры</li>
-                                    <li area_id="6">Новолукомль</li>
-                                </ul>
+                                <?php endforeach; ?>
                             </td>
                         </tr>
                     </table>
