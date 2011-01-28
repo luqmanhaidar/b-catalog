@@ -39,7 +39,7 @@ BCatalog.prototype.init = function(settings){
     this.alphaNavCnt.find('li').bind('click', {ui:BCatalogUI}, this.alphaFilter);
 
     this.bankListCnt.find('tbody tr').bind('click', {ui:BCatalogUI}, function(evtObj){
-        var targetUrl = evtObj.data.ui.bankUrl+"?bank_id="+evtObj.currentTarget.getAttribute("bank_id")+"&city="+evtObj.data.ui.cityNavCnt.find('span.curr-city').text();
+        var targetUrl = evtObj.data.ui.bankUrl+"?bank_id="+evtObj.currentTarget.getAttribute("bank_id")+"&city_id="+evtObj.data.ui.cityNavCnt.find('span.curr-city').attr('city_id');
         document.location = targetUrl;
     })
 
@@ -98,7 +98,7 @@ BCatalog.prototype.init = function(settings){
 
 /**
  * отобразит список городов, если он скрыт и скроет в противном случае
- * @param {jQueryEvent} evtObj 
+ * @param {jQueryEvent} evtObj
  */
 BCatalog.prototype.toggleCityList = function(evtObj){
 
@@ -128,10 +128,10 @@ BCatalog.prototype.alphaFilter = function(evtObj){
         if(!row.hasClass('not-in-city'))
             row.show();
     });
-    
+
     if(!letter)
         return false;
-    
+
     for(var q=0;q<bankColumns.length;q++)
         if((bankColumns.eq(q).text()).search(new RegExp("^"+letter+".*$","gi")) == -1)
             bankColumns.eq(q).closest('tr').hide();
@@ -143,7 +143,7 @@ BCatalog.prototype.alphaFilter = function(evtObj){
 }
 
 BCatalog.prototype.selectRegion = function(evtObj){
-
+    //console.log('here');
     var clickedRegion = $(evtObj.target);
     var regions = evtObj.data.ui.cityListCnt.find('td.regions:last ul');
     var areas = evtObj.data.ui.cityListCnt.find('td.areas:last');
@@ -156,7 +156,9 @@ BCatalog.prototype.selectRegion = function(evtObj){
     cities.find('ul.current').removeClass('current').find('li').show().filter('li.selected').removeClass('selected');
     cities.find('ul[region_id='+clickedRegion.attr('region_id')+']').addClass('current');
 
-    clickedRegion.closest('table').find('div.area-center').html(clickedRegion.attr('reg_center'));
+    //console.log('li[city_id='+clickedRegion.attr('reg_center')+']');
+    clickedRegion.closest('table').find('div.area-center').html(cities.find('li[city_id='+clickedRegion.attr('reg_center')+']').text());
+    clickedRegion.closest('table').find('div.area-center').attr('city_id', clickedRegion.attr('reg_center'));
 }
 
 
@@ -180,8 +182,8 @@ BCatalog.prototype.selectCity = function(evtObj){
 
     cities.find('li').removeClass('selected');
     clickedCity.addClass('selected');
-    evtObj.data.ui.cityNavCnt.find('span.curr-city').html(clickedCity.text());
-    evtObj.data.ui.cityFilter(clickedCity.text());
+    evtObj.data.ui.cityNavCnt.find('span.curr-city').html(clickedCity.text()).attr('city_id', clickedCity.attr('city_id'));
+    evtObj.data.ui.cityFilter(clickedCity.attr('city_id'));
     evtObj.data.ui.cityNavCnt.find('span.city-list-trigger').trigger("click");
 }
 
@@ -232,14 +234,14 @@ BCatalog.prototype.initAlphaNav = function(citySorted){
 }
 
 
-BCatalog.prototype.cityFilter = function(targetCity){
+BCatalog.prototype.cityFilter = function(targetCityId){
 
     var bcui = this;
 
     $.ajax({
         type : "GET",
         url : this.handlerUrl,
-        data : {"cmd":"get-city-banks", "city":targetCity},
+        data : {"cmd":"get-city-banks", "city_id":targetCityId},
         dataType : "json",
         success : function(response, status, xhr){
             if(response.success === "1") {
