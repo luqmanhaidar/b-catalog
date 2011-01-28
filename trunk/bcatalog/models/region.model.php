@@ -7,13 +7,15 @@ require_once(MODEL_PATH."/area.model.php");
 class Region extends DB_connect{
 
     public $region_id;
+    public $center_id;
     public $name;
     public $areas;
 
-    public function  __construct($dbo = NULL, $config = NULL, $region_id = 0, $name = NULL, $areas = NULL) {
+    public function  __construct($dbo = NULL, $config = NULL, $region_id = 0, $center_id = 0, $name = NULL, $areas = NULL) {
         parent::__construct($dbo, $config);
 
         $this->region_id = empty($region_id) ? 0 : $region_id;
+        $this->center_id = empty($center_id) ? 0 : $center_id;
         $this->name = empty($name) ? NULL : $name;
 
         $this->areas = is_array($areas) ? $areas : array();
@@ -75,7 +77,7 @@ class Region extends DB_connect{
 
         $regions = array();
         while($row = $sth->fetch())
-            $regions[] = new Region ($dbh, NULL, $row["region_id"], $row["name"], NULL);
+            $regions[] = new Region ($dbh, NULL, $row["region_id"], $row["center_id"], $row["name"], NULL);
 
         return $regions;
     }

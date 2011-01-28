@@ -113,14 +113,14 @@ class Bank extends DB_connect {
     /*
      * получает id банков, хотя бы одно отделение которых находиться в заданном городе
      * @param {PDO} $dbh дескриптор БД
-     * @param {String} $city название города
+     * @param {String} $city_id название города
      */
-    public static function getCitySortBanks(PDO $dbh, $city){
+    public static function getCitySortBanks(PDO $dbh, $city_id){
 
-        if(empty($city))
+        if(empty($city_id) || !is_numeric($city_id))
             return false;
 
-        $query = "SELECT Kod_B FROM otd WHERE city='$city'";
+        $query = "SELECT Kod_B FROM otd WHERE city_id=$city_id";
         $STH = $dbh->query($query, PDO::FETCH_ASSOC);
 
         $idArr = array();
@@ -131,7 +131,7 @@ class Bank extends DB_connect {
         foreach (array_unique($idArr) as $key => $value)
             $result[] = $value;
 
-        return $result;
+        return count($result) == 0 ? false : $result;
     }
 }
 
