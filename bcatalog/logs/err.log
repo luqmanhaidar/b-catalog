@@ -1,0 +1,57 @@
+-----
+ERROR:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'aera_id' in 'field list'
+in: /Users/dh/Sites/bcatalog/models/region.model.php at: 58
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/region.model.php(58): PDO->query('SELECT aera_id,...')
+#1 /Users/dh/Sites/bcatalog/models/region.model.php(21): Region->getRegionAreas()
+#2 /Users/dh/Sites/bcatalog/models/region.model.php(78): Region->__construct(Object(PDO), NULL, '1', '???????????????...', NULL)
+#3 /Users/dh/Sites/bcatalog/test.php(20): Region::getAllRegions(Object(PDO))
+#4 {main}
+-----
+
+-----
+ERROR:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city' in 'where clause'
+in: /Users/dh/Sites/bcatalog/models/bank.model.php at: 124
+trace: #0 /Users/dh/Sites/bcatalog/models/bank.model.php(124): PDO->query('SELECT Kod_B FR...', 2)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(19): Bank::getCitySortBanks(Object(PDO), '??????????')
+#2 {main}
+-----
+
+-----
+ERROR:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city' in 'where clause'
+in: /Users/dh/Sites/bcatalog/models/bank.model.php at: 124
+trace: #0 /Users/dh/Sites/bcatalog/models/bank.model.php(124): PDO->query('SELECT Kod_B FR...', 2)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(19): Bank::getCitySortBanks(Object(PDO), '??????????')
+#2 {main}
+-----
+
+-----
+ERROR:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city' in 'where clause'
+in: /Users/dh/Sites/bcatalog/models/bank.model.php at: 124
+trace: #0 /Users/dh/Sites/bcatalog/models/bank.model.php(124): PDO->query('SELECT Kod_B FR...', 2)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(19): Bank::getCitySortBanks(Object(PDO), '???????????????...')
+#2 {main}
+-----
+
+-----
+ERROR:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city' in 'where clause'
+in: /Users/dh/Sites/bcatalog/models/bank.model.php at: 124
+trace: #0 /Users/dh/Sites/bcatalog/models/bank.model.php(124): PDO->query('SELECT Kod_B FR...', 2)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(19): Bank::getCitySortBanks(Object(PDO), '??????????')
+#2 {main}
+-----
+
+-----
+ERROR:
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'city' in 'where clause'
+in: /Users/dh/Sites/bcatalog/models/bank.model.php at: 124
+trace: #0 /Users/dh/Sites/bcatalog/models/bank.model.php(124): PDO->query('SELECT Kod_B FR...', 2)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(19): Bank::getCitySortBanks(Object(PDO), '???????????????...')
+#2 {main}
+-----
+
