@@ -12,13 +12,16 @@ try{
 
         case "get-city-banks" : {
 
-            if(empty($_GET["city"]))
+            if(empty($_GET["city_id"]))
                 die($config["errors"]["data"]["no-ness"]);
 
             $db = new DB_connect(null, $config);
-            $bankIdArr = Bank::getCitySortBanks($db->getDBH(), addslashes($_GET["city"]));
+            $bankIdArr = Bank::getCitySortBanks($db->getDBH(), addslashes($_GET["city_id"]));
 
-            die(json_encode(array("success"=>"1","data"=>$bankIdArr)));
+            if($bankIdArr)
+                die(json_encode(array("success"=>"1","data"=>$bankIdArr)));
+            else
+                die($config["errors"]["data"]["zombie-city"]);
         }
 
         default : {
@@ -33,17 +36,8 @@ try{
 }
 catch(Exception $exp){
     //log exceotion info
-    $log = fopen(LOG_PATH."/err.log", "a");
-    $report = "-----\n".
-              "ERROR:\n".
-              $exp->getMessage()."\n".
-              "in: ".$exp->getFile()." at: ".$exp->getLine()."\n".
-              "trace: ".$exp->getTraceAsString()."\n".
-              "-----\n\n";
+    lor_err($exp);
 
-    fwrite($log, $report);
-    fclose($log);
-
-    renderView("error.view.php", array("title"=>"Ошибка сервера", "msg"=>"Приносим свои извинения.<br/>Попробуйте перезагрузить страницу."));
+    //renderView("error.view.php", array("title"=>"Ошибка сервера", "msg"=>"Приносим свои извинения.<br/>Попробуйте перезагрузить страницу."));
 }
 ?>

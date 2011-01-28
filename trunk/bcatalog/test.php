@@ -2,9 +2,9 @@
 <html lang="ru-RU">
     <head>
         <meta charset="UTF-8">
-        <title>SELECT.BY</title>
+        <title>BCATALOG</title>
 	</head>
-	<body>
+	<body>  
         <?php
             try{
                 require_once(realpath(dirname(__FILE__))."/source/config.php");
@@ -13,15 +13,17 @@
                 require_once(MODEL_PATH."/bank.model.php");
                 require_once(MODEL_PATH."/region.model.php");
 
-                $db = new DB_connect(null, $config);
+//                $db = new DB_connect(null, $config);
+//
+//                $data["title"] = "Каталог банков";
+//                $data["banks"] = Bank::getBanksShortInfo($db->getDBH());
+//                $data["regions"] = Region::getAllRegions($db->getDBH());
+//
+//                echo "<pre>";
+//                print_r($data["regions"]);
+//                echo "</pre>";
 
-                $data["title"] = "Каталог банков";
-                $data["banks"] = Bank::getBanksShortInfo($db->getDBH());
-                $data["regions"] = Region::getAllRegions($db->getDBH());
-
-                echo "<pre>";
-                print_r($data["regions"]);
-                echo "</pre>";
+                echo date("H:i:s | d M Y", time());
                 //renderView("main.view.php", $data);
             }
             catch(Exception $exp){

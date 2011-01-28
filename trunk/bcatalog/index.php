@@ -16,16 +16,7 @@ try{
 }
 catch(Exception $exp){
     // log exception info
-    $log = fopen(LOG_PATH."/err.log", "a");
-    $report = "-----\n".
-              "ERROR:\n".
-              $exp->getMessage()."\n".
-              "in: ".$exp->getFile()." at: ".$exp->getLine()."\n".
-              "trace: \n".$exp->getTraceAsString()."\n".
-              "-----\n\n";
-
-    fwrite($log, $report);
-    fclose($log);
+    log_err($exp);
 
     //renderView("error.view.php", array("title"=>"Ошибка сервера", "msg"=>"Приносим свои извинения.<br/>Попробуйте перезагрузить страницу."));
 }
