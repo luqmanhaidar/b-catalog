@@ -27,4 +27,17 @@ function renderView($viewFile, $variables = array(), $inc = false){
 	    //require_once(TEMPLATES_PATH . "/error.php");  
 	}
 }
+
+function log_err($exp){
+    $log = fopen(LOG_PATH."/err.log", "a");
+    $report = "\n".
+              "ERROR (".date("H:i:s | d M Y", time())."):\n".
+              $exp->getMessage()."\n".
+              "in: ".$exp->getFile()." at: ".$exp->getLine()."\n".
+              "trace: \n".$exp->getTraceAsString()."\n".
+              "-----\n\n";
+
+    fwrite($log, $report);
+    fclose($log);
+}
 ?>
