@@ -40,4 +40,29 @@ function log_err($exp){
     fwrite($log, $report);
     fclose($log);
 }
+
+
+/*
+ * проверяет значение $valueToTest, если оно пустое
+ * возвращает одноименное ему из массива $config
+ * если $numeric истина, то еще и проверит на соответствие числу или числовой строки
+ * @param {array} $config массив установок
+ * @param {String} $configTitle название проверяемого элемента в массиве установок
+ * @param {mixed} $valueToTest значение, которое необходимо проверить
+ * @param {boolean} $numeric индикатор, показывающий является ли переданное значение числовым
+ */
+function ifEmptyGetFromConfig($config, $configTitle, $valueToTest, $numeric = false){
+    
+    if(!$configTitle)
+        return false;
+
+    if(empty($valueToTest)){
+        if($numeric && !is_numeric($valueToTest))
+            return false;
+        else
+            return $config[$configTitle];
+        return $config[$configTitle];
+    }
+}
+
 ?>
