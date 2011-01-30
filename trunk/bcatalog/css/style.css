@@ -354,6 +354,7 @@
 #bc-wrapper #departments td.title-col div.work-time div.hours{ font-size: 90%; }
 
 #bc-wrapper #departments td.addr-col{ width: 270px; }
+#bc-wrapper #departments td.addr-col div.note{ font-size: 90%; color: #999; margin-top: 10px; }
 
 #bc-wrapper #departments td.map-col img{ cursor: pointer; }
 #bc-wrapper #departments td.map-col{ width: 60px; text-align: center; }
@@ -372,47 +373,3 @@
 
 
 /* DEPARTMENTS ---------------------------------------------------------- END */
-
-/* ATM | EXCHANGE -------------------------------------------- ATM | EXCHANGE */
-
-#bc-wrapper #atm div.city-nav,
-#bc-wrapper #exchange div.city-nav{ margin-left: 20px; }
-#bc-wrapper #atm div.search,
-#bc-wrapper #exchange div.search{ margin-left: 20px; }
-
-#bc-wrapper #atm td.title-col,
-#bc-wrapper #exchange td.title-col{ width: 170px; }
-#bc-wrapper #atm td.title-col div,
-#bc-wrapper #exchange td.title-col  div{ clear: both; }
-#bc-wrapper #atm td.title-col div.days,
-#bc-wrapper #exchange td.title-col div.days{ font-size: 70%; font-weight: bold; }
-#bc-wrapper #atm td.title-col div.hours,
-#bc-wrapper #exchange td.title-col div.hours{ font-size: 90%; }
-
-#bc-wrapper #atm td.addr-col,
-#bc-wrapper #exchange td.addr-col{ width: 270px; }
-
-#bc-wrapper #atm td.addr-col div.note,
-#bc-wrapper #exchange td.addr-col div.note{ font-size: 90%; color: #999; margin-top: 10px; }
-
-#bc-wrapper #atm td.map-col img,
-#bc-wrapper #exchange td.map-col img{ cursor: pointer; }
-#bc-wrapper #atm td.map-col,
-#bc-wrapper #exchange td.map-col{ width: 60px; text-align: center; }
-
-#bc-wrapper #atm td.phone-col,
-#bc-wrapper #exchange td.phone-col{ width: 150px; }
-#bc-wrapper #atm td.phone-col div,
-#bc-wrapper #exchange td.phone-col div{ padding-left: 20px; }
-#bc-wrapper #atm td.phone-col div.fax,
-#bc-wrapper #exchange td.phone-col div.fax{ background: url(../img/layout/phone-fax.png) 0px 0px no-repeat; }
-#bc-wrapper #atm td.phone-col div.phone,
-#bc-wrapper #exchange td.phone-col div.phone{ background: url(../img/layout/phone.png) 0px 0px no-repeat; }
-#bc-wrapper #atm td.phone-col div.mobile,
-#bc-wrapper #exchange td.phone-col div.mobile{ background: url(../img/layout/phone-mobile.png) 0px 0px no-repeat; }
-
-#bc-wrapper div.atm-list tbody tr,
-#bc-wrapper div.exchange-list tbody tr{ border: 0px; border-top: 1px solid #BBB; }
-
-
-/* ATM | EXCHANGE ------------------------------------------------------- END */
