@@ -14,7 +14,8 @@ defined("BASE_URL")
 
 
 $config = array(
-    "project_title" => "SELECT.BY",
+    "project_title" => "BCATALOG",
+    "capital_id" => 1,
     "db" => array(
         "hostname" => "localhost",
         "username" => "root",
@@ -34,7 +35,8 @@ $config = array(
             "zombie-city" => '{"success":"0", "error":"1", "notification":"в этом городе нет известных нам отделений"}',
             "temp" => '{"success":"1", "notification":"временная заглушка"}'
         )
-    )
+    ),
+    "page_length" => 20
 );
 
 ?>
