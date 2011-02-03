@@ -19,7 +19,7 @@
                 <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
             </div>
             <div class="city-nav">
-                <span class="curr-city">Минск</span>&nbsp;
+                <span class="curr-city" city_id="<?php echo $capital_id; ?>"><?php echo $capital_name; ?></span>&nbsp;
                 <span class="city-list-trigger">выбрать другой город</span>
             </div>
             <div class="city-list">

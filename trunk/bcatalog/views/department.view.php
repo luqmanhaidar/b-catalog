@@ -4,11 +4,11 @@
  */
 ?>
 
-<tr>
+<tr dept_type="<?php echo $type; ?>">
     <td class="title-col">
         <div class="name"><?php echo $Name; ?></div>
         <div class="work-time">
-            <?php echo $Work_hour; ?>
+            <?php echo processWorkHoursToHRD($Work_hour, $Type, $Wprk_day); ?>
         </div>
     </td>
     <td class="addr-col">
