@@ -55,3 +55,53 @@ trace: #0 /Users/dh/Sites/bcatalog/models/bank.model.php(124): PDO->query('SELEC
 #2 {main}
 -----
 
+
+ERROR (01:11:06 | 31 Jan 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 139
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(139): PDO->query('SELECT * FROM o...', 2)
+#1 /Users/dh/Sites/bcatalog/test.php(28): Department::getBankDepartments(Object(PDO), 1, false, 20, 1)
+#2 {main}
+-----
+
+
+ERROR (08:21:11 | 01 Feb 2011):
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'found_rows' in 'field list'
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 140
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(140): PDO->query('SELECT *, found...', 1048578, 'Department', Array)
+#1 /Users/dh/Sites/bcatalog/test.php(28): Department::getBankDepartments(Object(PDO), 1, 1, 20, 1)
+#2 {main}
+-----
+
+
+ERROR (10:43:56 | 01 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE (Kod_B=1 AND city_id=1)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 159
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(159): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/bank.php(35): Department::countPageNum(Object(PDO), '1', '1')
+#2 {main}
+-----
+
+
+ERROR (21:59:08 | 01 Feb 2011):
+SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/Applications/MAMP/tmp/mysql/mysql.sock' (2)
+in: /Users/dh/Sites/bcatalog/source/db_connect.class.php at: 14
+trace: 
+#0 /Users/dh/Sites/bcatalog/source/db_connect.class.php(14): PDO->__construct('mysql:host=loca...', 'root', 'root')
+#1 /Users/dh/Sites/bcatalog/bank.php(11): DB_connect->__construct(NULL, Array)
+#2 {main}
+-----
+
+
+ERROR (21:59:08 | 01 Feb 2011):
+SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/Applications/MAMP/tmp/mysql/mysql.sock' (2)
+in: /Users/dh/Sites/bcatalog/source/db_connect.class.php at: 14
+trace: 
+#0 /Users/dh/Sites/bcatalog/source/db_connect.class.php(14): PDO->__construct('mysql:host=loca...', 'root', 'root')
+#1 /Users/dh/Sites/bcatalog/test.php(17): DB_connect->__construct(NULL, Array)
+#2 {main}
+-----
+

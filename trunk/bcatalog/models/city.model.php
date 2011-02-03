@@ -18,6 +18,7 @@ class City extends DB_connect{
 
     }
 
+
 //    public static function getAreaCities(PDO $dbh, int $area_id){
 //
 //        if(empty($area_id) || !is_object($dbh))
@@ -54,6 +55,7 @@ class City extends DB_connect{
 
         return true;
     }
+    
 
     public function remove(){
 
@@ -66,6 +68,20 @@ class City extends DB_connect{
     }
 
 
+    public function getNameById(){
+
+        $query = "SELECT name FROM cities WHERE city_id=$this->city_id";
+
+        $sth = $this->db->query($query);
+        $sth->setFetchMode(PDO::FETCH_ASSOC);
+
+        if($row = $sth->fetch()){
+            $this->name = $row["name"];
+            return $row["name"];
+        }
+
+        return false;
+    }
 }
 
 ?>
