@@ -7,10 +7,14 @@ try{
     require_once(MODEL_PATH."/region.model.php");
     //print_r($config["db"]);
     $db = new DB_connect(null, $config);
+    $capital = new City($db->getDBH(), null, $config["capital_id"]);
+    $capital->getNameById();
 
     $data["title"] = "Каталог банков";
     $data["banks"] = Bank::getBanksShortInfo($db->getDBH());
     $data["regions"] = Region::getAllRegions($db->getDBH());
+    $data["capital_id"] = $capital->city_id;
+    $data["capital_name"] = $capital->name;
 
     renderView("main.view.php", $data);
 }

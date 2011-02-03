@@ -18,9 +18,9 @@ class Bank extends DB_connect {
     public $Licence;
     public $Owners;
     public $Note;
-    public $City;
+    public $city_id;
 
-    public function  __construct($dbo = NULL, $config = NULL, $Kod_B = 0, $Name_short = NULL, $Name_full = NULL, $Name_eng = NULL, $Www = NULL, $Http = NULL, $Logo_min = NULL, $Logo = NULL, $Our_http = NULL, $Adress = NULL, $Licence = NULL, $Owners = NULL, $Note = NULL, $City = NULL) {
+    public function  __construct($dbo = NULL, $config = NULL, $Kod_B = 0, $Name_short = NULL, $Name_full = NULL, $Name_eng = NULL, $Www = NULL, $Http = NULL, $Logo_min = NULL, $Logo = NULL, $Our_http = NULL, $Adress = NULL, $Licence = NULL, $Owners = NULL, $Note = NULL, $city_id = NULL) {
 
         parent::__construct($dbo, $config);
 
@@ -37,7 +37,7 @@ class Bank extends DB_connect {
         $this->Licence    = empty ($Licence) ? NULL : $Licence;
         $this->Owners     = empty ($Owners) ? NULL : $Owners;
         $this->Note       = empty ($Note) ? NULL : $Note;
-        $this->City       = empty ($City) ? NULL : $City;
+        $this->city_id    = empty ($city_id) ? NULL : $city_id;
     }
 
     public function getDBH(){
@@ -46,7 +46,7 @@ class Bank extends DB_connect {
 
     public function add() {
 
-        $query = "INSERT INTO banks (Name_short, Name_full, Name_eng, Www, Http, Logo_min, Logo, Our_http, Adress, Licence, Owners, Note, City) VALUES ('$this->Name_short', '$this->Name_full', '$this->Name_eng', '$this->Www', '$this->Http', '$this->Logo_min', '$this->Logo', '$this->Our_http', '$this->Adress', '$this->Licence', '$this->Owners', '$this->Note', '$this->City')";
+        $query = "INSERT INTO banks (Name_short, Name_full, Name_eng, Www, Http, Logo_min, Logo, Our_http, Adress, Licence, Owners, Note, City) VALUES ('$this->Name_short', '$this->Name_full', '$this->Name_eng', '$this->Www', '$this->Http', '$this->Logo_min', '$this->Logo', '$this->Our_http', '$this->Adress', '$this->Licence', '$this->Owners', '$this->Note', '$this->city_id')";
 
         $STH = $this->db->prepare($query);
         $STH->execute();
@@ -76,13 +76,58 @@ class Bank extends DB_connect {
         $query = "UPDATE banks SET (";
 
         foreach($this as $key => $value){
-            if($key == 'db' || $key == 'Kod_b' || !$value)
+            if($key == 'db' || $key == 'Kod_B' || !$value)
                 continue;
 
             $query .= $key."='".$value."', ";
         }
 
-        return substr($query, 0, -2).") WHERE Kod_b=$this->Kod_b";
+        return substr($query, 0, -2).") WHERE Kod_B=$this->Kod_B";
+    }
+
+
+    /*
+     * получает и устанавливает значения всех свойств по id
+     */
+    public function getDataById(){
+
+        $query = "SELECT * FROM banks WHERE Kod_B=$this->Kod_B LIMIT 1";
+
+        $sth = $this->db->query($query);
+        $sth->setFetchMode(PDO::FETCH_OBJ|PDO::FETCH_PROPS_LATE, "Bank", array("db" => $this->db, "config" => NULL));
+
+        if($obj = $sth->fetch()){
+            
+            $this->extend($obj);
+            return true;
+        }
+
+        return false;
+    }
+
+    /*
+     * устанавливает все свойства объекта от которого вызван,
+     * значениями одноименных свойств объекта $donorObj
+     * @param {Bank} $donorObj объект-донор
+     */
+    public function extend($donorObj){
+
+        //$this->Kod_B
+        $this->Name_short = $donorObj->Name_short;
+        $this->Name_full  = $donorObj->Name_full;
+        $this->Name_eng   = $donorObj->Name_eng;
+        $this->Www        = $donorObj->Www;
+        $this->Http       = $donorObj->Http;
+        $this->Logo_min   = $donorObj->Logo_min;
+        $this->Logo       = $donorObj->Logo;
+        $this->Our_http   = $donorObj->Our_http;
+        $this->Adress     = $donorObj->Adress;
+        $this->Licence    = $donorObj->Licence;
+        $this->Owners     = $donorObj->Owners;
+        $this->Note       = $donorObj->Note;
+        $this->city_id    = $donorObj->city_id;
+
+        return true;
     }
 
 
