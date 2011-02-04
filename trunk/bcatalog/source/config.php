@@ -34,6 +34,7 @@ $config = array(
             "wrong-cmd" => '{"success":"0", "error":"1", "notification":"в обработчик была передана неверная команда"}',
             "zombie-city" => '{"success":"0", "error":"1", "notification":"в этом городе нет известных нам отделений"}',
             "wrong-data" => '{"success":"0", "error":"1", "notification":"в обработчик были переданы неверные данные"}',
+            "srv-err" => '{"success":"0", "error":"1", "notification":"ошибка на стороне сервера"}',
             "temp" => '{"success":"1", "notification":"временная заглушка"}'
         )
     ),
