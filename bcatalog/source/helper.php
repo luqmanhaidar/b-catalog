@@ -56,8 +56,12 @@ function ifEmptyGetFromConfig($config, $configTitle, $valueToTest, $numeric = fa
     if(!$configTitle)
         return false;
 
-    if(empty($valueToTest))
-        return $config[$configTitle];
+    if(empty($valueToTest)){
+        if(empty($_COOKIE[$valueToTest]))
+            return $config[$configTitle];
+        else
+            return $_COOKIE[$valueToTest];
+    }
     else if($numeric && !is_numeric($valueToTest))
         return false;
     else
