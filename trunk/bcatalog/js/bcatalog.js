@@ -10,6 +10,8 @@
  * @param {jQuery} pageNavCnt contains pagination
  * @param {String} currCity name of the current city
  * @param {Integer} currBank id of the current bank
+ * @param {String} handler URL of the AJAX requests processor
+ * @param {String} bankUrl ?
  */
 function BCatalog(container, searchCnt, cityNavCnt, cityListCnt, alphaNavCnt, bankListCnt, pageNavCnt, currCity, currBank, handler, bankUrl){
 
