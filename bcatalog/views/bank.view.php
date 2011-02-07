@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/reset.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/style.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/jquery-ui.css" />
-        <title><?php echo $title?> | BCATALOG</title>
+        <title><?php echo $title; ?> | BCATALOG</title>
     </head>
 
 	<!--[if gt IE 6]>
@@ -13,14 +13,15 @@
 	<![endif]-->
 
 	<body>
+        <?php /*print_r($bank);*/ ?>
 		<div id="bc-wrapper">
             <div class="bheader">
                 <div class="logo">
-                    <img src="<?php echo BASE_URL; ?>img/content/full-size-logo/logo-alfabank-big.png" alt="" />
+                    <img src="<?php echo $bank->Logo; ?>" alt="<?php echo $title; ?>" />
                 </div>
                 <div class="descr">
-                    <div class="title">Альфабанк</div>
-                    <div class="full-name"><br/>Закрытое акционерное общество «Альфабанк»</div>
+                    <div class="title"><?php echo $title; ?></div>
+                    <div class="full-name"><br/><?php echo str_replace("<i>", "", str_replace("</i>", "", $bank->Name_full)); ?></div>
                 </div>&nbsp;
             </div>
 
@@ -28,9 +29,15 @@
                 <ul>
                     <li><a href="#info">О банке</a></li>
                     <li><a href="#departments">Отделения</a></li>
+                    <?php if($bank->services_tab == 1): ?>
                     <li><a href="#services">Услуги</a></li>
+                    <?php endif; ?>
+                    <?php if($bank->deposits_tab == 1): ?>
                     <li><a href="#deposits">Вклады</a></li>
+                    <?php endif; ?>
+                    <?php if($bank->credits_tab == 1): ?>
                     <li><a href="#credits">Кредиты</a></li>
+                    <?php endif; ?>
                 </ul>
                 <div id="info">
                     <table>
@@ -39,52 +46,48 @@
                                 Лицензия
                             </td>
                             <td class="info-col">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
+                                <?php echo $bank->Licence; ?>
                             </td>
                         </tr>
                         <tr>
                             <td class="title-col">Контакты</td>
                             <td class="info-col">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/></td>
+                                <?php echo $bank->Adress; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title-col">Ссылки</td>
                             <td class="info-col">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/></td>
+                                <?php echo $bank->Www; ?>
+                            </td>
                         </tr>
-                        <tr class="last">
+                        <tr>
                             <td class="title-col">Акционеры</td>
                             <td class="info-col">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/></td>
+                                <?php echo $bank->Owners; ?>
+                            </td>
+                        </tr>
+                        <tr class="last">
+                            <td class="title-col">Доп. информация</td>
+                            <td class="info-col">
+                                <?php echo $bank->Note; ?>
+                            </td>
                         </tr>
                     </table>
                 </div>
                 <div id="departments">
                     <div class="search">
-                        <input type="text" length="150" value="введите название банка">
+                        <input type="text" length="150" value="введите адрес">
                         <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
                     </div>
                     <?php
                         $data["regions"] = $regions;
+                        $data["city_id"] = $city_id;
+                        $data["city_name"] = $city_name;
                         renderView("city-nav.view.php", $data);
                     ?>
-                    <div class="department-list">
+                    <div class="error"></div>
+                    <div class="department-list" bank_id="<?php echo $bank->Kod_B; ?>">
                         <table>
                             <thead>
                                 <tr>
@@ -106,18 +109,25 @@
                     <?php
                         $pag_data["page_num"] = $page_num;
                         $pag_data["page_qnt"] = $page_qnt;
+                        $pag_data["page_length"] = $page_length;
                         renderView("pagination.view.php", $pag_data)
                     ?>
                 </div>
+                <?php if($bank->services_tab == 1): ?>
                 <div id="services">
-                    SERV Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis libero nisi, eget hendrerit elit. Sed cursus nulla in sapien pulvinar a mattis lacus ullamcorper. Nunc varius, purus sed interdum aliquet, tellus est adipiscing arcu, rutrum rhoncus risus metus a purus. Mauris vel lacinia ipsum. Nullam neque mauris, viverra sit amet tempus lobortis, hendrerit sit amet metus. Praesent porta, enim non accumsan tempor, dui lacus ultricies urna, et elementum quam augue sit amet tellus. Pellentesque hendrerit, nisl nec egestas aliquet, tellus risus ullamcorper magna, eu tincidunt nulla ante sed orci. Phasellus aliquet, odio et egestas tristique, lectus mauris sollicitudin magna, eget lobortis eros velit id lacus. Mauris nec enim vulputate justo euismod faucibus ut tincidunt enim. Phasellus interdum felis non orci suscipit hendrerit ac non justo. Proin vestibulum libero a urna ornare euismod. Aliquam dictum convallis neque et consequat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    <?php echo $bank->services; ?>
                 </div>
+                <?php endif; ?>
+                <?php if($bank->deposits_tab == 1): ?>
                 <div id="deposits">
-                    DEP Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis libero nisi, eget hendrerit elit. Sed cursus nulla in sapien pulvinar a mattis lacus ullamcorper. Nunc varius, purus sed interdum aliquet, tellus est adipiscing arcu, rutrum rhoncus risus metus a purus. Mauris vel lacinia ipsum. Nullam neque mauris, viverra sit amet tempus lobortis, hendrerit sit amet metus. Praesent porta, enim non accumsan tempor, dui lacus ultricies urna, et elementum quam augue sit amet tellus. Pellentesque hendrerit, nisl nec egestas aliquet, tellus risus ullamcorper magna, eu tincidunt nulla ante sed orci. Phasellus aliquet, odio et egestas tristique, lectus mauris sollicitudin magna, eget lobortis eros velit id lacus. Mauris nec enim vulputate justo euismod faucibus ut tincidunt enim. Phasellus interdum felis non orci suscipit hendrerit ac non justo. Proin vestibulum libero a urna ornare euismod. Aliquam dictum convallis neque et consequat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    <?php echo $bank->deposits; ?>
                 </div>
+                <?php endif; ?>
+                <?php if($bank->credits_tab == 1): ?>
                 <div id="credits">
-                    CRE Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis libero nisi, eget hendrerit elit. Sed cursus nulla in sapien pulvinar a mattis lacus ullamcorper. Nunc varius, purus sed interdum aliquet, tellus est adipiscing arcu, rutrum rhoncus risus metus a purus. Mauris vel lacinia ipsum. Nullam neque mauris, viverra sit amet tempus lobortis, hendrerit sit amet metus. Praesent porta, enim non accumsan tempor, dui lacus ultricies urna, et elementum quam augue sit amet tellus. Pellentesque hendrerit, nisl nec egestas aliquet, tellus risus ullamcorper magna, eu tincidunt nulla ante sed orci. Phasellus aliquet, odio et egestas tristique, lectus mauris sollicitudin magna, eget lobortis eros velit id lacus. Mauris nec enim vulputate justo euismod faucibus ut tincidunt enim. Phasellus interdum felis non orci suscipit hendrerit ac non justo. Proin vestibulum libero a urna ornare euismod. Aliquam dictum convallis neque et consequat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    <?php echo $bank->credits; ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -128,23 +138,51 @@
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.autocomplete.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.tabs.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/helper.js"></script>
-        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/bcatalog.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/depts.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.tmpl.js"></script>
+        <script id="dept-row-template" type="text/x-jquery-tmpl" >
+        <tr dept_type="${Type}">
+            <td class="title-col">
+                <div class="name">${Name}</div>
+                <div class="work-time">
+                    {{html Work_hour}}
+                </div>
+            </td>
+            <td class="addr-col">
+                ${Adress}<br/>
+                <div class="note">
+                    ${Comment}
+                </div>
+            </td>
+            <td class="map-col">
+                <img src="<?php echo BASE_URL; ?>img/layout/map-icon{{if (map_link == "")}}-passive{{/if}}.png" alt="место на карте" />
+            </td>
+            <td class="phone-col">
+                {{html Phone}}
+            </td>
+        </tr>
+        </script>
         <script type="text/javascript" >
             $(function(){
 
-//                var container = $('#bc-wrapper');
-//                var searchBlock = $('div.search', container);
-//                var cityNavBlock = $('div.city-nav', container);
-//                var cityListBlock = $('div.city-list', container);
-//                var alphaNavBlock = $('div.alpha-nav', container);
-//                var bankListBlock = $('div.bank-list', container);
+                var container = $('#bc-wrapper');
+                var searchBlock = $('div.search', container);
+                var cityNavBlock = $('div.city-nav', container);
+                var cityListBlock = $('div.city-list', container);
+                var deptListBlock = $('div.department-list', container);
+                var paginationBlock = $('div.page-nav', container);
+                var tabArr = $('div.full-data > div', container);
+                var bank_id = deptListBlock.attr('bank_id');
+                var city_id = cityNavBlock.find('span.curr-city').attr('city_id');
+                var errCnt = $('div.error', container);
 
-                //var BCui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null, "http://bcatalog.dev:8888/request_handler.php", "http://bcatalog.dev:8888/bank.php");
-                //BCui.init();
-
-                $('#bc-wrapper div.full-data').eq(0).tabs({
+                $('div.full-data', container).eq(0).tabs({
                     selected : 1
                 });
+
+                var DEPTS = new DepartmentList(container, searchBlock, tabArr, cityNavBlock, cityListBlock, deptListBlock, paginationBlock, errCnt, city_id, bank_id, 20, "http://bcatalog.dev:8888/request_handler.php");
+                DEPTS.init();
+
             });
         </script>
         <div id="complete-cnt"></div>

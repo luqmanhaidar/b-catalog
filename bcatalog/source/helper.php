@@ -118,8 +118,72 @@ function processWorkHoursToHRD($strToProcess, $deptType = 1, $deptWorkDays = "12
     }
     else
         return "<div class='hours'>".$strToProcess."</div>";
-
+    //echo $result."<br><br>";
     return $result;
+}
+
+function processPhones($strToProcess){
+
+    $resultArr = array();
+    $result = "";
+
+    if(strstr($strToProcess, "<div"))
+        return $strToProcess;
+        //
+    if(preg_match_all("/((8 )?\([0-9]{3,5}\) +([0-9]{1,3})(\-[0-9]{1,3}){1,2})/u", $strToProcess, $resultArr)){
+        //echo "<pre>";
+        //print_r($resultArr);
+        //echo "</pre>";
+        for( $q = 0; $q < count($resultArr[0]); $q++)
+            $result .= ("<div class='phone'>".$resultArr[0][$q]."</div>");
+    }
+    else{
+        return "<div class='phone'>".$strToProcess."</div>";
+    }
+    
+    return $result;
+}
+
+
+function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $adr_part = NULL){
+
+    $pag_items = array();
+    $stack_length = 8;
+    $condition = "";
+
+    if(!empty($adr_part))
+        $condition = " AND Adress LIKE %$adr_part%";
+        //echo Department::countPageNum($dbh, $bank_id, $city_id)/$page_length, $condition);
+    $page_qnt = ceil(Department::countPageNum($dbh, $bank_id, $city_id, $condition)/$page_length);
+    //echo $page_qnt;
+    $k = ($page_num / $stack_length);
+    $k = $k == 1 ? 0 : $k;
+    $start_page = $stack_length * floor($k);
+    $end_page = ($start_page + $stack_length) < $page_qnt ? $start_page + $stack_length : $page_qnt;
+
+    $distance = $page_qnt - $page_num;
+
+    $q = ($start_page + 1);
+    do{
+        $item["content"] = $q;
+        $item["p_class"] = ($q == $page_num) ? "current" : "";
+        $item["p_class"] .= ($q == $start_page + 1) ? " first" : "";
+        array_push(&$pag_items, $item);
+        $q++;
+    }while($q <= $end_page);
+
+
+    if($end_page-1 < $page_qnt && $start_page+1!=$end_page){
+        $item["content"] = "...";
+        $item["p_class"] = "next-range";
+        array_push(&$pag_items, $item);
+
+        $item["content"] = $page_qnt;
+        $item["p_class"] = "last";
+        array_push(&$pag_items, $item);
+    }
+
+    return $pag_items;
 }
 
 ?>

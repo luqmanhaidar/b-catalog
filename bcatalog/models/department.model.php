@@ -153,12 +153,65 @@ class Department extends DB_connect {
      * @param {int} $bank_id id банка
      * @param {int} $city_id id города
      */
-    public static function countPageNum(PDO $dbh, $bank_id, $city_id){
+    public static function countPageNum(PDO $dbh, $bank_id, $city_id, $condition = NULL){
+        //echo "SELECT COUNT(*) as rows FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id".(!$condition ? "" : (" AND $condition")).")";
 
-        $rows = $dbh->prepare("SELECT COUNT(*) as rows FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id)");
+        $rows = $dbh->prepare("SELECT COUNT(*) as rows FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id".(!$condition ? "" : (" AND $condition")).")");
         $rows->execute();
 
         return $rows->fetch(PDO::FETCH_OBJ)->rows;
+    }
+
+
+    /*
+     * получает массив адресов, которые хотя бы частично совпадают с $adr_part
+     * @param {PDO} $dbh дескриптор БД
+     * @param {int} $bank_id id банка
+     * @param {int} $city_id id города
+     * @param {String} $adr_part часть адреса отделения
+     */
+    public static function getDeptAdress(PDO $dbh, $bank_id, $city_id, $adr_part){
+
+        $rows = $dbh->prepare("SELECT Adress FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE'%$adr_part%'))");
+        $rows->execute();
+        $rows->setFetchMode(PDO::FETCH_ASSOC);
+
+        $result = array();
+        while($row = $rows->fetch())
+            array_push (&$result, $row["Adress"]);
+
+        return $result;
+    }
+
+
+    /*
+     * получает те отделения банка, id которого получил, которые находятся в городе c id=$city_id
+     * и часть адреса которых совпадает с переданной частью адреса $adr_part
+     * @param {PDO} $dbh дескриптор БД
+     * @param {int} $bank_id id банка
+     * @param {int} $city_id id города
+     * @param {String} $adr_part часть адреса отделения
+     * @param {int} $pageLength id длина требуемой страницы
+     * @param {int} $pageNum = 0 номер требуемой страницы
+     */
+    public static function getBankDepartmentsByAdress(PDO $dbh, $bank_id, $city_id, $adr_part, $pageLength, $pageNum = 0){
+
+        // отступ получаем помощью page*pageNum
+        if(empty($city_id) || !is_numeric($city_id) || empty($bank_id) || !is_numeric($bank_id) || empty($pageLength) || !is_numeric($pageLength))
+            return false;
+
+        $pageNum = empty($pageNum) ? 1 : $pageNum;
+        $startIndex = $pageLength*($pageNum-1);
+
+        $query = "SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE '%$adr_part%')) ORDER BY Kod LIMIT $startIndex,$pageLength";
+
+        $STH = $dbh->query($query, PDO::FETCH_ASSOC|PDO::FETCH_PROPS_LATE, "Department", array("db"=>$dbh, "config"=>NULL));
+
+        $departmentArr = array();
+        while ($resultObj = $STH->fetch())
+            $departmentArr[] = $resultObj;
+
+        return count($departmentArr) > 0 ? $departmentArr : false;
     }
 }
 

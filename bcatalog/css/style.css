@@ -179,7 +179,7 @@
     line-height: 13px;
     cursor: pointer;
     float: right;
-    margin: 5px 7px 0px 0px ;
+    margin: 5px 10px 0px 0px ;
 }
 
 #bc-wrapper div.city-list div.content td.select-base.cities span.show-all:hover{
@@ -315,7 +315,7 @@
 #bc-wrapper div.bheader div.logo{ padding: 10px; border-right: 1px solid #BBB; }
 #bc-wrapper div.bheader div.descr{ padding: 30px 0px 10px 10px; }
 #bc-wrapper div.bheader div.title{ font-size: 150%; }
-#bc-wrapper div.bheader div.full-name{ font-size: 80%; font-style: italic; }
+#bc-wrapper div.bheader div.full-name{ width: 310px; font-size: 80%; font-style: italic; overflow: hidden; }
 
 /* BHEADER -------------------------------------------------------------- END */
 
@@ -327,7 +327,7 @@
 }
 
 #bc-wrapper div.full-data table{ width: 100%; }
-#bc-wrapper div.full-data table tr{
+#bc-wrapper div.full-data #info table tr{
     border-bottom: 1px dashed #BBB;
 }
 
@@ -353,13 +353,13 @@
 #bc-wrapper #departments td.title-col div.work-time div.days{ font-size: 70%; font-weight: bold; }
 #bc-wrapper #departments td.title-col div.work-time div.hours{ font-size: 90%; }
 
-#bc-wrapper #departments td.addr-col{ width: 270px; }
+#bc-wrapper #departments td.addr-col{ width: 255px; }
 #bc-wrapper #departments td.addr-col div.note{ font-size: 90%; color: #999; margin-top: 10px; }
 
 #bc-wrapper #departments td.map-col img{ cursor: pointer; }
 #bc-wrapper #departments td.map-col{ width: 60px; text-align: center; }
 
-#bc-wrapper #departments td.phone-col{ width: 150px; }
+#bc-wrapper #departments td.phone-col{ width: 165px; }
 #bc-wrapper #departments td.phone-col div{ padding-left: 20px; }
 #bc-wrapper #departments td.phone-col div.fax{ background: url(../img/layout/phone-fax.png) 0px 0px no-repeat; }
 #bc-wrapper #departments td.phone-col div.phone{ background: url(../img/layout/phone.png) 0px 0px no-repeat; }
@@ -388,3 +388,10 @@
 #bc-wrapper div.page-nav li.passive:hover{ cursor: auto; background-color: #FFF; }
 
 /* DEPARTMENTS ---------------------------------------------------------- END */
+
+div.error {
+    background-color: #780000;
+    color: #FFF;
+    font-size: 130%;
+    display: none;
+}
