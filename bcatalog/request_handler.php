@@ -95,7 +95,7 @@ try{
 catch(Exception $exp){
     //log exceotion info
     log_err($exp);
-    //die($config["errors"]["data"]["srv-err"]);
-    die(json_encode(array("success" => "0", "error" => "1", "notification" => $exp->getMessage())));
+    die($config["errors"]["data"]["srv-err"]);
+    //die(json_encode(array("success" => "0", "error" => "1", "notification" => $exp->getMessage())));
 }
 ?>
