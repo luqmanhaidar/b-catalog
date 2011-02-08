@@ -142,7 +142,7 @@
                 var alphaNavBlock = $('div.alpha-nav', container);
                 var bankListBlock = $('div.bank-list', container);
 
-                var BCui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null, "http://bcatalog.dev:8888/request_handler.php", "http://bcatalog.dev:8888/bank.php");
+                var BCui = new BCatalog(container, searchBlock, cityNavBlock, cityListBlock, alphaNavBlock, bankListBlock, null, "http://bcatalog.dev:8888request_handler.php", "http://bcatalog.dev:8888/bank.php");
 
                 BCui.init();
             });

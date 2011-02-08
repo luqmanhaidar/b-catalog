@@ -105,3 +105,351 @@ trace:
 #2 {main}
 -----
 
+
+ERROR (15:22:38 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул. Коммунистическая, 49, пом.1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(55): generatePagination(Object(PDO), '1', '1', '1', '20', '????. ?????????...')
+#3 {main}
+-----
+
+
+ERROR (15:23:09 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул. Коммунистическая, 49, пом.1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(55): generatePagination(Object(PDO), '1', '1', '1', '20', '????. ?????????...')
+#3 {main}
+-----
+
+
+ERROR (15:29:48 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:30:11 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:31:50 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:32:07 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\'%ул%Коммунистическая%49%пом%1%\')) ORDER BY Kod LIMIT 0,2' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 208
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(208): PDO->query('SELECT * FROM o...', 1048578, 'Department', Array)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(46): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '????%??????????...', '20', '1')
+#2 {main}
+-----
+
+
+ERROR (15:32:41 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:34:40 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\'ул%Коммунистическая%49%пом%1\')) ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 208
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(208): PDO->query('SELECT * FROM o...', 1048578, 'Department', Array)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(46): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '????%??????????...', '20', '1')
+#2 {main}
+-----
+
+
+ERROR (15:35:09 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:37:43 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:40:18 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:40:46 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунисти%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (15:40:57 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%К%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??')
+#3 {main}
+-----
+
+
+ERROR (15:42:56 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %К%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '??')
+#3 {main}
+-----
+
+
+ERROR (15:43:17 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %К%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '??')
+#3 {main}
+-----
+
+
+ERROR (15:43:33 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\\'%К%\\') ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 208
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(208): PDO->query('SELECT * FROM o...', 1048578, 'Department', Array)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(46): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '??', '20', '1')
+#2 {main}
+-----
+
+
+ERROR (15:43:42 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\'%К%\') ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 208
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(208): PDO->query('SELECT * FROM o...', 1048578, 'Department', Array)
+#1 /Users/dh/Sites/bcatalog/request_handler.php(46): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '??', '20', '1')
+#2 {main}
+-----
+
+
+ERROR (15:44:40 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %К%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(57): generatePagination(Object(PDO), '1', '1', '1', '20', '??')
+#3 {main}
+-----
+
+
+ERROR (15:50:20 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул. Коммунистическая, 49, пом.1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????. ?????????...')
+#3 {main}
+-----
+
+
+ERROR (15:57:55 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:03:11 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:08:17 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:08:58 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:14:00 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:18:04 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(58): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:27:54 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%' AND Adress LIKE '%Коммунистическая%' AND' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '????%' AND Adre...')
+#3 {main}
+-----
+
+
+ERROR (16:28:39 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:29:41 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:30:33 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '49%??????%1')
+#3 {main}
+-----
+
+
+ERROR (16:30:41 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %49%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '49')
+#3 {main}
+-----
+
+
+ERROR (16:33:01 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
+
+ERROR (16:47:07 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE %ул%Коммунистическая%49%пом%1%)' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+

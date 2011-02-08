@@ -202,10 +202,11 @@ class Department extends DB_connect {
 
         $pageNum = empty($pageNum) ? 1 : $pageNum;
         $startIndex = $pageLength*($pageNum-1);
-
+        //die("SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE '%$adr_part%')) ORDER BY Kod LIMIT $startIndex,$pageLength");
         $query = "SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE '%$adr_part%')) ORDER BY Kod LIMIT $startIndex,$pageLength";
-
-        $STH = $dbh->query($query, PDO::FETCH_ASSOC|PDO::FETCH_PROPS_LATE, "Department", array("db"=>$dbh, "config"=>NULL));
+        $STH = $dbh->prepare($query);
+        $STH->execute();
+        $STH->setFetchMode(PDO::FETCH_ASSOC|PDO::FETCH_PROPS_LATE, "Department", array("db"=>$dbh, "config"=>NULL));
 
         $departmentArr = array();
         while ($resultObj = $STH->fetch())
