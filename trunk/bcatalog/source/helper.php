@@ -152,7 +152,7 @@ function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $
     $condition = "";
 
     if(!empty($adr_part))
-        $condition = " AND Adress LIKE %$adr_part%";
+        $condition = " AND Adress LIKE '%$adr_part%'";
         //echo Department::countPageNum($dbh, $bank_id, $city_id)/$page_length, $condition);
     $page_qnt = ceil(Department::countPageNum($dbh, $bank_id, $city_id, $condition)/$page_length);
     //echo $page_qnt;

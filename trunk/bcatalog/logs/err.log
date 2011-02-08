@@ -453,3 +453,14 @@ trace:
 #3 {main}
 -----
 
+
+ERROR (17:26:09 | 08 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND Adress LIKE '%ул%Коммунистическая%49%пом%1%')' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 160
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(160): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(157): Department::countPageNum(Object(PDO), '1', '1', ' AND Adress LIK...')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(59): generatePagination(Object(PDO), '1', '1', '1', '20', '????%??????????...')
+#3 {main}
+-----
+
