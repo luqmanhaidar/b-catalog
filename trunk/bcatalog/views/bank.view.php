@@ -177,10 +177,10 @@
                 var errCnt = $('div.error', container);
 
                 $('div.full-data', container).eq(0).tabs({
-                    selected : 1
+                    selected : 0
                 });
 
-                var DEPTS = new DepartmentList(container, searchBlock, tabArr, cityNavBlock, cityListBlock, deptListBlock, paginationBlock, errCnt, city_id, bank_id, 20, "http://bcatalog.dev:8888/request_handler.php");
+                var DEPTS = new DepartmentList(container, searchBlock, tabArr, cityNavBlock, cityListBlock, deptListBlock, paginationBlock, errCnt, city_id, bank_id, 20, "http://bcatalog.dev:8888/request_handler.php");//http://ctrigger.ru/bcatalog/ | bcatalog.dev:8888/
                 DEPTS.init();
 
             });

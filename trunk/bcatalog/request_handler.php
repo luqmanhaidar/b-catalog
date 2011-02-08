@@ -1,10 +1,13 @@
 <?php
+
+require_once(realpath(dirname(__FILE__))."/source/config.php");
+require_once(realpath(dirname(__FILE__))."/source/db_connect.class.php");
+require_once(realpath(dirname(__FILE__))."/source/helper.php");
+require_once(realpath(dirname(__FILE__))."/models/bank.model.php");
+require_once(realpath(dirname(__FILE__))."/models/department.model.php");
+
 try{
-    require_once(realpath(dirname(__FILE__))."/source/config.php");
-    require_once(realpath(dirname(__FILE__))."/source/db_connect.class.php");
-    require_once(realpath(dirname(__FILE__))."/source/helper.php");
-    require_once(realpath(dirname(__FILE__))."/models/bank.model.php");
-    require_once(realpath(dirname(__FILE__))."/models/department.model.php");
+    
 
     $cmd = $_GET["cmd"];
 
@@ -37,7 +40,11 @@ try{
             if(empty($_GET["adr_part"]))
                 $depts = Department::getBankDepartments($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $_GET["page_length"], $_GET["page_num"]);
             else{
-                $safe_adr_part = preg_replace ("/\.,'\"\(\)\{\}\+\*/ui", "%", $_GET["adr_part"]);
+                //$safe_adr_part = $_GET["adr_part"];
+                $safe_adr_part = trim(preg_replace("/[^\w\x7F-\xFF\s]/", " ", $_GET["adr_part"]));
+                $safe_adr_part = preg_replace("/ +/", "%", $safe_adr_part);
+                //$safe_adr_part = str_replace(" ", "%' AND Adress LIKE '%", $safe_adr_part);
+                //die("QQ: ".$safe_adr_part);
                 $depts = Department::getBankDepartmentsByAdress($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $safe_adr_part, $_GET["page_length"], $_GET["page_num"]);
             }
 
@@ -87,7 +94,8 @@ try{
 }
 catch(Exception $exp){
     //log exceotion info
-    lor_err($exp);
-    die($config["errors"]["data"]["srv-error"]);
+    log_err($exp);
+    //die($config["errors"]["data"]["srv-err"]);
+    die(json_encode(array("success" => "0", "error" => "1", "notification" => $exp->getMessage())));
 }
 ?>
