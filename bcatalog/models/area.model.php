@@ -16,7 +16,7 @@ class Area extends DB_connect{
         parent::__construct($dbo, $config);
 
         $this->area_id = empty ($area_id) ? 0 : $area_id;
-        $this->city_id = empty ($region_id) ? 0 : $region_id;
+        $this->region_id = empty ($region_id) ? 0 : $region_id;
         $this->name = empty ($name) ? NULL : $name;
 
         $this->cities = is_array($cities) ? $cities : array();
@@ -26,32 +26,28 @@ class Area extends DB_connect{
 
     public function add(){
 
-        $query = "INSERT INTO areas (region_id, name) VALUES ($this->region_id, '$this->name')";
+        $query = "INSERT INTO areas (region_id, name) VALUES ('$this->region_id', '$this->name')";
 
-        $this->db->prepare($query);
-        $this->db->execute();
+        $sth = $this->db->prepare($query);
+        $sth->execute();
 
         return $this->db->lastInsertId();
     }
 
     public function update(){
 
-        $query = "UPDATE areas SET (region_id=$this->region_id, name='$this->name') WHERE area_id=$this->area_id";
+        $query = "UPDATE areas SET region_id=$this->region_id, name='$this->name' WHERE area_id=$this->area_id";
 
-        $this->db->prepare($query);
-        $this->db->execute();
-
-        return true;
+        $sth = $this->db->prepare($query);
+        return $sth->execute();
     }
 
     public function remove(){
 
         $query = "DELETE FROM areas WHERE area_id=$this->area_id";
 
-        $this->db->prepare($query);
-        $this->db->execute();
-
-        return true;
+        $sth = $this->db->prepare($query);
+        return $sth->execute();
     }
 
     public function getAreaCities(){
