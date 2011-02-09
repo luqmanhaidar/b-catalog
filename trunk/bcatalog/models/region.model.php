@@ -26,32 +26,28 @@ class Region extends DB_connect{
 
     public function add(){
 
-        $query = "INSERT INTO regions (name) VALUES ('$this->name')";
+        $query = "INSERT INTO regions (name, center_id) VALUES ('$this->name', '$this->center_id')";
 
-        $this->db->prepare($query);
-        $this->db->execute();
+        $sth = $this->db->prepare($query);
+        $sth->execute();
 
         return $this->db->lastInsertId();
     }
 
     public function update(){
+        
+        $query = "UPDATE regions SET name='$this->name', center_id='$this->center_id' WHERE region_id=$this->region_id";
 
-        $query = "UPDATE regions SET (name='$this->name') WHERE region_id=$this->region_id";
-
-        $this->db->prepare($query);
-        $this->db->execute();
-
-        return true;
+        $sth = $this->db->prepare($query);
+        return $sth->execute();
     }
 
     public function remove(){
 
         $query = "DELETE FROM regions WHERE region_id=$this->region_id";
 
-        $this->db->prepare($query);
-        $this->db->execute();
-
-        return true;
+        $sth = $this->db->prepare($query);
+        return $sth->execute();
     }
 
     public function getRegionAreas(){
