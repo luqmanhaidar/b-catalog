@@ -1,8 +1,8 @@
 function AdminUI(settings){
 
     this.cityList = settings.cityList;
-    this.handler = typeof settings.handler == 'undefined' ? 'http://'+document.domain+':8888/admin-panel/request_handler.php' : settings.handler;
-    this.imgSrc = typeof settings.imgSrc == 'undefined' ? "http://"+document.domain+":8888/img/layout/" : settings.imgSrc;
+    this.handler  = typeof settings.handler == 'undefined' ? 'http://'+document.domain+':8888/admin-panel/request_handler.php' : settings.handler;
+    this.imgSrc   = typeof settings.imgSrc == 'undefined' ? "http://"+document.domain+":8888/img/layout/" : settings.imgSrc;
 
     this.init();
     console.log('initialized');
@@ -12,13 +12,14 @@ AdminUI.prototype.init = function(){
 
     var admin_ui = this;
     console.log(document.domain+":8888/img/layout/");
-    this.cityList.find('td.regions li').bind('click', {ui:admin_ui}, this.selectRegion);
-    this.cityList.find('td.areas li').bind('click', {ui:admin_ui}, this.selectArea);
-    this.cityList.find('td.cities li').bind('click', {ui:admin_ui}, this.selectCity);
+    this.cityList.find('td.regions li').live('click', {ui:admin_ui}, this.selectRegion);
+    this.cityList.find('td.areas li').live('click', {ui:admin_ui}, this.selectArea);
+    this.cityList.find('td.cities li').live('click', {ui:admin_ui}, this.selectCity);
     this.cityList.find('span.show-all').bind('click', {ui:admin_ui}, this.showRegionCities);
-    this.cityList.find('input').bind('keyup', {ui:admin_ui}, this.toggleOptBtns);
 
-    this.cityList.find('li').bind('dblclick', {ui:admin_ui}, this.appendEditBlock);
+    this.cityList.find('button.add').bind('click', {ui:admin_ui}, this.addItem);
+
+    this.cityList.find('li').live('dblclick', {ui:admin_ui}, this.appendEditBlock);
     this.cityList.find('select').live('change', {ui:admin_ui}, function(){
         var selectList = $(this);
         selectList.closest('li').attr('selected_item', selectList.val());
@@ -49,8 +50,6 @@ AdminUI.prototype.selectRegion = function(evtObj){
     areas.find('ul[region_id='+clickedRegion.attr('region_id')+']').addClass('current');
     cities.find('ul.current').removeClass('current').find('li').show().filter('li.selected').removeClass('selected');
     cities.find('ul[region_id='+clickedRegion.attr('region_id')+']').addClass('current');
-
-    evtObj.data.ui.cityList.find('td.regions:eq(2) input').val(clickedRegion.text()).trigger('keyup');
 }
 
 
@@ -64,8 +63,6 @@ AdminUI.prototype.selectArea = function(evtObj){
     clickedArea.addClass('selected');
     cities.find('li[area_id='+clickedArea.attr('area_id')+']').show();
     cities.find('li[area_id!='+clickedArea.attr('area_id')+']').hide();
-
-    evtObj.data.ui.cityList.find('td.areas:eq(2) input').val(clickedArea.text()).trigger('keyup');
 }
 
 
@@ -75,8 +72,6 @@ AdminUI.prototype.selectCity = function(evtObj){
     
     clickedCity.closest('ul').find('li').removeClass('selected');
     clickedCity.addClass('selected');
-
-    evtObj.data.ui.cityList.find('td.cities:eq(2) input').val(clickedCity.text()).trigger('keyup');
 }
 
 
@@ -85,33 +80,6 @@ AdminUI.prototype.showRegionCities = function(evtObj){
     evtObj.data.ui.cityList.find('td.cities ul.current li').show();
 }
 
-
-AdminUI.prototype.toggleOptBtns = function(evtObj){
-
-    var changedInput = $(evtObj.target);console.log(changedInput);
-    var column = changedInput.closest('td');
-    var row = changedInput.closest('tr');
-
-    if(changedInput.val() === ""){
-        column.find('*.add, *.edit, *.remove').hide();
-        console.log("empty");
-        //if(column.hasClass('regions'))
-    }
-    else{
-        var source = changedInput.autocomplete('option','source');
-        
-        if(Helper.in_array(changedInput.val(), source)){
-            column.find('*.remove').show();
-            console.log('in');
-        }
-        else{
-            column.find('*.add').show();
-            column.find('*.remove').hide();
-            column.find('*.edit').hide();
-        }
-    }
-    console.log("toggled");
-}
 
 AdminUI.prototype.appendEditBlock = function(evtObj){
 
@@ -242,6 +210,8 @@ AdminUI.prototype.editItem = function(evtObj){
             if(response.success == "1"){
                 listItem.attr("default_val",listItem.find('input[type=text]').val());
                 listItem.find('img.cancel').trigger('click');
+
+                
             }
             else if(response.error == "1")
                 alert("Произошла ошибка при обращении к серверу.\n"+response.notification);
@@ -276,4 +246,48 @@ AdminUI.prototype.requestErrHandler = function(xhr, status, errorObj){
     console.log(errorObj);
     console.log("---");
     //alert("Произошла ошибка при обращении к серверу.");
+}
+
+
+AdminUI.prototype.addItem = function(evtObj){
+
+    var cell = $(this).closest('td');
+    var obj = evtObj.data.ui.getItemPrefix($(this));
+    var dataToSend = {
+        "obj"     : obj,
+        "cmd"     : "add"
+    };
+
+    dataToSend[obj+"_name"] = cell.find('input[type=text]').val();
+
+    var tempId = 0;
+    if(cell.hasClass('areas')){
+        tempId = cell.closest('tbody').find('tr:eq(1) td.regions li.selected').attr('region_id');
+        dataToSend["region_id"] = tempId ? tempId : 0;
+    }
+    else if(cell.hasClass('cities')){
+        tempId = cell.closest('tbody').find('tr:eq(1) td.areas li.selected').attr('area_id');
+        dataToSend["area_id"] = tempId ? tempId : 0;
+    }
+
+    $.ajax({
+        data : dataToSend,
+        success : function(response, status, xhr){
+            console.log(response);
+            if(response.success == "1"){
+
+                var cellIndex = cell.closest('tr').find('td').index(cell);
+                var newItem = $('<li '+obj+'_id="'+response.inserted_id+'">'+dataToSend[obj+"_name"]+'</li>');
+                    console.log(newItem);
+                if(cellIndex == 2){
+                    newItem.attr('area_id', dataToSend.area_id);
+                }
+                console.log(cellIndex);
+                cell.closest('tbody').find('tr:eq(1) td:eq('+cellIndex+') ul.current').append(newItem);
+            }
+            else if(response.error == "1")
+                alert("Произошла ошибка при обращении к серверу.\n"+response.notification);
+        }
+    });
+
 }

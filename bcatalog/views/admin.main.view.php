@@ -21,7 +21,7 @@
                 renderView("city-nav.view.php", $data);
             ?>
         </div>
-<img src="<?php echo BASE_URL; ?>img/layout/tick.png" alt="" />
+        
 		<script type="text/javascript" src="<?php echo BASE_URL; ?>js/jq.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.core.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.widget.js"></script>
@@ -40,18 +40,6 @@
                     imgSrc : "http://bcatalog.dev:8888/img/layout/"
                 });
 
-                uiObj.cityList.find('#i-regions').autocomplete({
-                    source: Helper.getInnerHTMLToArr(uiObj.cityList.find('td.regions:eq(1) li')),
-                    delay: 0
-                });
-                uiObj.cityList.find('#i-areas').autocomplete({
-                    source: Helper.getInnerHTMLToArr(uiObj.cityList.find('td.areas:eq(1) li')),
-                    delay: 0
-                });
-                uiObj.cityList.find('#i-cities').autocomplete({
-                    source: Helper.getInnerHTMLToArr(uiObj.cityList.find('td.cities:eq(1) li')),
-                    delay: 0
-                });
                 
 //                $('div.full-data', container).eq(0).tabs({
 //                    selected : 0
