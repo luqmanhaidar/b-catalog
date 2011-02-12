@@ -84,6 +84,8 @@
                         $data["regions"] = $regions;
                         $data["city_id"] = $city_id;
                         $data["city_name"] = $city_name;
+                        $data["city_nav"] = true;
+                        $data["city_search"] = true;
                         renderView("city-nav.view.php", $data);
                     ?>
                     <div class="error"></div>

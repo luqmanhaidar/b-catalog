@@ -1,11 +1,6 @@
-<!DOCTYPE HTML>
-<html lang="ru-RU">
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
 <?php
 
+// http://bcatalog.dev:8888/admin-panel/request_handler.php?obj=bank&cmd=add&name_short=short&name_full=full&name_eng=eng&www=http://google.com&http=http://ikea.ru&logo_min=logo_min&logo=logo&our_http=http://our.com&adress=adress&licence=licence&owners=owners&note=note&city_id=1&services_tab=1
 
 require_once(realpath(dirname(__FILE__))."/../source/config.php");
 require_once(realpath(dirname(__FILE__))."/../source/db_connect.class.php");
@@ -20,7 +15,12 @@ $obj     = empty($_GET["obj"]) ? null : $_GET["obj"];
 $command = empty($_GET["cmd"]) ? null : $_GET["cmd"];
 $db      = new DB_connect(NULL, $config);
 
+//echo "<pre>";
+//print_r($_GET);
+//echo "</pre>";
+
 switch ($obj) {
+// ----- REGION ----------------------------------------------------------------
     case "region": {
         switch ($command) {
             case "edit": {
@@ -71,6 +71,7 @@ switch ($obj) {
                 die($config["errors"]["data"]["no-ness"]);
         }
     }
+// ----- AREA ------------------------------------------------------------------
     case "area" : {
         switch ($command) {
             case "edit": {
@@ -122,6 +123,8 @@ switch ($obj) {
                 die($config["errors"]["data"]["no-ness"]);
         }
     }
+
+// ----- CITY ------------------------------------------------------------------
     case "city": {
         switch ($command) {
             case "edit": {
@@ -173,16 +176,89 @@ switch ($obj) {
                 die($config["errors"]["data"]["no-ness"]);
         }
     }
+// ----- BANK ------------------------------------------------------------------
     case "bank": {
-        die($config["errors"]["temp"]);
-    }
-    case "topic": {
-        die($config["errors"]["temp"]);
+        switch ($command) {
+            case "edit": {
+                if(empty($_GET["bank_id"]) ||
+                   empty($_GET["name_short"]) ||
+                   empty($_GET["name_full"]) ||
+                   empty($_GET["name_eng"]) ||
+                   empty($_GET["www"]) ||
+                   empty($_GET["http"]) ||
+                   empty($_GET["logo_min"]) ||
+                   empty($_GET["logo"]) ||
+                   empty($_GET["our_http"]) ||
+                   empty($_GET["adress"]) ||
+                   empty($_GET["licence"]) ||
+                   empty($_GET["owners"]) ||
+                   empty($_GET["note"]) ||
+                   empty($_GET["city_id"]))
+                    die($config["errors"]["data"]["no-ness"]);
+
+                if(!empty($_GET["services_tab"]))
+                    $_GET["services_tab"] = 1;
+                if(!empty($_GET["deposits_tab"]))
+                    $_GET["deposits_tab"] = 1;
+                if(!empty($_GET["credits_tab"]))
+                    $_GET["credits_tab"] = 1;
+
+                $bank = new Bank($db->getDBH(), NULL, $_GET["bank_id"], $_GET["name_short"], $_GET["name_full"], $_GET["name_eng"], $_GET["www"], $_GET["http"], $_GET["logo_min"], $_GET["logo"], $_GET["our_http"], $_GET["adress"], $_GET["licence"], $_GET["owners"], $_GET["note"], $_GET["city_id"], $_GET["services_tab"], $_GET["deposits_tab"], $_GET["credits_tab"]);
+
+                if($bank->update())
+                    die(json_encode(array("success" => "1")));
+                else
+                    die(json_encode (array("success" => "0", "error" => "1", "notification" => "ошибка при внесении изменений в базу")));
+
+                break;
+            }
+            case "add": {
+
+                if(empty($_GET["name_short"]) ||
+                   empty($_GET["name_full"]) ||
+                   empty($_GET["name_eng"]) ||
+                   empty($_GET["www"]) ||
+                   empty($_GET["http"]) ||
+                   empty($_GET["logo_min"]) ||
+                   empty($_GET["logo"]) ||
+                   empty($_GET["our_http"]) ||
+                   empty($_GET["adress"]) ||
+                   empty($_GET["licence"]) ||
+                   empty($_GET["owners"]) ||
+                   empty($_GET["note"]) ||
+                   empty($_GET["city_id"]))
+                    die($config["errors"]["data"]["no-ness"]);
+
+                $bank = new Bank($db->getDBH(), NULL, 0, $_GET["name_short"], $_GET["name_full"], $_GET["name_eng"], $_GET["www"], $_GET["http"], $_GET["logo_min"], $_GET["logo"], $_GET["our_http"], $_GET["adress"], $_GET["licence"], $_GET["owners"], $_GET["note"], $_GET["city_id"], $_GET["services_tab"], $_GET["deposits_tab"], $_GET["credits_tab"]);
+
+                if($inserted_id = $bank->add())
+                    die(json_encode(array("success" => "1", "inserted_id" => $inserted_id)));
+                else
+                    die(json_encode (array("success" => "0", "error" => "1", "notification" => "ошибка при добавлении в базу")));
+
+                break;
+            }
+            case "remove": {
+                if(empty($_GET["bank_id"]))
+                    die($config["errors"]["data"]["no-ness"]);
+                else if(!is_numeric($_GET["bank_id"]))
+                    die($config["errors"]["data"]["wrong-data"]);
+
+                $bank = new Bank($db->getDBH(), NULL, $_GET["bank_id"]);
+
+                if($bank->remove())
+                    die(json_encode(array("success" => "1")));
+                else
+                    die(json_encode (array("success" => "0", "error" => "1", "notification" => "ошибка при удалении записи из БД")));
+
+                break;
+            }
+            default:
+                die($config["errors"]["data"]["no-ness"]);
+        }
     }
     default:
         die($config["errors"]["data"]["no-ness"]);
 }
 
 ?>
-</body>
-</html>

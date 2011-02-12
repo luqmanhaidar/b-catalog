@@ -1,20 +1,39 @@
+<?php if($city_nav): ?>
 <div class="city-nav">
     <span class="curr-city" city_id="<?php echo $city_id; ?>"><?php echo $city_name; ?></span>&nbsp;
     <span class="city-list-trigger">выбрать другой город</span>
 </div>
-<div class="city-list">
-    <div class="head"><img src="<?php echo BASE_URL."img/layout/arr.png"; ?>"/><span class="close">скрыть</span></div>
+<?php endif; ?>
+<div class="city-list <?php echo $admin ? "visible" : ""; ?> ">
+    <?php if($admin): ?>
+    <div class="head">
+        <span class="toggle">скрыть</span>
+    </div>
+    <?php else: ?>
+    <div class="head">
+        <img src="<?php echo BASE_URL."img/layout/arr.png"; ?>"/>
+        <span class="close">скрыть</span>
+    </div>
+    <?php endif; ?>
     <div class="content">
         <table>
+            <?php if($city_search): ?>
             <tr class="city-search">
                 <td colspan="3">
                     <input type="text" length="150" value="введите название города">
                     <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
                 </td>
             </tr>
+            <?php endif; ?>
             <tr class="head">
                 <td class="select-base regions">&nbsp;</td>
-                <td class="select-base areas"><div class="area-center">Минск</div></td>
+                <td class="select-base areas">
+                    <?php if($admin): ?>
+                    &nbsp;
+                    <?php else: ?>
+                    <div class="area-center">Минск</div>
+                    <?php endif; ?>
+                </td>
                 <td class="select-base cities"><span class="show-all">показать все города области</span></td>
             </tr>
             <tr>
@@ -46,6 +65,22 @@
                     <?php endforeach; ?>
                 </td>
             </tr>
+            <?php if($admin): ?>
+            <tr>
+                <td class="select-base regions edit-col">
+                    <input type="text" id="i-regions" />
+                    <button class="add">добавить</button>
+                </td>
+                <td class="select-base areas edit-col">
+                    <input type="text" id="i-areas" />
+                    <button class="add">добавить</button>
+                </td>
+                <td class="select-base cities edit-col">
+                    <input type="text" id="i-cities" />
+                    <button class="add">добавить</button>
+                </td>
+            </tr>
+            <?php endif; ?>
         </table>
     </div>
 </div>

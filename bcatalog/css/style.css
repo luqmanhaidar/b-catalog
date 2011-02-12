@@ -63,12 +63,17 @@
     /*background-color: rgb(241,250,255);*/
 }
 
+#bc-wrapper div.city-list.visible{
+    display: block;
+}
+
 #bc-wrapper div.city-list div.head{
     padding-left: 270px;
     height: 15px;
 }
 
-#bc-wrapper div.city-list div.head span.close{
+#bc-wrapper div.city-list div.head span.close,
+#bc-wrapper div.city-list div.head span.toggle{
     margin-right: 20px;
     float: right;
     color: #0066CC;
@@ -79,13 +84,25 @@
     cursor: pointer;
 }
 
-#bc-wrapper div.city-list div.head span.close:hover{
+#bc-wrapper div.city-list div.head span.close:hover,
+#bc-wrapper div.city-list div.head span.toggle:hover{
     text-decoration: underline;
+}
+
+#bc-wrapper div.city-list td.edit-col{ text-align: center; font-size: 18px; }
+#bc-wrapper div.city-list td.edit-col button { width: 70% }
+
+#bc-wrapper div.city-list input{
+    width: 90%;
 }
 
 #bc-wrapper div.city-list div.content{
     border: 1px solid #0077EE;
     
+}
+
+#bc-wrapper div.city-list div.content.invisible{
+    display: none;
 }
 
 #bc-wrapper div.city-list div.content li{
@@ -389,9 +406,40 @@
 
 /* DEPARTMENTS ---------------------------------------------------------- END */
 
-div.error {
+#bc-wrapper div.error {
     background-color: #780000;
     color: #FFF;
     font-size: 130%;
     display: none;
+}
+
+#bc-wrapper div.edition {
+    background-color: rgb(241,250,255);
+    border: 1px solid #0077EE;
+    padding: 5px;
+    cursor: auto;
+}
+
+#bc-wrapper div.edition * {
+    font-size: 18px;
+    line-height: 18px;
+    vertical-align: middle;
+}
+
+#bc-wrapper div.edition div.act{
+    text-align: right;
+}
+
+#bc-wrapper div.edition img {
+    cursor: pointer;
+    margin: 3px;
+}
+
+#bc-wrapper div.edition img.loader {
+    margin-right: 50px;
+    display: none;
+}
+
+#bc-wrapper div.edition input, #bc-wrapper div.edition select{
+    width: 185px;
 }
