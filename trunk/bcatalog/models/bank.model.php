@@ -20,7 +20,11 @@ class Bank extends DB_connect {
     public $Note;
     public $city_id;
 
-    public function  __construct($dbo = NULL, $config = NULL, $Kod_B = 0, $Name_short = NULL, $Name_full = NULL, $Name_eng = NULL, $Www = NULL, $Http = NULL, $Logo_min = NULL, $Logo = NULL, $Our_http = NULL, $Adress = NULL, $Licence = NULL, $Owners = NULL, $Note = NULL, $city_id = NULL) {
+    public $services_tab;
+    public $deposits_tab;
+    public $credits_tab;
+
+    public function  __construct($dbo = NULL, $config = NULL, $Kod_B = 0, $Name_short = NULL, $Name_full = NULL, $Name_eng = NULL, $Www = NULL, $Http = NULL, $Logo_min = NULL, $Logo = NULL, $Our_http = NULL, $Adress = NULL, $Licence = NULL, $Owners = NULL, $Note = NULL, $city_id = NULL, $services_tab = 0, $deposits_tab = 0, $credits_tab = 0) {
 
         parent::__construct($dbo, $config);
 
@@ -38,6 +42,10 @@ class Bank extends DB_connect {
         $this->Owners     = empty ($Owners) ? NULL : $Owners;
         $this->Note       = empty ($Note) ? NULL : $Note;
         $this->city_id    = empty ($city_id) ? NULL : $city_id;
+
+        $this->services_tab = $services_tab ? 1 : 0;
+        $this->deposits_tab = $deposits_tab ? 1 : 0;
+        $this->credits_tab = $credits_tab ? 1 : 0;
     }
 
     public function getDBH(){
@@ -46,7 +54,7 @@ class Bank extends DB_connect {
 
     public function add() {
 
-        $query = "INSERT INTO banks (Name_short, Name_full, Name_eng, Www, Http, Logo_min, Logo, Our_http, Adress, Licence, Owners, Note, City) VALUES ('$this->Name_short', '$this->Name_full', '$this->Name_eng', '$this->Www', '$this->Http', '$this->Logo_min', '$this->Logo', '$this->Our_http', '$this->Adress', '$this->Licence', '$this->Owners', '$this->Note', '$this->city_id')";
+        $query = "INSERT INTO banks (Name_short, Name_full, Name_eng, Www, Http, Logo_min, Logo, Our_http, Adress, Licence, Owners, Note, city_id, services_tab, deposits_tab, credits_tab) VALUES ('$this->Name_short', '$this->Name_full', '$this->Name_eng', '$this->Www', '$this->Http', '$this->Logo_min', '$this->Logo', '$this->Our_http', '$this->Adress', '$this->Licence', '$this->Owners', '$this->Note', '$this->city_id', '$this->services_tab', '$this->deposits_tab', '$this->credits_tab')";
 
         $STH = $this->db->prepare($query);
         $STH->execute();
@@ -62,9 +70,17 @@ class Bank extends DB_connect {
 
         $query = $this->createUdateQuery();
         $STH = $this->db->prepare($query);
-        $STH->execute();
 
-        return true;
+        return $STH->execute();
+    }
+
+
+    public function remove(){
+
+        $query = "DELETE FROM banks WHERE Kod_B='$this->Kod_B'";
+        $STH = $this->db->prepare($query);
+
+        return $STH->execute();
     }
 
 
@@ -73,7 +89,7 @@ class Bank extends DB_connect {
      */
     private function createUdateQuery(){
 
-        $query = "UPDATE banks SET (";
+        $query = "UPDATE banks SET ";
 
         foreach($this as $key => $value){
             if($key == 'db' || $key == 'Kod_B' || !$value)
@@ -82,7 +98,7 @@ class Bank extends DB_connect {
             $query .= $key."='".$value."', ";
         }
 
-        return substr($query, 0, -2).") WHERE Kod_B=$this->Kod_B";
+        return substr($query, 0, -2)." WHERE Kod_B=$this->Kod_B";
     }
 
 

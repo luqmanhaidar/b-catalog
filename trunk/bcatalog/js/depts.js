@@ -1,4 +1,4 @@
-/*
+/*  
  * @constructor
  * @param {jQuery} container общий контейнер
  * @param {jQuery} searchCnt контейнер с элементами поиска
