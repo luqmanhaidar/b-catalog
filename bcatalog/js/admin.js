@@ -1,6 +1,9 @@
 function AdminUI(settings){
 
     this.cityList = settings.cityList;
+    this.bankSelect = settings.bankSelect;
+    this.preEdit = settings.preEdit;
+    this.preView = settings.preView;
     this.handler  = typeof settings.handler == 'undefined' ? 'http://'+document.domain+':8888/admin-panel/request_handler.php' : settings.handler;
     this.imgSrc   = typeof settings.imgSrc == 'undefined' ? "http://"+document.domain+":8888/img/layout/" : settings.imgSrc;
 
@@ -23,6 +26,20 @@ AdminUI.prototype.init = function(){
     this.cityList.find('select').live('change', {ui:admin_ui}, function(){
         var selectList = $(this);
         selectList.closest('li').attr('selected_item', selectList.val());
+    });
+
+    this.bankSelect.find('button').bind('click', {ui:admin_ui}, this.getBankInfoToEdit);
+    this.preEdit.find('button.cancel').bind('click', {ui:admin_ui}, this.cancelInfoEdit);
+    this.preEdit.find('button.accept').bind('click', {ui:admin_ui}, this.editBankInfo);
+    $(document).find('a.to-preview').bind('click', {ui:admin_ui}, this.previewBankInfo);
+    
+    
+    //.find('a.to-preview').bind('click', {ui:admin_ui}, this.previewBankInfo);
+
+    var mainOfficeLoc = $('#main-office-location', this.preEdit);
+    this.cityList.find('td.cities li').each(function(index, elt){
+        var li = $(elt);
+        $('<option value="'+li.attr('city_id')+'">'+li.text()+'</option>').appendTo(mainOfficeLoc);
     });
 
     $.ajaxSetup({
@@ -290,4 +307,108 @@ AdminUI.prototype.addItem = function(evtObj){
         }
     });
 
+}
+
+AdminUI.prototype.getBankInfoToEdit = function(evtObj){
+
+    $.ajax({
+       data : {
+           "obj" : "bank",
+           "cmd" : "get-full-data",
+           "bank_id" : evtObj.data.ui.bankSelect.find('select').val()
+       },
+       success : function(response, status, xhr){
+           if(response.success == "1"){
+               var form = evtObj.data.ui.preEdit.find('form');
+
+               form.find('span.action').text("Изменить параметры бакнка #");
+               form.find('span#bank_id').text(response.bank.Kod_B);
+               evtObj.data.ui.preEdit.find('button.accept').text('Изменить данные банка');
+
+               for(var key in response.bank){
+                   if(key == "Kod_b")
+                       continue;
+
+                   if(key.indexOf('_tab') != -1){
+                       form.find('input:radio[name='+key+']').each(function(index, elt){
+                           if($(elt).val() == response.bank[key])
+                               $(elt).click();
+                       });
+                       continue;
+                   }
+
+                   form.find('*[name='+key.toLowerCase()+']').val(response.bank[key]);
+               }
+           }
+           else if(response.error == "1")
+               alert("Произошла ошибка при обращении к серверу.\n"+response.notification);
+       }
+    });
+
+}
+
+AdminUI.prototype.cancelInfoEdit = function(evtObj){
+
+    var form = evtObj.data.ui.preEdit.find('form');
+
+   form.find('span.action').text("Добавить новый банк");
+   form.find('span#bank_id').text("");
+   evtObj.data.ui.preEdit.find('button.accept').text('Добавить');
+
+   form.find(':text, textarea').val("");
+   form.find(':radio').each(function(index, elt){
+       
+       if($(elt).val() == "0")
+           $(elt).click();
+   });
+}
+
+
+AdminUI.prototype.editBankInfo = function(evtObj){
+
+    var form = evtObj.data.ui.preEdit.find('form');
+    var cmd = Helper.empty(form.find('span#bank_id').text()) ? "add" : "edit";
+
+    var formData = form.serializeArray();
+    var dataToSend = {
+        "obj" : "bank",
+        "cmd" : cmd
+    }
+
+    for(var key in formData)
+        dataToSend[formData[key]["name"]] = formData[key]["value"];
+
+    if(cmd.indexOf("edit") == 0)
+        dataToSend["bank_id"] = form.find('span#bank_id').text();
+
+    $.ajax({
+       data : dataToSend,
+       type : "POST",
+       success : function(response, status, xhr){
+           if(response.success == "1"){
+
+               if(dataToSend.cmd.indexOf("edit") == 0)
+                   alert("Данные о банке были успешно изменены.");
+               else{
+                   evtObj.data.ui.bankSelect.find('select').append($('<option value='+response.inserted_id+'>'+dataToSend.name_short+'</option>'));
+                   alert("Данные о банке были успешно добавлены.");
+               }
+           }
+           else if(response.error == "1")
+               alert("Произошла ошибка при обращении к серверу.\n"+response.notification);
+       }
+    });
+}
+
+
+AdminUI.prototype.previewBankInfo = function(evtObj){
+   // here we are !!
+   var form = evtObj.data.ui.preEdit.find('form');
+   var preView = evtObj.data.ui.preView;
+
+   preView.find('span.licence').html(form.find('*[name=licence]').val());
+   preView.find('span.adress').html(form.find('*[name=adress]').val());
+   preView.find('span.www').html(form.find('*[name=www]').val());
+   preView.find('span.owners').html(form.find('*[name=owners]').val());
+   preView.find('span.note').html(form.find('*[name=note]').val());
 }

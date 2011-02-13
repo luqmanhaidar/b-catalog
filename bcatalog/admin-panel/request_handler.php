@@ -11,8 +11,8 @@ require_once(MODEL_PATH."/city.model.php");
 require_once(MODEL_PATH."/area.model.php");
 require_once(MODEL_PATH."/region.model.php");
 
-$obj     = empty($_GET["obj"]) ? null : $_GET["obj"];
-$command = empty($_GET["cmd"]) ? null : $_GET["cmd"];
+$obj     = empty($_REQUEST["obj"]) ? null : $_REQUEST["obj"];
+$command = empty($_REQUEST["cmd"]) ? null : $_REQUEST["cmd"];
 $db      = new DB_connect(NULL, $config);
 
 //echo "<pre>";
@@ -180,30 +180,31 @@ switch ($obj) {
     case "bank": {
         switch ($command) {
             case "edit": {
-                if(empty($_GET["bank_id"]) ||
-                   empty($_GET["name_short"]) ||
-                   empty($_GET["name_full"]) ||
-                   empty($_GET["name_eng"]) ||
-                   empty($_GET["www"]) ||
-                   empty($_GET["http"]) ||
-                   empty($_GET["logo_min"]) ||
-                   empty($_GET["logo"]) ||
-                   empty($_GET["our_http"]) ||
-                   empty($_GET["adress"]) ||
-                   empty($_GET["licence"]) ||
-                   empty($_GET["owners"]) ||
-                   empty($_GET["note"]) ||
-                   empty($_GET["city_id"]))
+
+                if(empty($_REQUEST["bank_id"]) ||
+                   empty($_REQUEST["name_short"]) ||
+                   empty($_REQUEST["name_full"]) ||
+                   empty($_REQUEST["name_eng"]) ||
+                   empty($_REQUEST["www"]) ||
+                   empty($_REQUEST["http"]) ||
+                   empty($_REQUEST["logo_min"]) ||
+                   empty($_REQUEST["logo"]) ||
+                   empty($_REQUEST["our_http"]) ||
+                   empty($_REQUEST["adress"]) ||
+                   empty($_REQUEST["licence"]) ||
+                   empty($_REQUEST["owners"]) ||
+                   empty($_REQUEST["note"]) ||
+                   empty($_REQUEST["city_id"]))
                     die($config["errors"]["data"]["no-ness"]);
 
-                if(!empty($_GET["services_tab"]))
-                    $_GET["services_tab"] = 1;
-                if(!empty($_GET["deposits_tab"]))
-                    $_GET["deposits_tab"] = 1;
-                if(!empty($_GET["credits_tab"]))
-                    $_GET["credits_tab"] = 1;
+                if(!empty($_REQUEST["services_tab"]))
+                    $_REQUEST["services_tab"] = 1;
+                if(!empty($_REQUEST["deposits_tab"]))
+                    $_REQUEST["deposits_tab"] = 1;
+                if(!empty($_REQUEST["credits_tab"]))
+                    $_REQUEST["credits_tab"] = 1;
 
-                $bank = new Bank($db->getDBH(), NULL, $_GET["bank_id"], $_GET["name_short"], $_GET["name_full"], $_GET["name_eng"], $_GET["www"], $_GET["http"], $_GET["logo_min"], $_GET["logo"], $_GET["our_http"], $_GET["adress"], $_GET["licence"], $_GET["owners"], $_GET["note"], $_GET["city_id"], $_GET["services_tab"], $_GET["deposits_tab"], $_GET["credits_tab"]);
+                $bank = new Bank($db->getDBH(), NULL, $_REQUEST["bank_id"], $_REQUEST["name_short"], $_REQUEST["name_full"], $_REQUEST["name_eng"], $_REQUEST["www"], $_REQUEST["http"], $_REQUEST["logo_min"], $_REQUEST["logo"], $_REQUEST["our_http"], $_REQUEST["adress"], $_REQUEST["licence"], $_REQUEST["owners"], $_REQUEST["note"], $_REQUEST["city_id"], $_REQUEST["services_tab"], $_REQUEST["deposits_tab"], $_REQUEST["credits_tab"]);
 
                 if($bank->update())
                     die(json_encode(array("success" => "1")));
@@ -214,22 +215,22 @@ switch ($obj) {
             }
             case "add": {
 
-                if(empty($_GET["name_short"]) ||
-                   empty($_GET["name_full"]) ||
-                   empty($_GET["name_eng"]) ||
-                   empty($_GET["www"]) ||
-                   empty($_GET["http"]) ||
-                   empty($_GET["logo_min"]) ||
-                   empty($_GET["logo"]) ||
-                   empty($_GET["our_http"]) ||
-                   empty($_GET["adress"]) ||
-                   empty($_GET["licence"]) ||
-                   empty($_GET["owners"]) ||
-                   empty($_GET["note"]) ||
-                   empty($_GET["city_id"]))
+                if(empty($_REQUEST["name_short"]) ||
+                   empty($_REQUEST["name_full"]) ||
+                   empty($_REQUEST["name_eng"]) ||
+                   empty($_REQUEST["www"]) ||
+                   empty($_REQUEST["http"]) ||
+                   empty($_REQUEST["logo_min"]) ||
+                   empty($_REQUEST["logo"]) ||
+                   empty($_REQUEST["our_http"]) ||
+                   empty($_REQUEST["adress"]) ||
+                   empty($_REQUEST["licence"]) ||
+                   empty($_REQUEST["owners"]) ||
+                   empty($_REQUEST["note"]) ||
+                   empty($_REQUEST["city_id"]))
                     die($config["errors"]["data"]["no-ness"]);
 
-                $bank = new Bank($db->getDBH(), NULL, 0, $_GET["name_short"], $_GET["name_full"], $_GET["name_eng"], $_GET["www"], $_GET["http"], $_GET["logo_min"], $_GET["logo"], $_GET["our_http"], $_GET["adress"], $_GET["licence"], $_GET["owners"], $_GET["note"], $_GET["city_id"], $_GET["services_tab"], $_GET["deposits_tab"], $_GET["credits_tab"]);
+                $bank = new Bank($db->getDBH(), NULL, 0, $_REQUEST["name_short"], $_REQUEST["name_full"], $_REQUEST["name_eng"], $_REQUEST["www"], $_REQUEST["http"], $_REQUEST["logo_min"], $_REQUEST["logo"], $_REQUEST["our_http"], $_REQUEST["adress"], $_REQUEST["licence"], $_REQUEST["owners"], $_REQUEST["note"], $_REQUEST["city_id"], $_REQUEST["services_tab"], $_REQUEST["deposits_tab"], $_REQUEST["credits_tab"]);
 
                 if($inserted_id = $bank->add())
                     die(json_encode(array("success" => "1", "inserted_id" => $inserted_id)));
@@ -239,12 +240,12 @@ switch ($obj) {
                 break;
             }
             case "remove": {
-                if(empty($_GET["bank_id"]))
+                if(empty($_REQUEST["bank_id"]))
                     die($config["errors"]["data"]["no-ness"]);
-                else if(!is_numeric($_GET["bank_id"]))
+                else if(!is_numeric($_REQUEST["bank_id"]))
                     die($config["errors"]["data"]["wrong-data"]);
 
-                $bank = new Bank($db->getDBH(), NULL, $_GET["bank_id"]);
+                $bank = new Bank($db->getDBH(), NULL, $_REQUEST["bank_id"]);
 
                 if($bank->remove())
                     die(json_encode(array("success" => "1")));
@@ -253,12 +254,27 @@ switch ($obj) {
 
                 break;
             }
+            case "get-full-data": {
+                if(empty($_REQUEST["bank_id"]))
+                    die($config["errors"]["data"]["no-ness"]);
+                else if(!is_numeric($_REQUEST["bank_id"]))
+                    die($config["errors"]["data"]["wrong-data"]);
+
+                $bank = new Bank($db->getDBH(), NULL, $_REQUEST["bank_id"]);
+
+                if($bank->getDataById())
+                    die(json_encode(array("success" => "1", "bank" => $bank)));
+                else
+                    die(json_encode (array("success" => "0", "error" => "1", "notification" => "ошибка при получении данных из БД")));
+
+                break;
+            }
             default:
-                die($config["errors"]["data"]["no-ness"]);
+                die($config["errors"]["data"]["wrong-cmd"]);
         }
     }
     default:
-        die($config["errors"]["data"]["no-ness"]);
+        die($config["errors"]["data"]["wrong-cmd"]);
 }
 
 ?>

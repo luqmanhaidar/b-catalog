@@ -40,7 +40,7 @@
                     <?php endif; ?>
                 </ul>
                 <div id="info">
-                    <table>
+                    <table class="bank-info">
                         <tr>
                             <td class="title-col">
                                 Лицензия

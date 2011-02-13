@@ -352,9 +352,9 @@
     border-bottom: 0px;
 }
 
-#bc-wrapper div.full-data table tr td { padding: 10px; vertical-align: top;}
-#bc-wrapper div.full-data table tr td.title-col{ width: 20%; }
-#bc-wrapper div.full-data table tr td.info-col{ width: 80%; }
+#bc-wrapper div.full-data table tr td, #bc-wrapper table.bank-info tr td { padding: 10px; vertical-align: top;}
+#bc-wrapper div.full-data table tr td.title-col, #bc-wrapper table.bank-info tr td.title-col{ width: 20%; }
+#bc-wrapper div.full-data table tr td.info-col, #bc-wrapper table.bank-info tr td.info-col{ width: 80%; }
 
 /* FULL-DATA ------------------------------------------------------------ END */
 
@@ -469,6 +469,9 @@
 #bc-wrapper div#preedit table td input[type=text], #bc-wrapper div#preedit table td textarea{
     width: 400px;
     border: 1px solid #AAA;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
 }
 
 #bc-wrapper div#preedit table td.titles{

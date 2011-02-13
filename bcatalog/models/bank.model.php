@@ -92,7 +92,7 @@ class Bank extends DB_connect {
         $query = "UPDATE banks SET ";
 
         foreach($this as $key => $value){
-            if($key == 'db' || $key == 'Kod_B' || !$value)
+            if($key == 'db' || $key == 'Kod_B')
                 continue;
 
             $query .= $key."='".$value."', ";
@@ -129,19 +129,22 @@ class Bank extends DB_connect {
     public function extend($donorObj){
 
         //$this->Kod_B
-        $this->Name_short = $donorObj->Name_short;
-        $this->Name_full  = $donorObj->Name_full;
-        $this->Name_eng   = $donorObj->Name_eng;
-        $this->Www        = $donorObj->Www;
-        $this->Http       = $donorObj->Http;
-        $this->Logo_min   = $donorObj->Logo_min;
-        $this->Logo       = $donorObj->Logo;
-        $this->Our_http   = $donorObj->Our_http;
-        $this->Adress     = $donorObj->Adress;
-        $this->Licence    = $donorObj->Licence;
-        $this->Owners     = $donorObj->Owners;
-        $this->Note       = $donorObj->Note;
-        $this->city_id    = $donorObj->city_id;
+        $this->Name_short   = $donorObj->Name_short;
+        $this->Name_full    = $donorObj->Name_full;
+        $this->Name_eng     = $donorObj->Name_eng;
+        $this->Www          = $donorObj->Www;
+        $this->Http         = $donorObj->Http;
+        $this->Logo_min     = $donorObj->Logo_min;
+        $this->Logo         = $donorObj->Logo;
+        $this->Our_http     = $donorObj->Our_http;
+        $this->Adress       = $donorObj->Adress;
+        $this->Licence      = $donorObj->Licence;
+        $this->Owners       = $donorObj->Owners;
+        $this->Note         = $donorObj->Note;
+        $this->city_id      = $donorObj->city_id;
+        $this->services_tab = $donorObj->services_tab;
+        $this->credits_tab  = $donorObj->credits_tab;
+        $this->deposits_tab = $donorObj->deposits_tab;
 
         return true;
     }
