@@ -343,12 +343,12 @@
     margin: 40px 0px;
 }
 
-#bc-wrapper div.full-data table{ width: 100%; }
-#bc-wrapper div.full-data #info table tr{
+#bc-wrapper table.bank-info{ width: 100%; }
+#bc-wrapper table.bank-info tr{
     border-bottom: 1px dashed #BBB;
 }
 
-#bc-wrapper div.full-data>div table tr.last{
+#bc-wrapper table.bank-info tr.last{
     border-bottom: 0px;
 }
 
@@ -413,6 +413,11 @@
     display: none;
 }
 
+
+
+
+/* --- ADMIN -----------------------------------------------------------------*/
+
 #bc-wrapper div.edition {
     background-color: rgb(241,250,255);
     border: 1px solid #0077EE;
@@ -443,3 +448,58 @@
 #bc-wrapper div.edition input, #bc-wrapper div.edition select{
     width: 185px;
 }
+
+#bc-wrapper div.select-bank{
+    margin-bottom: 20px;
+}
+
+#bc-wrapper div#preedit h2{
+    font-size: 115%;
+    margin: 15px;
+}
+
+#bc-wrapper div#preedit table td, #bc-wrapper div#preedit table tr{
+    border: 0px;
+}
+
+#bc-wrapper div#preedit table td{
+    padding: 3px;
+}
+
+#bc-wrapper div#preedit table td input[type=text], #bc-wrapper div#preedit table td textarea{
+    width: 400px;
+    border: 1px solid #AAA;
+}
+
+#bc-wrapper div#preedit table td.titles{
+    vertical-align: middle;
+    text-align: right;
+    padding-right: 15px;
+}
+
+#bc-wrapper div#preedit table td.values{
+    text-align: left;
+}
+
+#bc-wrapper div#preedit div.act-block{
+    text-align: center;
+    margin: 15px;
+}
+
+#bc-wrapper div#preedit div.act-block button{
+    border: 1px solid #0067CA;
+    color: #0067CA;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: rgb(241,250,255);
+}
+
+#bc-wrapper div#preedit div.act-block button:hover{
+    border: 1px solid #0067CA;
+    color: #FFF;
+    background-color: #0067CA;
+    cursor: pointer;
+}
+
+
+/* --- ADMIN --------------------------------------------------------- END ---*/
