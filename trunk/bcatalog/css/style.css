@@ -178,10 +178,11 @@
 }
 
 #bc-wrapper div.city-list div.content td.select-base.areas li.selected{
-    background-image: url(../img/layout/area-selected.png);
+    /*background-image: url(../img/layout/area-selected.png);
     background-repeat: no-repeat;
-    background-position: bottom left;
+    background-position: bottom left;*/
     font-weight: bold;
+    border-bottom: 2px dotted #0066CC;
     /*color: #0066CC;*/
 }
 
@@ -216,9 +217,10 @@
 }
 
 #bc-wrapper div.city-list div.content td.select-base.regions li.selected{
-    background-image: url(../img/layout/region-selected.png);
+    /*background-image: url(../img/layout/region-selected.png);
     background-repeat: no-repeat;
-    background-position: bottom left;
+    background-position: bottom left;*/
+    border-bottom: 2px dotted #0066CC;
     font-weight: bold;
     /*color: #0066CC;*/
 }
@@ -266,6 +268,7 @@
     border-top: 1px solid #DDD;
     height: 37px;
     padding: 3px;
+    cursor: pointer;
 }
 
 #bc-wrapper div.bank-list table tbody tr.not-in-city{
@@ -355,6 +358,11 @@
 #bc-wrapper div.full-data table tr td, #bc-wrapper table.bank-info tr td { padding: 10px; vertical-align: top;}
 #bc-wrapper div.full-data table tr td.title-col, #bc-wrapper table.bank-info tr td.title-col{ width: 20%; }
 #bc-wrapper div.full-data table tr td.info-col, #bc-wrapper table.bank-info tr td.info-col{ width: 80%; }
+#bc-wrapper div.full-data table tr td ul li, #bc-wrapper table.bank-info tr td ul li{
+    display: list-item;
+    list-style: disc;
+    /*list-style-position: inside;*/
+}
 
 /* FULL-DATA ------------------------------------------------------------ END */
 

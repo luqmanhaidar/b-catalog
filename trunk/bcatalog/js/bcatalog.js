@@ -43,7 +43,7 @@ BCatalog.prototype.init = function(settings){
     this.bankListCnt.find('tbody tr').bind('click', {ui:BCatalogUI}, function(evtObj){
         var targetUrl = evtObj.data.ui.bankUrl+"?bank_id="+evtObj.currentTarget.getAttribute("bank_id")+"&city_id="+evtObj.data.ui.cityNavCnt.find('span.curr-city').attr('city_id');
         document.location = targetUrl;
-    })
+    });
 
     this.cityListCnt.find('td.regions li').bind('click', {ui:BCatalogUI}, this.selectRegion);
     this.cityListCnt.find('td.areas li').bind('click', {ui:BCatalogUI}, this.selectArea);
@@ -70,11 +70,14 @@ BCatalog.prototype.init = function(settings){
         if(input.val().indexOf('') == 0)
             input.val('введите название банка');
     });
+    
     bankInput.autocomplete({
         source : this.getInnerHTMLToArr(this.bankListCnt.find('tbody td.title-col')),
         minLength : 1,
         delay : 0,
-        appendTo : '#complete-cnt'
+        appendTo : '#complete-cnt',
+        change : this.redirectToBankPage,
+        select : this.redirectToBankPage
     });
 
     // инициализируем autocomplete поиска города
@@ -90,7 +93,7 @@ BCatalog.prototype.init = function(settings){
             input.val('введите название города');
     });
     cityInput.autocomplete({
-        source : this.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li')),
+        source : Helper.array_unique(this.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li'))),
         minLength : 1,
         delay : 0,
         appendTo : '#complete-cnt'
@@ -275,4 +278,10 @@ BCatalog.prototype.cityFilter = function(targetCityId){
         }
 
     });
+}
+
+BCatalog.prototype.redirectToBankPage = function(evtObj, ui){
+
+    var bankName = $.trim(ui.item.value);
+    $(this).closest('#bc-wrapper').find('tr:contains("'+bankName+'")').trigger('click');
 }
