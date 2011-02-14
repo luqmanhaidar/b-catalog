@@ -161,7 +161,7 @@ class Bank extends DB_connect {
     public static function getBanksShortInfo($dbh){
 
         $banks = array();
-        $query = "SELECT Kod_B,Name_short,Http,Logo_min FROM banks";
+        $query = "SELECT Kod_B,Name_short,Http,Logo_min FROM banks ORDER BY Name_short";
         $STH = $dbh->query($query);
         $STH->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Bank", array("db"=>$dbh, "config"=>NULL));
 

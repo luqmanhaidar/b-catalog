@@ -309,7 +309,7 @@ DepartmentList.prototype.getAdresses = function(adr_part, addToAC){
             console.log(response);
 
             if(response.success === "1" && response.adresses){
-                adresses = response.adresses;
+                adresses = Helper.array_unique(response.adresses);
                 dept_ui.searchCnt.find('input').autocomplete("option", "source", adresses);
             }
             else if(response.error === "1")

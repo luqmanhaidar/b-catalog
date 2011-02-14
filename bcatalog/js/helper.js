@@ -38,3 +38,14 @@ Helper.empty = function empty( mixed_var ) {
 
 	return ( mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false );
 }
+
+Helper.array_unique = function (arr) {
+    var tmp_arr = new Array();
+    for (i = 0; i < arr.length; i++) {
+        if (!Helper.in_array(arr[i],tmp_arr) ) {
+            tmp_arr.push(arr[i]);
+        }
+    }
+    return tmp_arr;
+}
+
