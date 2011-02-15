@@ -76,9 +76,19 @@
                     </table>
                 </div>
                 <div id="departments">
-                    <div class="search">
+                    <div class="search bank">
                         <input type="text" length="150" value="введите адрес">
                         <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
+                        
+                    </div>
+                    <div class="dept-class-nav">
+                        <input type="checkbox" checked="checked" value="0" class="all" /><span class="title"> все</span><br/>
+                        <div class="separator">&nbsp;</div>
+                        <input type="checkbox" checked="checked" value="1" /><span class="title"> отделение</span><br/>
+                        <input type="checkbox" checked="checked" value="2" /><span class="title"> банкомат</span><br/>
+                        <input type="checkbox" checked="checked" value="3" /><span class="title"> обменный пункт</span><br/>
+                        <input type="checkbox" checked="checked" value="4" /><span class="title"> инфокиоск</span><br/>
+                        <input type="checkbox" checked="checked" value="5" /><span class="title"> терминал</span>
                     </div>
                     <?php
                         $data["regions"] = $regions;
@@ -140,6 +150,7 @@
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.autocomplete.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.ui.tabs.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/helper.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>js/dept_type.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/depts.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.tmpl.js"></script>
         <script id="dept-row-template" type="text/x-jquery-tmpl" >
@@ -177,12 +188,13 @@
                 var bank_id = deptListBlock.attr('bank_id');
                 var city_id = cityNavBlock.find('span.curr-city').attr('city_id');
                 var errCnt = $('div.error', container);
+                var typeSel =$('div.dept-class-nav', container);
 
                 $('div.full-data', container).eq(0).tabs({
-                    selected : 0
+                    selected : 1
                 });
 
-                var DEPTS = new DepartmentList(container, searchBlock, tabArr, cityNavBlock, cityListBlock, deptListBlock, paginationBlock, errCnt, city_id, bank_id, 20, "http://bcatalog.dev:8888/request_handler.php");//http://ctrigger.ru/bcatalog/ | bcatalog.dev:8888/
+                var DEPTS = new DepartmentList(container, searchBlock, tabArr, cityNavBlock, cityListBlock, deptListBlock, paginationBlock, errCnt, typeSel,city_id, bank_id, 20, "http://bcatalog.dev:8888/request_handler.php");//http://ctrigger.ru/bcatalog/ | bcatalog.dev:8888/
                 DEPTS.init();
 
             });

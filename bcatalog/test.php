@@ -29,10 +29,12 @@
 
                 // 8 (017) 237-97-97
                 // 8 (0165) 32-44-16, 8 (0165) 32-24-31
-                echo "<pre>";
-                print_r(generatePagination($db->getDBH(), $bank_id, $city_id, 1, 20));
-                //print_r(Department::getDeptAdress($db->getDBH(), 1, 1, ""));
-                echo "</pre>";
+//                echo "<pre>";
+//                //print_r(generatePagination($db->getDBH(), $bank_id, $city_id, 1, 20));
+//                //print_r(Department::getDeptAdress($db->getDBH(), 1, 1, ""));
+//                echo "</pre>";
+
+                echo Department::generateTypeCondition(array(0));
 
             }
             catch(Exception $exp){

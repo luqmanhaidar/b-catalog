@@ -12,7 +12,12 @@
 #bc-wrapper div.search{
     clear: both;
     margin-left: 200px;
-    margin-top: 20px;
+    margin-top: 60px;
+}
+
+#bc-wrapper div.search.bank{
+    float: left;
+    clear: none;
 }
 
 #bc-wrapper div.search *{
@@ -28,6 +33,17 @@
 #bc-wrapper div.search img{
     cursor: pointer;
 }
+
+#bc-wrapper div.dept-class-nav{
+    float: left;
+    margin: 20px 0px 20px 40px;
+    text-align: left;
+}
+
+
+#bc-wrapper div.dept-class-nav span:hover{ cursor: pointer; color: #0066CC; }
+#bc-wrapper div.dept-class-nav div.separator{ border-bottom: 1px solid #0066CC; height: 3px; margin-bottom: 2px; }
+
 /* SEARCH --------------------------------------------------------------- END */
 
 /* CITY-NAV -------------------------------------------------------- CITY-NAV */
@@ -514,3 +530,7 @@
 
 
 /* --- ADMIN --------------------------------------------------------- END ---*/
+
+/* CITY-LIST ------------------------------------------------------ CITY-LIST */
+#bc-wrapper div.city-list div.content table tbody tr td ul li{ list-style: none; }
+/* CITY-LIST -------------------------------------------------------- END --- */

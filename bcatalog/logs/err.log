@@ -464,3 +464,53 @@ trace:
 #3 {main}
 -----
 
+
+ERROR (17:30:27 | 15 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN )) ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 215
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(215): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/request_handler.php(57): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '??', '20', '1', '1|2|3|4|5')
+#2 {main}
+-----
+
+
+ERROR (17:33:20 | 15 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN )) ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 215
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(215): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/request_handler.php(57): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '????%??????????...', '20', '1', '1|2|3|4|5')
+#2 {main}
+-----
+
+
+ERROR (17:34:00 | 15 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN )) ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 215
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(215): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/request_handler.php(57): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '??', '20', '1', '1|2|3|4|5')
+#2 {main}
+-----
+
+
+ERROR (17:34:35 | 15 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN )) ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 215
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(215): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/request_handler.php(61): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '??', '20', '1', '1|2|3|4|5')
+#2 {main}
+-----
+
+
+ERROR (17:35:26 | 15 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN )) ORDER BY Kod LIMIT 0,20' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 215
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(215): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/request_handler.php(65): Department::getBankDepartmentsByAdress(Object(PDO), '1', '1', '??', '20', '1', '1|2|3|4|5')
+#2 {main}
+-----
+
