@@ -3,50 +3,50 @@ function TypeSelector(settings){
     this.container = settings.container ? settings.container : $(document).find('div.dept-class-nav').eq(0);
     this.needTypes = new Array();
 
-
     this.init();
 
 }
 
 TypeSelector.prototype.init = function(){
 
-    this.container.find('input:checkbox:not(.all)').bind('click', {ui:this}, this.updateNeedTypes);
-    this.container.find('input.all').bind('click', {ui:this}, function(evtObj){
+    this.needTypes.push("1","2","3","4","5");
+    this.container.find('input.all').bind('change', {ui:this}, function(evtObj){
         var box = $(this);
-
-        if(box.is(':not(:checked)')){
+        
+        if(box.attr('checked')){
             box.nextAll(':not(:checked)').attr('checked','checked');
             evtObj.data.ui.needTypes = new Array("1", "2", "3", "4", "5");
+            console.log('check all!!');
         }
         else{
             box.nextAll(':checked').removeAttr('checked');
             box.nextAll(':checkbox:first').attr('checked', 'checked');
             evtObj.data.ui.needTypes = new Array("1");
+            console.log("check one");
         }
+
+        console.log(evtObj.data.ui.needTypes);
     });
-    this.container.find('span.title').click(function(){
-       $(this).prev().click();
+    this.container.find('input:checkbox:not(.all)').bind('change', {ui:this}, function(evtObj){
+        if(evtObj.data.ui.container.find('input:checked:not(.all)').length != 5)
+            evtObj.data.ui.container.find('input.all').eq(0).removeAttr('checked');
+        else
+            evtObj.data.ui.container.find('input.all').eq(0).attr('checked', 'checked');
+
     });
 }
 
-TypeSelector.prototype.updateNeedTypes = function(evtObj){
+TypeSelector.prototype.getNeedTypesStr = function(){
+    if(!this.container.find('input.all').eq(0).attr('checked')){
 
-    var ui = evtObj.data.ui;
-    var box = $(this);
-
-    if(box.not(':checked') && !Helper.in_array(box.val(), ui.needTypes)){
-        ui.needTypes.push(box.val());
-        ui.container.find('input.all').removeAttr('checked');
+        var tempArr = new Array();
+        this.container.find('input:checked:not(.all)').each(function(index, elt){
+           tempArr.push($(elt).val());
+        });
+        this.needTypes = tempArr;
     }
-    else if(box.is(':checked') && Helper.in_array(box.val(), ui.needTypes)){
-        for (var i = 0; i < ui.needTypes.length; i++) {
-            if (ui.needTypes[i] == box.val()) {
-                ui.needTypes.splice(i,1);
-                break;
-            }
-        }
 
-        if(ui.needTypes.length == 0)
-            ui.container.find('input:checkbox:not(.all)').eq(0).trigger('click');
-    }
+    
+    console.log(this.needTypes);
+    return this.needTypes.join('|');
 }

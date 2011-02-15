@@ -125,8 +125,9 @@ class Department extends DB_connect {
      * @param {int} $city_id id города
      * @param {int} $pageLength id длина требуемой страницы
      * @param {int} $pageNum = 0 номер требуемой страницы
+     * @param {array} $types массив типов отделений, которые хотим получить
      */
-    public static function getBankDepartments(PDO $dbh, $bank_id, $city_id, $pageLength, $pageNum = 0){
+    public static function getBankDepartments(PDO $dbh, $bank_id, $city_id, $pageLength, $pageNum = 0, $types = null){
 
         // отступ получаем помощью page*pageNum
         if(empty($city_id) || !is_numeric($city_id) || empty($bank_id) || !is_numeric($bank_id) || empty($pageLength) || !is_numeric($pageLength))
@@ -134,8 +135,11 @@ class Department extends DB_connect {
 
         $pageNum = empty($pageNum) ? 1 : $pageNum;
         $startIndex = $pageLength*($pageNum-1);
+
+        if($types)
+            $typeCond = Department::generateTypeCondition($types);
         
-        $query = "SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id) ORDER BY Kod LIMIT $startIndex,$pageLength";
+        $query = "SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id $typeCond) ORDER BY Kod LIMIT $startIndex,$pageLength";
         
         $STH = $dbh->query($query, PDO::FETCH_ASSOC|PDO::FETCH_PROPS_LATE, "Department", array("db"=>$dbh, "config"=>NULL));
         
@@ -194,7 +198,7 @@ class Department extends DB_connect {
      * @param {int} $pageLength id длина требуемой страницы
      * @param {int} $pageNum = 0 номер требуемой страницы
      */
-    public static function getBankDepartmentsByAdress(PDO $dbh, $bank_id, $city_id, $adr_part, $pageLength, $pageNum = 0){
+    public static function getBankDepartmentsByAdress(PDO $dbh, $bank_id, $city_id, $adr_part, $pageLength, $pageNum = 0, $types = NULL){
 
         // отступ получаем помощью page*pageNum
         if(empty($city_id) || !is_numeric($city_id) || empty($bank_id) || !is_numeric($bank_id) || empty($pageLength) || !is_numeric($pageLength))
@@ -202,8 +206,11 @@ class Department extends DB_connect {
 
         $pageNum = empty($pageNum) ? 1 : $pageNum;
         $startIndex = $pageLength*($pageNum-1);
-        //die("SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE '%$adr_part%')) ORDER BY Kod LIMIT $startIndex,$pageLength");
-        $query = "SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE '%$adr_part%')) ORDER BY Kod LIMIT $startIndex,$pageLength";
+
+        if($types)
+            $typeCond = Department::generateTypeCondition($types);
+        
+        $query = "SELECT * FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE '%$adr_part%') $typeCond) ORDER BY Kod LIMIT $startIndex,$pageLength";
         $STH = $dbh->prepare($query);
         $STH->execute();
         $STH->setFetchMode(PDO::FETCH_ASSOC|PDO::FETCH_PROPS_LATE, "Department", array("db"=>$dbh, "config"=>NULL));
@@ -213,6 +220,18 @@ class Department extends DB_connect {
             $departmentArr[] = $resultObj;
 
         return count($departmentArr) > 0 ? $departmentArr : false;
+    }
+
+    public static function generateTypeCondition($types){
+        if(!types || count($types) == 0 || (count($types) == 1 && $types[0] == '0'))
+            return "";
+
+        $condition = "AND (";
+        foreach($types as $value){
+            $condition .= (" Type='$value' OR");
+        }
+        
+        return substr($condition, 0, -3)." )";
     }
 }
 

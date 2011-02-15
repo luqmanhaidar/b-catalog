@@ -1,4 +1,4 @@
-/*  
+ /*  
  * @constructor
  * @param {jQuery} container общий контейнер
  * @param {jQuery} searchCnt контейнер с элементами поиска
@@ -13,7 +13,7 @@
  * @param {Integer} pageLength количество строк на страницу списка
  * @param {String} handler обработчик AJAX запросов
  */
-function DepartmentList(container, searchCnt, tabs, cityNavCnt, cityListCnt, deptListCnt, pageNavCnt, errCnt, currCity, currBank, pageLength, handler){
+function DepartmentList(container, searchCnt, tabs, cityNavCnt, cityListCnt, deptListCnt, pageNavCnt, errCnt, typeSelCnt, currCity, currBank, pageLength, handler){
 
     this.container = container;
     this.searchCnt = searchCnt;
@@ -23,6 +23,8 @@ function DepartmentList(container, searchCnt, tabs, cityNavCnt, cityListCnt, dep
     this.deptListCnt = deptListCnt;
     this.pageNavCnt = pageNavCnt;
     this.errMsgCnt = errCnt;
+
+    this.typeSelector = new TypeSelector({container:typeSelCnt});
 
     this.currCity = (typeof currCity == 'undefined' || !currCity) ? "1" : currCity;
     this.currBank = currBank;
@@ -71,13 +73,19 @@ DepartmentList.prototype.init = function(settings){
         if(cityInput.val().length == 0)
             cityInput.val('введите адрес');
     });
+    cityInput.bind("keydown", {ui:DeptsUI}, function(evtObj){
+        if(evtObj.keyCode == 13)
+            DeptsUI.searchCnt.find('img').click();
+    });
+    this.searchCnt.find('img').bind('click', function(evtObj){
+        DeptsUI.updateDeptList(DeptsUI.currBank, DeptsUI.currCity, DeptsUI.pageLength, 1, 1, cityInput.val());
+    });
 
     cityInput.autocomplete({
         source : [],
         minLength : 1,
         delay : 300,
         select : function(eventObj, ui){
-            console.log("do city search");
             DeptsUI.updateDeptList(DeptsUI.currBank, DeptsUI.currCity, DeptsUI.pageLength, 1, 1, cityInput.val());
         }
     });
@@ -231,7 +239,8 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
             "page_num"     : page_num,
             "page_length"  : page_length,
             "get_page_set" : page_set,
-            "adr_part"     : adr_part
+            "adr_part"     : adr_part,
+            "types"        : dept_ui.typeSelector.getNeedTypesStr()
         },
         dataType : "json",
         success : function(response, status, xhr){
@@ -252,6 +261,12 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
                 if(response.pages.length > 0){
                     liCnt.find('li').not(".prev").not(".next").remove();
                     var after = liCnt.find('li.prev');
+
+                    if(response.pages.length == 1 && response.pages[0].content == "1"){
+                        liCnt.find("li.prev").addClass('passive');
+                        liCnt.find("li.next").addClass('passive');
+                    }
+
                     for(var q=0; q < response.pages.length; q++){
                         var newItem = $('<li class="'+response.pages[q].p_class+'">'+response.pages[q].content+'</li>').insertAfter(after);
                         after = newItem;

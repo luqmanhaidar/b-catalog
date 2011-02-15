@@ -17,10 +17,8 @@ try{
     $page_num = (empty($_GET["page_num"]) || !is_numeric($_GET["page_num"]) ) ? 1 : $_GET["page_num"];
 
     if(empty($bank_id) || !is_numeric($bank_id)){
-        //Header("HTTP/1.1 301 Moved Permanently");
-        //Header("Location: ".BASE_URL);
-        echo "empty";
-        die();
+        Header("HTTP/1.1 301 Moved Permanently");
+        Header("Location: ".BASE_URL);
     }
 
     $currBank = new Bank($db->getDBH(), NULL, $bank_id);

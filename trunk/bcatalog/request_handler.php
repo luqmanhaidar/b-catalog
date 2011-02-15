@@ -35,17 +35,27 @@ try{
             if(!is_numeric($_GET["city_id"]) || !is_numeric($_GET["bank_id"]) || !is_numeric($_GET["page_num"]) || !is_numeric($_GET["page_length"]) || !is_numeric($_GET["get_page_set"]))
                 die($config["errors"]["data"]["wrong-data"]);
 
+            if(empty($_GET['types']))
+                $_GET['types'] = array("0");
+            else{
+                $_GET["types"] = explode("|", $_GET["types"]);
+                
+                foreach($_GET["types"] as $key=>$value)
+                    if(!is_numeric($value))
+                        $_GET["types"][$key] = "0";
+            }
+
             $db = new DB_connect(null, $config);
 
             if(empty($_GET["adr_part"]))
-                $depts = Department::getBankDepartments($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $_GET["page_length"], $_GET["page_num"]);
+                $depts = Department::getBankDepartments($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $_GET["page_length"], $_GET["page_num"], $_GET["types"]);
             else{
                 //$safe_adr_part = $_GET["adr_part"];
                 $safe_adr_part = trim(preg_replace("/[^\w\x7F-\xFF\s]/", " ", $_GET["adr_part"]));
                 $safe_adr_part = preg_replace("/ +/", "%", $safe_adr_part);
                 //$safe_adr_part = str_replace(" ", "%' AND Adress LIKE '%", $safe_adr_part);
                 //die("QQ: ".$safe_adr_part);
-                $depts = Department::getBankDepartmentsByAdress($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $safe_adr_part, $_GET["page_length"], $_GET["page_num"]);
+                $depts = Department::getBankDepartmentsByAdress($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $safe_adr_part, $_GET["page_length"], $_GET["page_num"], $_GET["types"]);
             }
 
             if($depts){
