@@ -93,11 +93,14 @@ BCatalog.prototype.init = function(settings){
             input.val('введите название города');
     });
     cityInput.autocomplete({
-        source : Helper.array_unique(this.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li'))),
+        source    : Helper.array_unique(this.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li'))),
         minLength : 1,
-        delay : 0,
-        appendTo : '#complete-cnt'
+        delay     : 0,
+        appendTo  : '#complete-cnt',
+        select    : this.showCityBanks
     });
+
+    this.cityListCnt.find('.city-search-btn').bind('click', {ui:BCatalogUI}, this.triggerCityClick);
 }
 
 
@@ -284,4 +287,23 @@ BCatalog.prototype.redirectToBankPage = function(evtObj, ui){
 
     var bankName = $.trim(ui.item.value);
     $(this).closest('#bc-wrapper').find('tr:contains("'+bankName+'")').trigger('click');
+}
+
+BCatalog.prototype.showCityBanks = function(evtObj, ui){
+    $(evtObj.target).next().click();
+}
+
+BCatalog.prototype.triggerCityClick = function(evtObj){
+    
+    var cityName = $(this).prevAll('input:text').val().toLowerCase();
+    var cities = evtObj.data.ui.cityListCnt.find('td.cities li');
+    console.log(cityName);
+    cities.each(function(index, elt){
+        var item = $(elt);
+
+        if($.trim(item.text().toLowerCase()) == $.trim(cityName)){
+            item.click();
+            return false;
+        }
+    });
 }
