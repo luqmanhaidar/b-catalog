@@ -116,7 +116,7 @@
                         <tr bank_id="<?php echo $bank->Kod_B; ?>">
                             <td class="logo-col"><img src="<?php echo str_replace("http://bcatalog.dev:8888/", BASE_URL, $bank->Logo_min); ?>"/></td>
                             <td class="title-col"><?php echo $bank->Name_short; ?></td>
-                            <td class="link-col"><a target="_blank" href="/bank.php?bank_id=<?php echo $bank->Kod_B; ?>"><?php echo $bank->Http; ?></a></td>
+                            <td class="link-col"><a target="_blank" href="<?php echo BASE_URL;?>bank.php?bank_id=<?php echo $bank->Kod_B; ?>"><?php echo $bank->Http; ?></a></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

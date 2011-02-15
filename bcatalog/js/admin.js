@@ -8,13 +8,11 @@ function AdminUI(settings){
     this.imgSrc   = typeof settings.imgSrc == 'undefined' ? "http://"+document.domain+":8888/img/layout/" : settings.imgSrc;
 
     this.init();
-    console.log('initialized');
 }
 
 AdminUI.prototype.init = function(){
 
     var admin_ui = this;
-    console.log(document.domain+":8888/img/layout/");
     this.cityList.find('td.regions li').live('click', {ui:admin_ui}, this.selectRegion);
     this.cityList.find('td.areas li').live('click', {ui:admin_ui}, this.selectArea);
     this.cityList.find('td.cities li').live('click', {ui:admin_ui}, this.selectCity);
@@ -55,7 +53,7 @@ AdminUI.prototype.init = function(){
 }
 
 AdminUI.prototype.selectRegion = function(evtObj){
-    //console.log(evtObj.data.ui);
+
     var clickedRegion = $(this);
     var regions = evtObj.data.ui.cityList.find('td.regions:eq(1) ul');
     var areas = evtObj.data.ui.cityList.find('td.areas:eq(1)');
@@ -223,7 +221,6 @@ AdminUI.prototype.editItem = function(evtObj){
     $.ajax({
         data : dataToSend,
         success : function(response, status, xhr){
-            console.log(response);
             if(response.success == "1"){
                 listItem.attr("default_val",listItem.find('input[type=text]').val());
                 listItem.find('img.cancel').trigger('click');
@@ -257,12 +254,12 @@ AdminUI.prototype.getItemPrefix = function(item){
 
 
 AdminUI.prototype.requestErrHandler = function(xhr, status, errorObj){
-    console.log("---");
-    console.log(xhr);
-    console.log(status);
-    console.log(errorObj);
-    console.log("---");
-    //alert("Произошла ошибка при обращении к серверу.");
+//    console.log("---");
+//    console.log(xhr);
+//    console.log(status);
+//    console.log(errorObj);
+//    console.log("---");
+    alert("Произошла ошибка при обращении к серверу.");
 }
 
 
@@ -290,16 +287,16 @@ AdminUI.prototype.addItem = function(evtObj){
     $.ajax({
         data : dataToSend,
         success : function(response, status, xhr){
-            console.log(response);
+            
             if(response.success == "1"){
 
                 var cellIndex = cell.closest('tr').find('td').index(cell);
                 var newItem = $('<li '+obj+'_id="'+response.inserted_id+'">'+dataToSend[obj+"_name"]+'</li>');
-                    console.log(newItem);
+                    
                 if(cellIndex == 2){
                     newItem.attr('area_id', dataToSend.area_id);
                 }
-                console.log(cellIndex);
+
                 cell.closest('tbody').find('tr:eq(1) td:eq('+cellIndex+') ul.current').append(newItem);
             }
             else if(response.error == "1")

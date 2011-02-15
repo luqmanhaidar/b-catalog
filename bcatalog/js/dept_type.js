@@ -16,16 +16,12 @@ TypeSelector.prototype.init = function(){
         if(box.attr('checked')){
             box.nextAll(':not(:checked)').attr('checked','checked');
             evtObj.data.ui.needTypes = new Array("1", "2", "3", "4", "5");
-            console.log('check all!!');
         }
         else{
             box.nextAll(':checked').removeAttr('checked');
             box.nextAll(':checkbox:first').attr('checked', 'checked');
             evtObj.data.ui.needTypes = new Array("1");
-            console.log("check one");
         }
-
-        console.log(evtObj.data.ui.needTypes);
     });
     this.container.find('input:checkbox:not(.all)').bind('change', {ui:this}, function(evtObj){
         if(evtObj.data.ui.container.find('input:checked:not(.all)').length != 5)
@@ -46,7 +42,5 @@ TypeSelector.prototype.getNeedTypesStr = function(){
         this.needTypes = tempArr;
     }
 
-    
-    console.log(this.needTypes);
     return this.needTypes.join('|');
 }
