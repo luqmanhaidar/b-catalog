@@ -29,7 +29,7 @@
                         <tr class="city-search">
                             <td colspan="3">
                                 <input type="text" length="150" value="введите название города">
-                                <img src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
+                                <img class="city-search-btn" src="<?php echo BASE_URL."img/layout/search-icon.png"; ?>" />
                             </td>
                         </tr>
                         <tr class="head">
