@@ -108,7 +108,7 @@ DepartmentList.prototype.toggleCityList = function(evtObj){
 
 
 DepartmentList.prototype.selectRegion = function(evtObj){
-    //console.log('here');
+
     var clickedRegion = $(evtObj.target);
     var regions = evtObj.data.ui.cityListCnt.find('td.regions:last ul');
     var areas = evtObj.data.ui.cityListCnt.find('td.areas:last');
@@ -121,7 +121,6 @@ DepartmentList.prototype.selectRegion = function(evtObj){
     cities.find('ul.current').removeClass('current').find('li').show().filter('li.selected').removeClass('selected');
     cities.find('ul[region_id='+clickedRegion.attr('region_id')+']').addClass('current');
 
-    //console.log('li[city_id='+clickedRegion.attr('reg_center')+']');
     clickedRegion.closest('table').find('div.area-center').html(cities.find('li[city_id='+clickedRegion.attr('reg_center')+']').text());
     clickedRegion.closest('table').find('div.area-center').attr('city_id', clickedRegion.attr('reg_center'));
 }
@@ -244,14 +243,12 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
         },
         dataType : "json",
         success : function(response, status, xhr){
-            console.log(response);
 
             if(response.success === "1") {
 
                 var deptsCnt = dept_ui.deptListCnt.find('tbody');
 
                 if(response.depts.length == 0){
-                    console.log("here is error");
                     dept_ui.deptListCnt.hide();
                     dept_ui.errMsgCnt.html("Мы не знаем ни одного отделения данного банка, в выбранном Вами городе.<br/>Попробуйте выбрать другой город.").show();
 
@@ -289,12 +286,12 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
             }
         },
         error : function(xhr, status, errorObj){
-            console.log("---");
-            console.log(xhr);
-            console.log(status);
-            console.log(errorObj);
-            console.log("---");
-            //alert("Произошла ошибка при обращении к серверу.");
+//            console.log("---");
+//            console.log(xhr);
+//            console.log(status);
+//            console.log(errorObj);
+//            console.log("---");
+            alert("Произошла ошибка при обращении к серверу.");
         }
     });
 }
@@ -321,7 +318,7 @@ DepartmentList.prototype.getAdresses = function(adr_part, addToAC){
         },
         dataType : "json",
         success : function(response, status, xhr){
-            console.log(response);
+            
 
             if(response.success === "1" && response.adresses){
                 adresses = Helper.array_unique(response.adresses);
@@ -332,12 +329,12 @@ DepartmentList.prototype.getAdresses = function(adr_part, addToAC){
 
         },
         error : function(xhr, status, errorObj){
-            console.log("---");
-            console.log(xhr);
-            console.log(status);
-            console.log(errorObj);
-            console.log("---");
-            //alert("Произошла ошибка при обращении к серверу.");
+//            console.log("---");
+//            console.log(xhr);
+//            console.log(status);
+//            console.log(errorObj);
+//            console.log("---");
+            alert("Произошла ошибка при обращении к серверу.");
         }
     });
 

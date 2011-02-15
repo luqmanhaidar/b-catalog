@@ -272,12 +272,12 @@ BCatalog.prototype.cityFilter = function(targetCityId){
             }
         },
         error : function(xhr, status, errorObj){
-            console.log("---");
-            console.log(xhr);
-            console.log(status);
-            console.log(errorObj);
-            console.log("---");
-            //alert("Произошла ошибка при обращении к серверу.");
+//            console.log("---");
+//            console.log(xhr);
+//            console.log(status);
+//            console.log(errorObj);
+//            console.log("---");
+            alert("Произошла ошибка при обращении к серверу.");
         }
 
     });

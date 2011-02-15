@@ -367,6 +367,11 @@
     border-bottom: 1px dashed #BBB;
 }
 
+#bc-wrapper #info{
+    font-size: 15px;
+    line-height: 20px;
+}
+
 #bc-wrapper table.bank-info tr.last{
     border-bottom: 0px;
 }
@@ -421,7 +426,7 @@
 #bc-wrapper div.page-nav { width: 100%;}
 #bc-wrapper div.page-nav ul{ width: 100%; text-align: center; }
 #bc-wrapper div.page-nav *{ vertical-align: middle; font-size: 25px; line-height: 25px;}
-#bc-wrapper div.page-nav li{ display: inline-block; padding: 3px; height: 25px; min-width: 25px; text-align: center;}
+#bc-wrapper div.page-nav li{ display: inline-block; display: inline\9; padding: 3px; height: 25px; min-width: 25px; text-align: center;}
 #bc-wrapper div.page-nav li:hover{ text-decoration: underline; cursor: pointer; }
 #bc-wrapper div.page-nav li.current{ color: #0077EE; }
 #bc-wrapper div.page-nav li.current:hover{ color: #0077EE; background-color: #FFF; }
