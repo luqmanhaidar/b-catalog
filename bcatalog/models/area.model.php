@@ -44,10 +44,15 @@ class Area extends DB_connect{
 
     public function remove(){
 
-        $query = "DELETE FROM areas WHERE area_id=$this->area_id";
+        $query = "DELETE FROM areas,cities USING areas,cities WHERE (areas.area_id=$this->area_id AND cities.area_id = areas.area_id)";
 
         $sth = $this->db->prepare($query);
-        return $sth->execute();
+        if($sth->execute() && $sth->rowCount() > 0)
+            return true;
+        else{
+            $sth = $this->db->prepare("DELETE FROM areas WHERE (area_id=$this->area_id)");
+            return $sth->execute();
+        }
     }
 
     public function getAreaCities(){
