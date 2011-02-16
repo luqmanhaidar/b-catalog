@@ -8,7 +8,7 @@
 	<title><?php echo $title?> | BCATALOG</title>
 	</head>
 
-	<!--[if gt IE 6]>
+	<!--[if lte IE 7]>
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL; ?>css/ie.css" />
 	<![endif]-->
 

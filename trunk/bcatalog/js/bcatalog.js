@@ -67,7 +67,7 @@ BCatalog.prototype.init = function(settings){
     });
     bankInput.blur(function(evtObj){
         var input = $(evtObj.target);
-        if(input.val().indexOf('') == 0)
+        if(input.val().length == 0)
             input.val('введите название банка');
     });
     
@@ -89,7 +89,7 @@ BCatalog.prototype.init = function(settings){
     });
     cityInput.blur(function(evtObj){
         var input = $(evtObj.target);
-        if(input.val().indexOf('') == 0)
+        if(input.val().length == 0)
             input.val('введите название города');
     });
     cityInput.autocomplete({
@@ -151,7 +151,7 @@ BCatalog.prototype.alphaFilter = function(evtObj){
 }
 
 BCatalog.prototype.selectRegion = function(evtObj){
-    //console.log('here');
+    
     var clickedRegion = $(evtObj.target);
     var regions = evtObj.data.ui.cityListCnt.find('td.regions:last ul');
     var areas = evtObj.data.ui.cityListCnt.find('td.areas:last');
@@ -164,7 +164,6 @@ BCatalog.prototype.selectRegion = function(evtObj){
     cities.find('ul.current').removeClass('current').find('li').show().filter('li.selected').removeClass('selected');
     cities.find('ul[region_id='+clickedRegion.attr('region_id')+']').addClass('current');
 
-    //console.log('li[city_id='+clickedRegion.attr('reg_center')+']');
     clickedRegion.closest('table').find('div.area-center').html(cities.find('li[city_id='+clickedRegion.attr('reg_center')+']').text());
     clickedRegion.closest('table').find('div.area-center').attr('city_id', clickedRegion.attr('reg_center'));
 }
@@ -224,12 +223,10 @@ BCatalog.prototype.getInnerHTMLToArr = function(donorElts){
 BCatalog.prototype.initAlphaNav = function(citySorted){
 
     var alphabet = this.alphaNavCnt.find('li:nth-child(n+3)');
-    //console.log(this.bankListCnt.find('tbody tr:not(.not-in-city) td.title-col'));
     var bankNames = this.getInnerHTMLToArr(this.bankListCnt.find('tbody tr:not(.not-in-city) td.title-col'));
 
     if(citySorted){
         alphabet.removeClass('variant');
-        //console.log(bankNames);
     }
 
     for(var q=0;q<alphabet.length;q++)
@@ -261,7 +258,6 @@ BCatalog.prototype.cityFilter = function(targetCityId){
                         cityRows.eq(q).removeClass("not-in-city");
                     else{
                         cityRows.eq(q).addClass("not-in-city");
-                        //console.log(cityRows.eq(q));
                     }
                 }
 
@@ -272,11 +268,6 @@ BCatalog.prototype.cityFilter = function(targetCityId){
             }
         },
         error : function(xhr, status, errorObj){
-//            console.log("---");
-//            console.log(xhr);
-//            console.log(status);
-//            console.log(errorObj);
-//            console.log("---");
             alert("Произошла ошибка при обращении к серверу.");
         }
 
@@ -297,7 +288,7 @@ BCatalog.prototype.triggerCityClick = function(evtObj){
     
     var cityName = $(this).prevAll('input:text').val().toLowerCase();
     var cities = evtObj.data.ui.cityListCnt.find('td.cities li');
-    console.log(cityName);
+    
     cities.each(function(index, elt){
         var item = $(elt);
 

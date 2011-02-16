@@ -1,0 +1,31 @@
+#bc-wrapper span.city-list-trigger{
+    display: block;
+    margin-top: -18px;
+}
+
+#bc-wrapper div.alpha-nav ul li{
+    display: inline;
+}
+
+#bc-wrapper div.city-list div.content{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#bc-wrapper div.city-list div.head span.close{
+    margin-top: -18px;
+}
+
+#bc-wrapper div.city-list tr.city-search img.city-search-btn{
+    margin-left: 305px;
+    margin-top: -33px;
+}
+
+#bc-wrapper div.dept-class-nav div.separator{
+    width: 150px;
+}
+
+#bc-wrapper div.full-data>div{
+    margin-top: 1px;
+    border-top: 1px solid #0066CC;
+}
