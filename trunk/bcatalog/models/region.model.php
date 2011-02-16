@@ -44,10 +44,22 @@ class Region extends DB_connect{
 
     public function remove(){
 
-        $query = "DELETE FROM regions WHERE region_id=$this->region_id";
+        $query = "DELETE FROM regions,areas,cities USING regions,areas,cities WHERE (regions.region_id=$this->region_id AND areas.region_id=regions.region_id AND cities.area_id=areas.area_id)";
 
         $sth = $this->db->prepare($query);
-        return $sth->execute();
+        if($sth->execute() && $sth->rowCount() > 0)
+            return true;
+        else{
+            $query = "DELETE FROM regions,areas USING regions,areas WHERE (regions.region_id=$this->region_id AND areas.region_id=regions.region_id)";
+            $sth = $this->db->prepare($query);
+            if($sth->execute() && $sth->rowCount() > 0)
+                return true;
+            else{
+                $query = "DELETE FROM regions WHERE (regions.region_id=$this->region_id)";
+                $sth = $this->db->prepare($query);
+                return $sth->execute();
+            }
+        }
     }
 
     public function getRegionAreas(){
