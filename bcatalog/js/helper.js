@@ -4,7 +4,6 @@ Helper.in_array = function(needle, haystack, strict) {
 	var found = false, key, strict = !!strict;
 
 	for (key in haystack) {
-        //console.log(key);
 		if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
 			found = true;
 			break;

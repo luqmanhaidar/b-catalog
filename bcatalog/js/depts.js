@@ -99,7 +99,7 @@ DepartmentList.prototype.init = function(settings){
     });
     cityNameInput.blur(function(evtObj){
         var input = $(evtObj.target);
-        if(input.val().indexOf('') == 0)
+        if(input.val().length == 0)
             input.val('введите название города');
     });
     cityNameInput.autocomplete({
@@ -307,11 +307,6 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
             }
         },
         error : function(xhr, status, errorObj){
-//            console.log("---");
-//            console.log(xhr);
-//            console.log(status);
-//            console.log(errorObj);
-//            console.log("---");
             alert("Произошла ошибка при обращении к серверу.");
         }
     });
@@ -350,11 +345,6 @@ DepartmentList.prototype.getAdresses = function(adr_part, addToAC){
 
         },
         error : function(xhr, status, errorObj){
-//            console.log("---");
-//            console.log(xhr);
-//            console.log(status);
-//            console.log(errorObj);
-//            console.log("---");
             alert("Произошла ошибка при обращении к серверу.");
         }
     });
@@ -366,7 +356,7 @@ DepartmentList.prototype.triggerCityClick = function(evtObj){
 
     var cityName = $(this).prevAll('input:text').val().toLowerCase();
     var cities = evtObj.data.ui.cityListCnt.find('td.cities li');
-    console.log(cityName);
+    
     cities.each(function(index, elt){
         var item = $(elt);
 
