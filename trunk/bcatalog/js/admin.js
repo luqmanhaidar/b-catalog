@@ -195,8 +195,11 @@ AdminUI.prototype.removeItem = function(evtObj){
     $.ajax({
         data : dataToSend,
         success : function(response, status, xhr){
-            if(response.success == "1")
-                listItem.remove();
+            if(response.success == "1"){
+                evtObj.data.ui.cityList.find('*['+obj+'_id='+dataToSend[obj+'_id']+']').remove();
+                if(obj == 'city')
+                    evtObj.data.ui.preEdit.find('select option[value='+dataToSend[obj+"_id"]+']').remove();
+            }
             else if(response.error == "1")
                 alert("Произошла ошибка при обращении к серверу.\n"+response.notification);
         }
@@ -222,10 +225,19 @@ AdminUI.prototype.editItem = function(evtObj){
         data : dataToSend,
         success : function(response, status, xhr){
             if(response.success == "1"){
-                listItem.attr("default_val",listItem.find('input[type=text]').val());
-                listItem.find('img.cancel').trigger('click');
 
-                
+                listItem.attr("default_val",listItem.find('input[type=text]').val());
+                listItem.attr(dependsAttr, dataToSend[dependsAttr]);
+
+                if(obj == 'city')
+                    evtObj.data.ui.preEdit.find('select option[value='+dataToSend["city_id"]+']').text(dataToSend["city_name"]);
+                else if(obj == 'area'){
+                    var cnt = evtObj.data.ui.cityList.find('td.areas ul['+dependsAttr+'='+dataToSend[dependsAttr]+']').eq(0);
+                    cnt.append(listItem);
+                }
+                 
+                listItem.closest('td').prev().find('li['+dependsAttr+'='+dataToSend[dependsAttr]+']').click();
+                listItem.find('img.cancel').click();
             }
             else if(response.error == "1")
                 alert("Произошла ошибка при обращении к серверу.\n"+response.notification);
@@ -292,9 +304,16 @@ AdminUI.prototype.addItem = function(evtObj){
 
                 var cellIndex = cell.closest('tr').find('td').index(cell);
                 var newItem = $('<li '+obj+'_id="'+response.inserted_id+'">'+dataToSend[obj+"_name"]+'</li>');
-                    
+
+                if(obj == 'region'){
+                    $('<ul region_id='+response.inserted_id+'></ul>').appendTo(cell.closest('tr').prev().find('td:not(:first)'))//.each(function(index, elt){
+                    //    $(elt).append('<ul region_id='+response.inserted_id+'></ul>');
+                    //});
+                }
+
                 if(cellIndex == 2){
                     newItem.attr('area_id', dataToSend.area_id);
+                    evtObj.data.ui.preEdit.find('select[name=city_id]').append('<option value="'+response.inserted_id+'">'+dataToSend[obj+"_name"]+'</option>');
                 }
 
                 cell.closest('tbody').find('tr:eq(1) td:eq('+cellIndex+') ul.current').append(newItem);

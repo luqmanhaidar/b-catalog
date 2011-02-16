@@ -90,6 +90,27 @@ DepartmentList.prototype.init = function(settings){
         }
     });
 
+    // инициализируем autocomplete поиска города
+    var cityNameInput = this.cityListCnt.find('input.city-search-input');
+    cityNameInput.focus(function(evtObj){
+        var input = $(evtObj.target);
+        if(input.val().indexOf('введите название города') == 0)
+            input.val('');
+    });
+    cityNameInput.blur(function(evtObj){
+        var input = $(evtObj.target);
+        if(input.val().indexOf('') == 0)
+            input.val('введите название города');
+    });
+    cityNameInput.autocomplete({
+        source    : Helper.array_unique(Helper.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li'))),
+        minLength : 1,
+        delay     : 0,
+        select    : function(evtObj, ui){ $(evtObj.target).next().click(); }
+    });
+
+    this.cityListCnt.find('.city-search-btn').bind('click', {ui:DeptsUI}, this.triggerCityClick);
+
     this.getAdresses("", true);
 }
 
@@ -339,4 +360,19 @@ DepartmentList.prototype.getAdresses = function(adr_part, addToAC){
     });
 
     return adresses;
+}
+
+DepartmentList.prototype.triggerCityClick = function(evtObj){
+
+    var cityName = $(this).prevAll('input:text').val().toLowerCase();
+    var cities = evtObj.data.ui.cityListCnt.find('td.cities li');
+    console.log(cityName);
+    cities.each(function(index, elt){
+        var item = $(elt);
+
+        if($.trim(item.text().toLowerCase()) == $.trim(cityName)){
+            item.click();
+            return false;
+        }
+    });
 }
