@@ -514,3 +514,47 @@ trace:
 #2 {main}
 -----
 
+
+ERROR (08:08:43 | 17 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN ))' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 164
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(164): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(160): Department::countPageNum(Object(PDO), '1', '1', '', 'AN )')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(69): generatePagination(Object(PDO), '1', '1', '1', '20', NULL, Array)
+#3 {main}
+-----
+
+
+ERROR (08:08:43 | 17 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN ))' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 164
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(164): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(160): Department::countPageNum(Object(PDO), '1', '1', '', 'AN )')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(69): generatePagination(Object(PDO), '1', '1', '1', '20', NULL, Array)
+#3 {main}
+-----
+
+
+ERROR (08:10:49 | 17 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN ))' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 164
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(164): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(160): Department::countPageNum(Object(PDO), '1', '1', '', 'AN )')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(69): generatePagination(Object(PDO), '1', '1', '1', '20', NULL, Array)
+#3 {main}
+-----
+
+
+ERROR (08:10:49 | 17 Feb 2011):
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AN ))' at line 1
+in: /Users/dh/Sites/bcatalog/models/department.model.php at: 164
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/department.model.php(164): PDOStatement->execute()
+#1 /Users/dh/Sites/bcatalog/source/helper.php(160): Department::countPageNum(Object(PDO), '1', '1', '', 'AN )')
+#2 /Users/dh/Sites/bcatalog/request_handler.php(69): generatePagination(Object(PDO), '1', '1', '1', '20', NULL, Array)
+#3 {main}
+-----
+

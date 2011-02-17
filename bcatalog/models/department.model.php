@@ -157,10 +157,10 @@ class Department extends DB_connect {
      * @param {int} $bank_id id банка
      * @param {int} $city_id id города
      */
-    public static function countPageNum(PDO $dbh, $bank_id, $city_id, $condition = NULL){
+    public static function countPageNum(PDO $dbh, $bank_id, $city_id, $condition = NULL, $typeCondition = NULL){
         //echo "SELECT COUNT(*) as rows FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id".(!$condition ? "" : (" AND $condition")).")";
 
-        $rows = $dbh->prepare("SELECT COUNT(*) as rows FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id".(!$condition ? "" : ("$condition")).")");
+        $rows = $dbh->prepare("SELECT COUNT(*) as rows FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id".(!$condition ? "" : ("$condition"))." ".(!$typeCondition ? "" : ("$typeCondition")).")");
         $rows->execute();
 
         return $rows->fetch(PDO::FETCH_OBJ)->rows;
@@ -223,11 +223,13 @@ class Department extends DB_connect {
     }
 
     public static function generateTypeCondition($types){
-        if(!types || count($types) == 0 || (count($types) == 1 && $types[0] == '0'))
+        if(!$types || count($types) == 0 || (count($types) == 1 && $types[0] == '0'))
             return "";
 
         $condition = "AND (";
         foreach($types as $value){
+            if(!is_numeric($value))
+                continue;
             $condition .= (" Type='$value' OR");
         }
         

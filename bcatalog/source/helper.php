@@ -145,16 +145,20 @@ function processPhones($strToProcess){
 }
 
 
-function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $adr_part = NULL){
+function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $adr_part = NULL, $types = NULL){
 
     $pag_items = array();
     $stack_length = 8;
     $condition = "";
+    $typeCond = "";
 
     if(!empty($adr_part))
         $condition = " AND Adress LIKE '%$adr_part%'";
+    if($types)
+        $typeCond = Department::generateTypeCondition($types);
+        
         //echo Department::countPageNum($dbh, $bank_id, $city_id)/$page_length, $condition);
-    $page_qnt = ceil(Department::countPageNum($dbh, $bank_id, $city_id, $condition)/$page_length);
+    $page_qnt = ceil(Department::countPageNum($dbh, $bank_id, $city_id, $condition, $typeCond)/$page_length);
     //echo $page_qnt;
     $k = ($page_num / $stack_length);
     $k = $k == 1 ? 0 : $k;
@@ -173,7 +177,7 @@ function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $
     }while($q <= $end_page);
 
 
-    if($end_page-1 < $page_qnt && $start_page+1!=$end_page){
+    if($end_page-1 < $page_qnt && $start_page+1!=$end_page && $pag_items[count($pag_items) - 1][content] != $page_qnt){
         $item["content"] = "...";
         $item["p_class"] = "next-range";
         array_push(&$pag_items, $item);
