@@ -410,7 +410,7 @@ $.extend( $.ui.autocomplete, {
 	escapeRegex: function( value ) {
         // ---------------------------------------------------------------- HERE
 		//return "^"+value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-        return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/ig, "\\$&");
 	},
 	filter: function(array, term) {
 		var matcher = new RegExp( $.ui.autocomplete.escapeRegex(term), "i" );

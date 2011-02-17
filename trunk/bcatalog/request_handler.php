@@ -66,7 +66,7 @@ try{
                 
                 $pagesArr = array();
                 if($_GET["get_page_set"] == 1)
-                    $pagesArr = generatePagination($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $_GET["page_num"], $_GET["page_length"], $safe_adr_part);
+                    $pagesArr = generatePagination($db->getDBH(), $_GET["bank_id"], $_GET["city_id"], $_GET["page_num"], $_GET["page_length"], $safe_adr_part, $_GET["types"]);
                 
                 die(json_encode(array("success"=>"1", "pag_update" => "0", "depts"=>$depts, "pages"=> $pagesArr)));
             }
