@@ -558,3 +558,13 @@ trace:
 #3 {main}
 -----
 
+
+ERROR (07:52:38 | 21 Feb 2011):
+SQLSTATE[HY000]: General error: fetch mode doesn't allow any extra arguments
+in: /Users/dh/Sites/bcatalog/models/bank.model.php at: 113
+trace: 
+#0 /Users/dh/Sites/bcatalog/models/bank.model.php(113): PDOStatement->setFetchMode(1048581, 'Bank', Array)
+#1 /Users/dh/Sites/bcatalog/bank.php(27): Bank->getDataById()
+#2 {main}
+-----
+
