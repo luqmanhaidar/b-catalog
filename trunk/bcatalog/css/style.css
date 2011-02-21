@@ -349,7 +349,7 @@
 
 /* DEPARTMENTS ---------------------------------------------------------- END */
 
-#bc-wrapper div.error { border: 1px solid #E77471; display: block; }
+#bc-wrapper div.error { border: 1px solid #E77471; display: none; }
 #bc-wrapper div.error div.err-head{ padding: 4px 10px; font-size: 130%; background-color: #E77471; color: #FFF; border-bottom: 1px solid #E77471; }
 #bc-wrapper div.error div.err-text{color: #000; padding: 15px;}
 
