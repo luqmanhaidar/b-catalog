@@ -243,102 +243,28 @@
 /* CITY-LIST ------------------------------------------------------------ END */
 
 /* BANK-LIST ------------------------------------------------------ BANK-LIST */
-
-#bc-wrapper div.bank-list{
-    margin-top: 20px;
-}
-
-#bc-wrapper div.bank-list table {
-    border-collapse: collapse;
-}
-
-#bc-wrapper div.bank-list table td.logo-col{
-    text-align: right;
-    width: 170px;
-    padding-right: 15px;
-}
-
-#bc-wrapper div.bank-list table td.title-col{
-    width: 370px;
-    padding-left: 15px
-}
-
-#bc-wrapper div.bank-list table td.link-col{
-    width: 160px;
-}
-
-#bc-wrapper div.bank-list table td.link-col a{
-    text-decoration: none;
-    color: #0066CC;
-}
-
-#bc-wrapper div.bank-list table td.link-col a:visited{
-    color: #333;
-}
-
-#bc-wrapper div.bank-list table td.link-col a:hover{
-    color: #333;
-}
-
-#bc-wrapper div.bank-list table tbody tr{
-    border-top: 1px solid #DDD;
-    height: 37px;
-    padding: 3px;
-    cursor: pointer;
-}
-
-#bc-wrapper div.bank-list table tbody tr.not-in-city{
-    display: none;
-}
-
-#bc-wrapper div.bank-list table tbody tr:hover, #bc-wrapper div.department-list tbody tr:hover, #bc-wrapper div.atm-list tbody tr:hover, #bc-wrapper div.exchange-list tbody tr:hover{
-    border-top: 1px solid #0077EE;
-    border-bottom: 1px solid #0077EE;
-    background-color: rgb(241,250,255);
-}
-
-#bc-wrapper div.bank-list table td{
-    padding: 3px;
-}
-
-#bc-wrapper div.bank-list table td *{
-    vertical-align: middle;
-}
+#bc-wrapper div.bank-list{ margin-top: 20px; }
+#bc-wrapper div.bank-list table { border-collapse: collapse; }
+#bc-wrapper div.bank-list table td.logo-col{ text-align: right; width: 170px; padding-right: 15px; }
+#bc-wrapper div.bank-list table td.title-col{ width: 370px; padding-left: 15px; }
+#bc-wrapper div.bank-list table td.link-col{ width: 160px; }
+#bc-wrapper div.bank-list table td.link-col a{ text-decoration: none; color: #0066CC; }
+#bc-wrapper div.bank-list table td.link-col a:visited{ color: #333; }
+#bc-wrapper div.bank-list table td.link-col a:hover{ color: #333; }
+#bc-wrapper div.bank-list table tbody tr{ border-top: 1px solid #DDD; height: 37px; padding: 3px; cursor: pointer; }
+#bc-wrapper div.bank-list table tbody tr.not-in-city{ display: none; }
+#bc-wrapper div.bank-list table tbody tr:hover, #bc-wrapper div.department-list tbody tr:hover, #bc-wrapper div.atm-list tbody tr:hover, #bc-wrapper div.exchange-list tbody tr:hover{ border-top: 1px solid #0077EE; border-bottom: 1px solid #0077EE; background-color: rgb(241,250,255); }
+#bc-wrapper div.bank-list table td{ padding: 3px; }
+#bc-wrapper div.bank-list table td *{ vertical-align: middle; }
 /* BANK-LIST ------------------------------------------------------------ END */
 
 /* ALPHA-NAV ------------------------------------------------------ ALPHA-NAV */
-#bc-wrapper div.alpha-nav{
-    clear: both;
-    cursor: default;
-    width: 700px;
-}
-
-#bc-wrapper div.alpha-nav ul{
-    text-align: center;
-    width: 100%;
-}
-
-#bc-wrapper div.alpha-nav li{
-
-    display: inline-block;
-    width: 20px;
-    color: #DDD;
-}
-
-#bc-wrapper div.alpha-nav li.first{
-    width: 33px;
-}
-
-#bc-wrapper div.alpha-nav li.variant{
-
-    color: #0066CC;
-    cursor: pointer;
-}
-
-#bc-wrapper div.alpha-nav li.selected{
-    font-weight: bold;
-    text-decoration: underline;
-}
+#bc-wrapper div.alpha-nav{ clear: both; cursor: default; width: 700px; }
+#bc-wrapper div.alpha-nav ul{ text-align: center; width: 100%; }
+#bc-wrapper div.alpha-nav li{ display: inline-block; width: 20px; color: #DDD; }
+#bc-wrapper div.alpha-nav li.first{ width: 33px; }
+#bc-wrapper div.alpha-nav li.variant{ color: #0066CC; cursor: pointer; }
+#bc-wrapper div.alpha-nav li.selected{ font-weight: bold; text-decoration: underline; }
 /* ALPHA-NAV ------------------------------------------------------------ END */
 
 
@@ -358,32 +284,19 @@
 
 /* FULL-DATA ------------------------------------------------------ FULL-DATA */
 
-#bc-wrapper div.full-data{
-    margin: 40px 0px;
-}
+#bc-wrapper div.full-data{ margin: 40px 0px; }
 
 #bc-wrapper table.bank-info{ width: 100%; }
-#bc-wrapper table.bank-info tr{
-    border-bottom: 1px dashed #BBB;
-}
+#bc-wrapper table.bank-info tr{ border-bottom: 1px dashed #BBB; }
 
-#bc-wrapper #info{
-    font-size: 15px;
-    line-height: 20px;
-}
+#bc-wrapper #info{ font-size: 15px; line-height: 20px; }
 
-#bc-wrapper table.bank-info tr.last{
-    border-bottom: 0px;
-}
+#bc-wrapper table.bank-info tr.last{ border-bottom: 0px; }
 
 #bc-wrapper div.full-data table tr td, #bc-wrapper table.bank-info tr td { padding: 10px; vertical-align: top;}
 #bc-wrapper div.full-data table tr td.title-col, #bc-wrapper table.bank-info tr td.title-col{ width: 20%; }
 #bc-wrapper div.full-data table tr td.info-col, #bc-wrapper table.bank-info tr td.info-col{ width: 80%; }
-#bc-wrapper div.full-data table tr td ul li, #bc-wrapper table.bank-info tr td ul li{
-    display: list-item;
-    list-style: disc;
-    /*list-style-position: inside;*/
-}
+#bc-wrapper div.full-data table tr td ul li, #bc-wrapper table.bank-info tr td ul li{ display: list-item; list-style: disc; }
 
 /* FULL-DATA ------------------------------------------------------------ END */
 
@@ -395,6 +308,7 @@
 
 #bc-wrapper #departments td.title-col{ width: 170px; }
 #bc-wrapper #departments td.title-col div.work-time{ margin-top: 10px; padding: 10px; border-top: 1px solid #BBB; }
+#bc-wrapper #departments td.title-col div.work-time li{ list-style: none; }
 #bc-wrapper #departments td.title-col div.work-time div{ clear: both; }
 #bc-wrapper #departments td.title-col div.work-time div.days{ font-size: 70%; font-weight: bold; }
 #bc-wrapper #departments td.title-col div.work-time div.hours{ font-size: 90%; }
@@ -435,15 +349,9 @@
 
 /* DEPARTMENTS ---------------------------------------------------------- END */
 
-#bc-wrapper div.error {
-    background-color: #780000;
-    color: #FFF;
-    font-size: 130%;
-    display: none;
-}
-
-
-
+#bc-wrapper div.error { border: 1px solid #E77471; display: block; }
+#bc-wrapper div.error div.err-head{ padding: 4px 10px; font-size: 130%; background-color: #E77471; color: #FFF; border-bottom: 1px solid #E77471; }
+#bc-wrapper div.error div.err-text{color: #000; padding: 15px;}
 
 /* --- ADMIN -----------------------------------------------------------------*/
 
