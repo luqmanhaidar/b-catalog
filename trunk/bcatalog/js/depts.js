@@ -229,6 +229,10 @@ DepartmentList.prototype.selectPage = function(evtObj){
         needPage = parseInt(clickedLink.prev().text(), 10) + 1;
         page_set = 1;
     }
+    else if (clickedLink.next().hasClass('next') && !clickedLink.hasClass('last')){
+        needPage = parseInt(clickedLink.prev().text(), 10)+1;
+        clickedLink.next().addClass('passive');
+    }
     else{
         if(!clickedLink.hasClass('first'))
             liCnt.find('li.prev').removeClass('passive');
@@ -271,8 +275,8 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
 
                 if(response.depts.length == 0){
                     dept_ui.deptListCnt.hide();
-                    dept_ui.errMsgCnt.html("Мы не знаем ни одного отделения данного банка, в выбранном Вами городе.<br/>Попробуйте выбрать другой город.").show();
-
+                    dept_ui.errMsgCnt.find('div.err-text').html("Мы не знаем ни одного отделения данного банка, в выбранном Вами городе.<br/>Попробуйте выбрать другой город.");
+                    dept_ui.errMsgCnt.show();
                     return false;
                 }
 

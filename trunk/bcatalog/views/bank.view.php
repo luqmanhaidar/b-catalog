@@ -98,7 +98,10 @@
                         $data["city_search"] = true;
                         renderView("city-nav.view.php", $data);
                     ?>
-                    <div class="error"></div>
+                    <div class="error">
+                        <div class="err-head">Уведомление:</div>
+                        <div class="err-text"></div>
+                    </div>
                     <div class="department-list" bank_id="<?php echo $bank->Kod_B; ?>">
                         <table>
                             <thead>
