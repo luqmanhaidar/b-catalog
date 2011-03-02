@@ -157,11 +157,11 @@ function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $
     if($types)
         $typeCond = Department::generateTypeCondition($types);
         
-        //echo Department::countPageNum($dbh, $bank_id, $city_id)/$page_length, $condition);
+    //echo Department::countPageNum($dbh, $bank_id, $city_id)/$page_length, $condition);
     $page_qnt = ceil(Department::countPageNum($dbh, $bank_id, $city_id, $condition, $typeCond)/$page_length);
     //echo $page_qnt;
     $k = ($page_num / $stack_length);
-    $k = $k == 1 ? 0 : $k;
+    $k = $k == 1 ? 0 : ($page_num % $stack_length == 0 ? $k-1 : $k);
     $start_page = $stack_length * floor($k);
     $end_page = ($start_page + $stack_length) < $page_qnt ? $start_page + $stack_length : $page_qnt;
 
