@@ -48,3 +48,24 @@ Helper.array_unique = function (arr) {
     return tmp_arr;
 }
 
+Helper.array_merge = function(){
+    
+    var finalArr = new Array();
+
+    for(var q=0;q < arguments.length;q++){
+
+        for(var w=0; w < arguments[q].length; w++)
+            finalArr.push(arguments[q][w]);
+    }
+    
+    return Helper.array_unique(finalArr);
+}
+
+Helper.array_append = function(recepient, donor){
+
+    for(var q=0; q<donor.length; q++)
+        recepient.push(donor[q]);
+
+    return recepient;
+}
+
