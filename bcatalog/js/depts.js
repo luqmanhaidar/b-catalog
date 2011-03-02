@@ -25,6 +25,7 @@ function DepartmentList(container, searchCnt, tabs, cityNavCnt, cityListCnt, dep
     this.errMsgCnt = errCnt;
 
     this.typeSelector = new TypeSelector({container:typeSelCnt});
+    this.deptsAdresses = null;
 
     this.currCity = (typeof currCity == 'undefined' || !currCity) ? "1" : currCity;
     this.currBank = currBank;
@@ -86,7 +87,7 @@ DepartmentList.prototype.init = function(settings){
         minLength : 1,
         delay : 300,
         select : function(eventObj, ui){
-            DeptsUI.updateDeptList(DeptsUI.currBank, DeptsUI.currCity, DeptsUI.pageLength, 1, 1, cityInput.val());
+            DeptsUI.updateDeptList(DeptsUI.currBank, DeptsUI.currCity, DeptsUI.pageLength, 1, 1, ui.item.value);
         }
     });
 
@@ -106,10 +107,11 @@ DepartmentList.prototype.init = function(settings){
         source    : Helper.array_unique(Helper.getInnerHTMLToArr(this.cityListCnt.find('tbody td.cities li'))),
         minLength : 1,
         delay     : 0,
-        select    : function(evtObj, ui){ $(evtObj.target).next().click(); }
+        select    : function(evtObj, ui){$(evtObj.target).next().click();}
     });
 
     this.cityListCnt.find('.city-search-btn').bind('click', {ui:DeptsUI}, this.triggerCityClick);
+    this.container.find('div.dept-class-nav input:not(:first)').bind('change', {ui:DeptsUI}, this.updateArrList);
 
     this.getAdresses("", true);
 }
@@ -346,8 +348,11 @@ DepartmentList.prototype.getAdresses = function(adr_part, addToAC){
             
 
             if(response.success === "1" && response.adresses){
-                adresses = Helper.array_unique(response.adresses);
-                dept_ui.searchCnt.find('input').autocomplete("option", "source", adresses);
+                dept_ui.deptsAdresses = response.adresses;
+                var allAdr = new Array();
+                allAdr = Helper.array_merge(response.adresses["1"],response.adresses["2"],response.adresses["3"],response.adresses["4"],response.adresses["5"]);
+                
+                dept_ui.searchCnt.find('input').autocomplete("option", "source", allAdr);
             }
             else if(response.error === "1")
                 alert("Произошла ошибка:\n"+response.notification);
@@ -374,4 +379,16 @@ DepartmentList.prototype.triggerCityClick = function(evtObj){
             return false;
         }
     });
+}
+
+
+DepartmentList.prototype.updateArrList = function(evtobj){
+    var ui = evtobj.data.ui;
+    var newAdrArr = new Array();
+
+    $(this).closest('div').find('input:not(:first):checked').each(function(){
+       newAdrArr = Helper.array_append(newAdrArr, ui.deptsAdresses[$(this).val()]);
+    });
+
+    ui.searchCnt.find('input').autocomplete("option", "source", newAdrArr);
 }
