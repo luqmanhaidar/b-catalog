@@ -236,7 +236,7 @@ DepartmentList.prototype.selectPage = function(evtObj){
     else{
         if(!clickedLink.hasClass('first'))
             liCnt.find('li.prev').removeClass('passive');
-        else if(parseInt(clickedLink.text(), 10) != 1)
+        else if(parseInt(clickedLink.text(), 10) == 1) // --- HERE ---
             liCnt.find('li.prev').addClass('passive');
 
         if(clickedLink.hasClass('last'))
@@ -283,20 +283,25 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
                 if(response.pages.length > 0){
                     liCnt.find('li').not(".prev").not(".next").remove();
                     var after = liCnt.find('li.prev');
-
-                    if(response.pages.length == 1 && response.pages[0].content == "1"){
-                        liCnt.find("li.prev").addClass('passive');
-                        liCnt.find("li.next").addClass('passive');
-                    }
-
+                    liCnt.find("li.prev, li.next").removeClass('passive');
+                  
                     for(var q=0; q < response.pages.length; q++){
                         var newItem = $('<li class="'+response.pages[q].p_class+'">'+response.pages[q].content+'</li>').insertAfter(after);
                         after = newItem;
                     }
+
+                    var firstItem = liCnt.find('li:not(.prev):first');
+                    var lastItem = liCnt.find('li:not(.next):last');
+                    if(response.pages.length == 1 && response.pages[0].content == "1")
+                        liCnt.find("li.prev, li.next").addClass('passive');
+                    else if(firstItem.hasClass('current') && firstItem.text() == "1")
+                        liCnt.find('li.prev').addClass('passive');
+                    else if(lastItem.hasClass('current'))
+                        liCnt.find('li.next').addClass('passive');
                 }
                 else{
                     currentLink.removeClass('current');
-                    liCnt.find('li:contains("'+page_num+'")').addClass('current');
+                    liCnt.find('li:contains("'+page_num+'")').eq(0).addClass('current');
                 }
 
                 
