@@ -277,7 +277,7 @@ DepartmentList.prototype.updateDeptList = function(bank_id, city_id, page_length
 
                 if(response.depts.length == 0){
                     dept_ui.deptListCnt.hide();
-                    dept_ui.errMsgCnt.find('div.err-text').html("Мы не знаем ни одного отделения данного банка, в выбранном Вами городе.<br/>Попробуйте выбрать другой город.");
+                    dept_ui.errMsgCnt.find('div.err-text').html("Мы не знаем ни одного отделения данного банка, в выбранном Вами городе или по указанному адресу.<br/>Попробуйте выбрать другой город или указать другой адрес.");
                     dept_ui.errMsgCnt.show();
                     return false;
                 }
