@@ -176,13 +176,13 @@ class Department extends DB_connect {
      */
     public static function getDeptAdress(PDO $dbh, $bank_id, $city_id, $adr_part){
 
-        $rows = $dbh->prepare("SELECT Adress FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE'%$adr_part%'))");
+        $rows = $dbh->prepare("SELECT Adress, Type FROM otd WHERE (Kod_B=$bank_id AND city_id=$city_id AND (Adress LIKE'%$adr_part%'))");
         $rows->execute();
         $rows->setFetchMode(PDO::FETCH_ASSOC);
 
-        $result = array();
+        $result = array("1"=>array(),"2"=>array(),"3"=>array(),"4"=>array(),"5"=>array());
         while($row = $rows->fetch())
-            array_push (&$result, $row["Adress"]);
+            array_push (&$result[$row["Type"]], $row["Adress"]);
 
         return $result;
     }
