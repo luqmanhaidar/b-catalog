@@ -187,6 +187,16 @@ function generatePagination($dbh, $bank_id, $city_id, $page_num, $page_length, $
         array_push(&$pag_items, $item);
     }
 
+    if($pag_items[0]["content"] != 1){
+        $item["content"] = "...";
+        $item["p_class"] = "prev-range";
+        array_unshift(&$pag_items, $item);
+
+        $item["content"] = 1;
+        $item["p_class"] = "very-first";
+        array_unshift(&$pag_items, $item);
+    }
+
     return $pag_items;
 }
 

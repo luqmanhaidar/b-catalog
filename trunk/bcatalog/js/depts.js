@@ -231,9 +231,17 @@ DepartmentList.prototype.selectPage = function(evtObj){
         needPage = parseInt(clickedLink.prev().text(), 10) + 1;
         page_set = 1;
     }
+    else if(clickedLink.hasClass('prev-range')){
+        needPage = parseInt(clickedLink.next().text(), 10)-1;
+        page_set = 1;
+    }
     else if (clickedLink.next().hasClass('next') && !clickedLink.hasClass('last')){
         needPage = parseInt(clickedLink.prev().text(), 10)+1;
         clickedLink.next().addClass('passive');
+    }
+    else if(clickedLink.hasClass('very-first')){
+        needPage = 1;
+        page_set = 1;
     }
     else{
         if(!clickedLink.hasClass('first'))
